@@ -12,9 +12,9 @@ public class Main {
 
     public static void main (String... args)
     {
-        log.info("sending request");
-
         SocketStringSender sender = new SocketStringSender();
+        sender.setHost("10.129.74.73");
+
         StringMessage msg = new StringMessage();
         msg.setValue("hello my master");
         sender.send(msg);
