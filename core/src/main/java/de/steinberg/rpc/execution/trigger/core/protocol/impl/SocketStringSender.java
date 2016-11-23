@@ -21,7 +21,6 @@ public class SocketStringSender extends StringSender {
     protected void sendMessage(Message<String> message) {
         try {
             if (socket == null) {
-
                     socket = initializeSocket();
             }
 

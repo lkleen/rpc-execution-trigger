@@ -4,6 +4,7 @@ import de.steinberg.rpc.execution.trigger.core.exception.RpcExecutionTriggerExce
 import de.steinberg.rpc.execution.trigger.core.protocol.Message;
 import de.steinberg.rpc.execution.trigger.core.protocol.StringMessage;
 import de.steinberg.rpc.execution.trigger.core.protocol.StringReceiver;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.net.Socket;
 /**
  * Created by lkleen on 22.11.2016.
  */
+@Slf4j
 public class SocketStringReceiver extends StringReceiver {
 
     public static final int PORT = 8031;
@@ -38,10 +40,10 @@ public class SocketStringReceiver extends StringReceiver {
             Socket socket = serverSocket.accept();
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            String msg = null;
+            String msg;
             String value = "";
             while ((msg = br.readLine()) != null) {
-                value += msg + "\n";
+                value += msg;
             }
 
             StringMessage stringMessage = new StringMessage();
@@ -53,7 +55,9 @@ public class SocketStringReceiver extends StringReceiver {
     }
 
     private ServerSocket initializeServerSocket() throws Exception {
-        return new ServerSocket(PORT);
+        ServerSocket serverSocket = new ServerSocket(PORT);
+        log.info ("listening to port {}", PORT);
+        return serverSocket;
     }
 
 
