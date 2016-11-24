@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<WindowsPerformanceRecorder
+ Author="Alnoor Allidina"
+ Comments="Circular Buffer System Provider Profile"
+ Version="1.0">
+  <Profiles>
+
+    <!-- Buffer sizes are specified in KB -->
+    <EventCollector Id="EventCollector_SystemMon" Name="SystemMon Event Collector" ProcessPrivate="false" Secure="false" Realtime="false">
+      <BufferSize Value="64"/>
+      <Buffers Value="64"/>
+    </EventCollector>
+
+    <!-- Our custom ETW Provider and its associated GUID -->
+    <EventProvider Id="EventProvider_SystemMonProvider" Name="7D0810B4-15F2-4D2F-9C88-C885B330D944"/>
+
+    <!-- A fully specified .wprp file should have four profiles, with DetailLevel set to Verbose and Light and with Logging Mode set to Memory and File. WPR enforces that the name conforms to <name>Profile.Level.OutputType -->
+    <Profile Id="SystemMonProfile.Verbose.File"
+    LoggingMode="File"
+    Name="SystemMonProfile"
+    DetailLevel="Verbose"
+    Description="SystemMon Provider for Diagnostic trace">
+      <Collectors>
+        <!-- EventCollectorId must match the EventCollector ID specified above -->
+        <EventCollectorId Value="EventCollector_SystemMon">
+          <EventProviders>
+            <EventProviderId Value="EventProvider_SystemMonProvider"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+    <!-- Now we can just subclass our base profile to get the other (mostly redundant) configurations -->
+    <Profile Id="SystemMonProfile.Verbose.Memory"
+    LoggingMode="Memory"
+    Name="SystemMonProfile"
+    DetailLevel="Verbose"
+    Description="SystemMon Provider for Diagnostic trace"
+    Base="SystemMonProfile.Verbose.File"/>
+
+    <Profile Id="SystemMonProfile.Light.File"
+    LoggingMode="File"
+    Name="SystemMonProfile"
+    DetailLevel="Light"
+    Description="SystemMon Provider for Diagnostic trace"
+    Base="SystemMonProfile.Verbose.File"/>
+
+    <Profile Id="SystemMonProfile.Light.Memory"
+    LoggingMode="Memory"
+    Name="SystemMonProfile"
+    DetailLevel="Light"
+    Description="SystemMon Provider for Diagnostic trace"
+    Base="SystemMonProfile.Verbose.File"/>
+
+  </Profiles>
+
+</WindowsPerformanceRecorder>
