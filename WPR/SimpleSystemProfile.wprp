@@ -18,7 +18,7 @@
         Name="GeneralProfileForLargeServers"
         >
       <Collectors Operation="Add">
-        <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile">
+        <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInMemory">
           <BufferSize Value="1024"/>
           <Buffers Value="10"/>
         </SystemCollectorId>
@@ -39,11 +39,11 @@
       <Collectors Operation="Add">
         <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="500"/>
+          <Buffers Value="10"/>
         </SystemCollectorId>
         <EventCollectorId Value="EventCollector_WPREventCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="100"/>
+          <Buffers Value="10"/>
         </EventCollectorId>
       </Collectors>
     </Profile>
@@ -58,11 +58,11 @@
       <Collectors Operation="Add">
         <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="1024"/>
+          <Buffers Value="10"/>
         </SystemCollectorId>
         <EventCollectorId Value="EventCollector_WPREventCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="1024"/>
+          <Buffers Value="10"/>
         </EventCollectorId>
       </Collectors>
     </Profile>
@@ -77,11 +77,11 @@
       <Collectors Operation="Add">
         <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="500"/>
+          <Buffers Value="10"/>
         </SystemCollectorId>
         <EventCollectorId Value="EventCollector_WPREventCollectorInFile">
           <BufferSize Value="1024"/>
-          <Buffers Value="100"/>
+          <Buffers Value="10"/>
         </EventCollectorId>
       </Collectors>
     </Profile>

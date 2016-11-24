@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <WindowsPerformanceRecorder
- Author="Alnoor Allidina"
+ Author="Lars Kleen"
  Comments="Circular Buffer System Provider Profile"
  Version="1.0">
   <Profiles>
 
-    <SystemCollector Id="SystemCollector" Name="NT Kernel Logger">
+    <SystemCollector Id="SystemCollector" Name="Circular Kernel Context Logger">
       <BufferSize Value="128"/>
       <Buffers Value="80"/>
     </SystemCollector>
@@ -17,10 +17,35 @@
         <Keyword Value="AllFaults"/>
         <Keyword Value="ReadyThread"/>
         <Keyword Value="ThreadPriority"/>
+        <Keyword Value="DPC"/>
+        <Keyword Value="CpuConfig"/>
+        <Keyword Value="IdleStates"/>
+        <Keyword Value="InterProcessorInterrupt"/>
+        <Keyword Value="KernelQueue"/>
+        <Keyword Value="ProcessFreeze"/>
+        <Keyword Value="HardFaults"/>
       </Keywords>
       <Stacks>
         <Stack Value="DiskReadInit"/>
         <Stack Value="DiskWriteInit"/>
+        <Stack Value="KernelQueueEnqueue"/>
+        <Stack Value="KernelQueueDequeue"/>
+        <Stack Value="ReadyThread"/>
+        <Stack Value="HeapAllocation"/>
+        <Stack Value="HeapCreate"/>
+        <Stack Value="HandleCreate"/>
+        <Stack Value="HandleClose"/>
+        <Stack Value="HeapReallocation"/>
+        <!--
+        <Stack Value="SampledProfile"/>
+        <Stack Value="KernelSignal"/>
+        <Stack Value="KernelSignalInit"/>
+        <Stack Value="KernelSync"/>
+        <Stack Value="KernelSyncAll"/>
+        <Stack Value="KernelWaitSync"/>
+        <Stack Value="KernelWaitSyncAll"/>
+        -->
+        <Stack Value="ThreadCreate"/>
       </Stacks>
     </SystemProvider>
     
@@ -31,6 +56,10 @@
     DetailLevel="Verbose"
     Description="SystemMon Provider for Diagnostic trace">
       <Collectors>
+        <!--
+        <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile"></SystemCollectorId>
+        <EventCollectorId Value="EventCollector_WPREventCollectorInFile"></EventCollectorId>
+        -->
         <SystemCollectorId Value="SystemCollector">
           <SystemProviderId Value="SystemProvider"/>
         </SystemCollectorId>
