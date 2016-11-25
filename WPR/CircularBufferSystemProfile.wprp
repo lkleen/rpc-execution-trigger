@@ -1,22 +1,23 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <WindowsPerformanceRecorder
  Author="Lars Kleen"
- Comments="Circular Buffer System Provider Profile"
+ Comments="Simple System Provider Profile"
  Version="1.0">
   <Profiles>
 
-    <SystemCollector Id="SystemCollector" Name="Circular Kernel Context Logger">
+    <SystemCollector Id="SystemCollector" Name="NT Kernel Logger">
       <BufferSize Value="128"/>
-      <Buffers Value="80"/>
+      <Buffers Value="10"/>
     </SystemCollector>
 
     <SystemProvider Id="SystemProvider">
       <Keywords>
+        <Keyword Value="ThreadPriority"/>
+        <!--
+        <Keyword Value="ReadyThread"/>
         <Keyword Value="Interrupt"/>
         <Keyword Value="ProcessThread"/>
         <Keyword Value="AllFaults"/>
-        <Keyword Value="ReadyThread"/>
-        <Keyword Value="ThreadPriority"/>
         <Keyword Value="DPC"/>
         <Keyword Value="CpuConfig"/>
         <Keyword Value="IdleStates"/>
@@ -24,9 +25,11 @@
         <Keyword Value="KernelQueue"/>
         <Keyword Value="ProcessFreeze"/>
         <Keyword Value="HardFaults"/>
+        -->
       </Keywords>
       <Stacks>
         <Stack Value="DiskReadInit"/>
+        <!--
         <Stack Value="DiskWriteInit"/>
         <Stack Value="KernelQueueEnqueue"/>
         <Stack Value="KernelQueueDequeue"/>
@@ -36,7 +39,6 @@
         <Stack Value="HandleCreate"/>
         <Stack Value="HandleClose"/>
         <Stack Value="HeapReallocation"/>
-        <!--
         <Stack Value="SampledProfile"/>
         <Stack Value="KernelSignal"/>
         <Stack Value="KernelSignalInit"/>
@@ -44,8 +46,8 @@
         <Stack Value="KernelSyncAll"/>
         <Stack Value="KernelWaitSync"/>
         <Stack Value="KernelWaitSyncAll"/>
-        -->
         <Stack Value="ThreadCreate"/>
+        -->
       </Stacks>
     </SystemProvider>
     
@@ -54,7 +56,7 @@
     LoggingMode="File"
     Name="SystemMonProfile"
     DetailLevel="Verbose"
-    Description="SystemMon Provider for Diagnostic trace">
+    Description="Bli Bla Provider for Diagnostic trace">
       <Collectors>
         <!--
         <SystemCollectorId Value="SystemCollector_WPRSystemCollectorInFile"></SystemCollectorId>
@@ -71,7 +73,7 @@
     LoggingMode="Memory"
     Name="SystemMonProfile"
     DetailLevel="Verbose"
-    Description="SystemMon Provider for Diagnostic trace"
+    Description="Hatschi Provider for Diagnostic trace"
     Base="SystemMonProfile.Verbose.File"/>
 
     <Profile Id="SystemMonProfile.Light.File"
@@ -85,7 +87,7 @@
     LoggingMode="Memory"
     Name="SystemMonProfile"
     DetailLevel="Light"
-    Description="SystemMon Provider for Diagnostic trace"
+    Description="foo Provider for Diagnostic trace"
     Base="SystemMonProfile.Verbose.File"/>
 
   </Profiles>
