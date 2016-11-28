@@ -1,1 +1,1 @@
-logman start "WPRSystemCollectorInMemory" -p "Windows Kernel Trace" (process,thread,disk,isr,dpc,net,img,registry,file) -bs 1024 -nb 128 128 -mode Circular -o kernel.etl -ct cycle -max 1024 -ets -rt
+logman start "NT Kernel Logger" -p "Windows Kernel Trace" (process,thread,disk,isr,dpc,net,img,registry,file,profile) -bs 1024 -nb 128 128 -mode Circular -o kernel.etl -ct cycle -max 1024 -ets -rt
