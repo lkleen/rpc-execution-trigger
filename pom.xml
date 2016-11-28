@@ -32,13 +32,20 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- java core -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.13.6</version>
         </dependency>
-        
+
         <!-- misc -->
         <dependency>
             <groupId>org.projectlombok</groupId>

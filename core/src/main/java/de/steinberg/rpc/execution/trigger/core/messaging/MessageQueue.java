@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public interface MessageQueue {
 
-    <T> void send(Class<T> type, T message);
+    <T> void send(T message);
 
     <T> T receive(Class<T> type);
 

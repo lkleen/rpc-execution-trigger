@@ -17,7 +17,8 @@ public class BlockingMessageQueue implements MessageQueue {
 
     HashMap<Class<?>, Queue<?>> map = new HashMap<Class<?>, Queue<?>>();
 
-    public <T> void send(Class<T> type, T message) {
+    public <T> void send(T message) {
+        Class<?> type = message.getClass();
         LinkedBlockingQueue<T> queue = (LinkedBlockingQueue<T>) map.get(type);
         if (queue == null)
         {
