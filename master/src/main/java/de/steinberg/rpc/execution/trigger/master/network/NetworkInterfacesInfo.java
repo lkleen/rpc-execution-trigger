@@ -9,7 +9,7 @@ import java.util.Collections;
 /**
  * Created by lkleen on 23.11.2016.
  */
-public class NetowrkInterfacesInfo {
+public class NetworkInterfacesInfo {
 
     public static String create() {
         try {
