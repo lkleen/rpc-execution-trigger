@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * core components bean definitions
+ *
  * Created by lkleen on 11/28/2016.
  */
 @Configuration

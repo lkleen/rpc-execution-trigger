@@ -7,6 +7,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * queue with a receive method which blocks until it receives something
+ *
  * Created by lkleen on 11/28/2016.
  */
 public class BlockingMessageQueue implements MessageQueue {

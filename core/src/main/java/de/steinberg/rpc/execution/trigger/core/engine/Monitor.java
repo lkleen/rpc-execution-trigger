@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * engine -> MONITORS -> listener -> actions
+ *
+ * a monitor monitors stuff and triggers a list of listeners.
+ *
+ * The implementation must support asynchronous execution
+ *
  * Created by lkleen on 11/28/2016.
  */
 public interface Monitor extends Runnable, SettingsAware {

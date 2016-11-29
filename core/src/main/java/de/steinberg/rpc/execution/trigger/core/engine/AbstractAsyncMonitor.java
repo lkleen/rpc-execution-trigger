@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
+ * implements asynchronous execution
+ *
  * Created by lkleen on 11/28/2016.
  */
 public abstract class AbstractAsyncMonitor implements Monitor {

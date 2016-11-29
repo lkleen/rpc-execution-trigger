@@ -8,6 +8,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * sending and receiving application internal messages. eg. display text for the ui
+ *
  * Created by lkleen on 11/28/2016.
  */
 public interface MessageQueue {
