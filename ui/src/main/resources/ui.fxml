@@ -10,11 +10,11 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="2000.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="4000.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="2000.0" minHeight="10.0" percentHeight="30.0" prefHeight="150.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="4000.0" minHeight="10.0" percentHeight="70.0" prefHeight="250.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane>
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,11 +28,18 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="40.0" minHeight="65.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="27.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                  <ComboBox fx:id="selectMonitor" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets right="2.0" />
+                     </GridPane.margin></ComboBox>
+                  <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="2.0" />
+                     </GridPane.margin></Pane>
                </children>
             </GridPane>
             <GridPane fx:id="upperGridRight" GridPane.columnIndex="1">
@@ -40,11 +47,26 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="27.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <ComboBox fx:id="selectMonitor" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                  <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding></Pane>
+               </children>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
       </GridPane>
+      <TextArea fx:id="output" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </GridPane.margin>
+      </TextArea>
    </children>
 </GridPane>
