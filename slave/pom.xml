@@ -10,7 +10,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>de.steinberg.rpc-execution-trigger</groupId>
     <artifactId>slave</artifactId>
 
     <dependencies>

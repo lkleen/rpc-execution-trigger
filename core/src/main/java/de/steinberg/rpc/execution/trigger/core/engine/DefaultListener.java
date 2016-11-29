@@ -20,7 +20,7 @@ public class DefaultListener implements Listener {
 
     public void trigger() {
         for (Action action : actions) {
-            action.run();
+            action.execute();
         }
     }
 }

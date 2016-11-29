@@ -13,6 +13,7 @@
         <module>core</module>
         <module>master</module>
         <module>slave</module>
+        <module>ui</module>
     </modules>
 
     <properties>

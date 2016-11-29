@@ -1,5 +1,7 @@
 package de.steinberg.rpc.execution.trigger.core.engine;
 
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -16,10 +18,14 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     List<Listener> listeners = new ArrayList<Listener>();
 
+    Settings settings = new Settings();
+
+    public void setSettings(Settings settings) {this.settings = settings;};
+    public Settings getSettings() {return settings;}
+
     public void addListener(Listener listener) {
         listeners.add(listener);
     }
-
     public List<Listener> getListeners() {
         return listeners;
     }
