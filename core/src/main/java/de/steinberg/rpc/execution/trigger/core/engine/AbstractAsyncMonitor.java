@@ -1,5 +1,6 @@
 package de.steinberg.rpc.execution.trigger.core.engine;
 
+import de.steinberg.rpc.execution.trigger.core.annotations.DisplayNameResolver;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public abstract class AbstractAsyncMonitor implements Monitor {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     List<Listener> listeners = new ArrayList<Listener>();
-
     Settings settings = new Settings();
+    DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
     public void setSettings(Settings settings) {this.settings = settings;};
     public Settings getSettings() {return settings;}
@@ -49,13 +50,17 @@ public abstract class AbstractAsyncMonitor implements Monitor {
         }
     }
 
-
     public void runAsync() {
         executor.scheduleAtFixedRate(this, 0, period, timeUnit);
     }
 
     public void shutdown() {
         executor.shutdown();
+    }
+
+    @Override
+    public String toString() {
+        return displayNameResolver.resolveFrom(this);
     }
 
 }

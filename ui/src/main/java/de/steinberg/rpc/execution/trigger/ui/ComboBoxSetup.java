@@ -1,10 +1,8 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.annotations.DisplayNameResolver;
 import de.steinberg.rpc.execution.trigger.core.engine.SettingsAware;
 import javafx.scene.control.ComboBox;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -12,16 +10,13 @@ import java.util.List;
  */
 public class ComboBoxSetup {
 
-    @Inject
-    DisplayNameResolver displayNameResolver;
+    public <T extends SettingsAware> void setup(List<T> entries, ComboBox<T> comboBox) {
+        comboBox.setConverter(new ComboBoxStringConverter<>());
 
-    public void setup(List<? extends SettingsAware> entries, ComboBox comboBox) {
-        for (Object entry : entries) {
-            comboBox.getItems().add(displayNameResolver.resolveFrom(entry));
+        for (T entry : entries) {
+            comboBox.getItems().add(entry);
         }
-        if (entries.size() > 0) {
-            comboBox.getSelectionModel().select(0);
-        }
+        comboBox.getSelectionModel().selectFirst();
     }
 
 }

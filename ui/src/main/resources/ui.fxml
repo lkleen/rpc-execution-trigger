@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="de.steinberg.rpc.execution.trigger.ui.SettingsController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -32,7 +34,7 @@
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="selectMonitor" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                  <ComboBox fx:id="selectMonitor" onAction="#refreshMonitorSettings" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets right="2.0" />
                      </GridPane.margin></ComboBox>
@@ -51,7 +53,7 @@
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="selectAction" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM"/>
+                  <ComboBox fx:id="selectAction" maxWidth="1.7976931348623157E308" onAction="#refreshMonitorSettings" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
                   <Pane fx:id="actionSettings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="2.0" />
