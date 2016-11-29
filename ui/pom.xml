@@ -11,5 +11,13 @@
 
     <artifactId>ui</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>de.steinberg.rpc-execution-trigger</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
