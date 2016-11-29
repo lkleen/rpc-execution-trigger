@@ -36,7 +36,7 @@
                      <GridPane.margin>
                         <Insets right="2.0" />
                      </GridPane.margin></ComboBox>
-                  <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
+                  <Pane fx:id="monitorSettings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="2.0" />
                      </GridPane.margin></Pane>
@@ -51,8 +51,8 @@
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="selectMonitor" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-                  <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
+                  <ComboBox fx:id="selectAction" maxWidth="1.7976931348623157E308" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                  <Pane fx:id="actionSettings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: round|solid; -fx-border-width: 1; -fx-border-color: grey;" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="2.0" />
                      </padding></Pane>

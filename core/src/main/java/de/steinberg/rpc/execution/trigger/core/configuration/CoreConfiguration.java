@@ -1,5 +1,6 @@
 package de.steinberg.rpc.execution.trigger.core.configuration;
 
+import de.steinberg.rpc.execution.trigger.core.annotations.DisplayNameResolver;
 import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class CoreConfiguration {
+
+    @Bean
+    public DisplayNameResolver displayNameResolver() {
+        return new DisplayNameResolver();
+    }
 
     @Bean
     public BlockingMessageQueue blockingMessageQueue() {
