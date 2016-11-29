@@ -32,6 +32,9 @@ public class EngineUI {
         for (Object entry : entries) {
             comboBox.getItems().add(entry.getClass().getSimpleName());
         }
+        if (entries.size() > 0) {
+            comboBox.getSelectionModel().select(0);
+        }
     }
 
 }
