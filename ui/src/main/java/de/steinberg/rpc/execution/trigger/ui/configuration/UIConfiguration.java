@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui.configuration;
 
-import de.steinberg.rpc.execution.trigger.ui.ComboBoxWithSettings;
+import de.steinberg.rpc.execution.trigger.ui.ComboBoxSetup;
 import de.steinberg.rpc.execution.trigger.ui.EngineUI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +17,8 @@ public class UIConfiguration {
     }
 
     @Bean
-    public ComboBoxWithSettings comboBoxWithSettings() {
-        return new ComboBoxWithSettings();
+    public ComboBoxSetup comboBoxWithSettings() {
+        return new ComboBoxSetup();
     }
 
 }

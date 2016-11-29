@@ -1,7 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
 import de.steinberg.rpc.execution.trigger.core.engine.Engine;
-import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.net.URL;
-import java.util.List;
 
 /**
  * Created by lkleen on 11/29/2016.
@@ -19,7 +17,7 @@ import java.util.List;
 public class EngineUI {
 
     @Inject
-    ComboBoxWithSettings comboBoxWithSettings;
+    ComboBoxSetup comboBoxSetup;
 
     public void initialize(Engine engine, Stage stage) throws Exception {
         URL resource = getClass().getClassLoader().getSystemResource("ui.fxml");
@@ -28,7 +26,7 @@ public class EngineUI {
 
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
         Pane monitorSettings = (Pane) scene.lookup("#monitorSettings");
-        comboBoxWithSettings.setup(engine.getMonitors(), selectMonitor, monitorSettings);
+        comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
 
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
