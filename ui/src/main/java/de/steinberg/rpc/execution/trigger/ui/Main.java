@@ -3,15 +3,9 @@ package de.steinberg.rpc.execution.trigger.ui;
 import de.steinberg.rpc.execution.trigger.core.configuration.CoreConfiguration;
 import de.steinberg.rpc.execution.trigger.ui.configuration.UIConfiguration;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.net.URL;
 
 /**
  * Created by lkleen on 11/29/2016.

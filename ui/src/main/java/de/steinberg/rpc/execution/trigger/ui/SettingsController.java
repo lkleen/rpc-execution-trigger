@@ -24,7 +24,12 @@ public class SettingsController {
     @FXML
     Pane actionSettings;
 
+    SettingsPaneSetup settingsPaneSetup = new SettingsPaneSetup();
+
     public void refreshMonitorSettings(ActionEvent actionEvent) {
+        ComboBox<Monitor> comboBox = (ComboBox<Monitor>) actionEvent.getSource();
+        Monitor monitor = comboBox.getSelectionModel().getSelectedItem();
+        settingsPaneSetup.setup(monitorSettings, monitor.getSettings());
         System.out.print(actionEvent);
     }
 }

@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.inject.Inject;
@@ -25,10 +24,10 @@ public class EngineUI {
         Scene scene = new Scene(root, 300, 275);
 
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
-        Pane monitorSettings = (Pane) scene.lookup("#monitorSettings");
+
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
 
-        stage.setTitle("FXML Welcome");
+        stage.setTitle("Notification Engine 0.0.1");
         stage.setScene(scene);
         stage.show();
     }
