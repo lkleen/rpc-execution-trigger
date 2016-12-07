@@ -5,6 +5,7 @@ import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -19,10 +20,10 @@ public class SettingsController {
     ComboBox<Action> selectAction;
 
     @FXML
-    Pane monitorSettings;
+    AnchorPane monitorSettings;
 
     @FXML
-    Pane actionSettings;
+    AnchorPane actionSettings;
 
     SettingsPaneSetup settingsPaneSetup = new SettingsPaneSetup();
 
@@ -30,6 +31,5 @@ public class SettingsController {
         ComboBox<Monitor> comboBox = (ComboBox<Monitor>) actionEvent.getSource();
         Monitor monitor = comboBox.getSelectionModel().getSelectedItem();
         settingsPaneSetup.setup(monitorSettings, monitor.getSettings());
-        System.out.print(actionEvent);
     }
 }
