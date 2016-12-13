@@ -27,9 +27,9 @@ public class SettingsController {
 
     SettingsPaneSetup settingsPaneSetup = new SettingsPaneSetup();
 
-    public void refreshMonitorSettings(ActionEvent actionEvent) {
-        ComboBox<Monitor> comboBox = (ComboBox<Monitor>) actionEvent.getSource();
-        Monitor monitor = comboBox.getSelectionModel().getSelectedItem();
+    public void refreshMonitorSettings() {
+        Monitor monitor = selectMonitor.getSelectionModel().getSelectedItem();
         settingsPaneSetup.setup(monitorSettings, monitor.getSettings());
     }
+
 }

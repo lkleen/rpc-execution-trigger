@@ -19,8 +19,6 @@ public class SettingsPaneSetup {
             return;
         }
 
-
-
         GridPane gridPane = new GridPane();
         int row = 0;
 
@@ -43,7 +41,6 @@ public class SettingsPaneSetup {
         for (Map.Entry<String, String> entry : settings.entrySet()) {
             Label label = new Label(entry.getKey());
             TextField textField = new TextField(entry.getValue());
-            //textField.setMaxWidth(Double.MAX_VALUE);
             gridPane.add(label, 0, row);
             gridPane.add(textField, 1, row);
             row++;
