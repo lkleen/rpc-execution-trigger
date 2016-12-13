@@ -5,5 +5,5 @@ import java.util.HashMap;
 /**
  * Created by lkleen on 11/29/2016.
  */
-public class Controllers<T> extends HashMap<String, Controller<T>> {
+public class Controllers extends HashMap<String, Controller> {
 }

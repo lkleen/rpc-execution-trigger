@@ -20,10 +20,11 @@ public abstract class AbstractAsyncMonitor implements Monitor {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     List<Listener> listeners = new ArrayList<Listener>();
+    Controllers controllers = new Controllers();
     Settings settings = new Settings();
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
-    public void setSettings(Settings settings) {this.settings = settings;};
+    public Controllers getControllers () {return controllers;}
     public Settings getSettings() {return settings;}
 
     public void addListener(Listener listener) {

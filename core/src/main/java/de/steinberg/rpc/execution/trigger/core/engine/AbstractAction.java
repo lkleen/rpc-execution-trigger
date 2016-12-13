@@ -8,11 +8,6 @@ public abstract class AbstractAction implements Action {
     Settings settings = new Settings();
 
     @Override
-    public void setSettings(Settings settings) {
-        this.settings = settings;
-    }
-
-    @Override
     public Settings getSettings() {
         return settings;
     }

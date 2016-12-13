@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  *
  * Created by lkleen on 11/28/2016.
  */
-public interface Monitor extends Runnable, SettingsAware {
+public interface Monitor extends Runnable, SettingsAware, ControllersAware {
 
     void addListener(Listener listener);
     List<Listener> getListeners ();
