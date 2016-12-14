@@ -18,42 +18,44 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     TimeUnit timeUnit = TimeUnit.SECONDS;
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-    List<Listener> listeners = new ArrayList<Listener>();
+
+    List<Action> actions = new ArrayList<>();
     Controls controls = new Controls();
     Settings settings = new Settings();
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
+    @Override
+    public List<Action> getActions() {return actions;}
+
+    @Override
     public Controls getControls() {return controls;}
+
+    @Override
     public Settings getSettings() {return settings;}
 
-    public void addListener(Listener listener) {
-        listeners.add(listener);
-    }
-    public List<Listener> getListeners() {
-        return listeners;
-    }
-
+    @Override
     public void setInterval(long period, TimeUnit timeUnit) {
         this.period = period;
         this.timeUnit = timeUnit;
     }
 
+    @Override
     public void run() {
         try {
             if (conditionFulfilled()) {
-                for (Listener listener : listeners) {
-                    listener.trigger();
-                }
+                getActions().stream().forEach(action -> action.execute());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @Override
     public void runAsync() {
         executor.scheduleAtFixedRate(this, 0, period, timeUnit);
     }
 
+    @Override
     public void shutdown() {
         executor.shutdown();
     }

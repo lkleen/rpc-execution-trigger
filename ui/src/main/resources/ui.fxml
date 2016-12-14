@@ -43,8 +43,10 @@
                         <VBox fx:id="monitorVBox" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding></VBox>
-                     </children></AnchorPane>
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
             <GridPane fx:id="upperGridRight" GridPane.columnIndex="1">
@@ -56,8 +58,16 @@
                 <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="selectAction" maxWidth="1.7976931348623157E308" onAction="#refreshMonitorSettings" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-                  <AnchorPane fx:id="actionSettings" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="selectAction" maxWidth="1.7976931348623157E308" onAction="#refreshActionSettings" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                   <AnchorPane fx:id="actionSettings" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                       <children>
+                           <VBox fx:id="actionVBox" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                               <padding>
+                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                               </padding>
+                           </VBox>
+                       </children>
+                   </AnchorPane>
                </children>
             </GridPane>
          </children>

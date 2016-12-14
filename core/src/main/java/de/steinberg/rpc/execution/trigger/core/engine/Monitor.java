@@ -14,8 +14,9 @@ import java.util.concurrent.TimeUnit;
  */
 public interface Monitor extends Runnable, SettingsAware, ControlsAware {
 
-    void addListener(Listener listener);
-    List<Listener> getListeners ();
+    void addAction(Action action);
+
+    List<Action> getActions ();
 
     void setInterval(long period, TimeUnit timeUnit);
 

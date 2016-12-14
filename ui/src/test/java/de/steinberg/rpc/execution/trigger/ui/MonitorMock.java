@@ -1,7 +1,7 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
+import de.steinberg.rpc.execution.trigger.core.engine.Action;
 import de.steinberg.rpc.execution.trigger.core.engine.Controls;
-import de.steinberg.rpc.execution.trigger.core.engine.Listener;
 import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 
@@ -14,21 +14,22 @@ import java.util.concurrent.TimeUnit;
  */
 public class MonitorMock implements Monitor {
 
-    List<Listener> listeners = new ArrayList<>();
+    List<Action> actions = new ArrayList<>();
 
     @Override
     public Settings getSettings() {
         return null;
     }
 
+
     @Override
-    public void addListener(Listener listener) {
-        listeners.add(listener);
+    public void addAction(Action action) {
+        actions.add(action);
     }
 
     @Override
-    public List<Listener> getListeners() {
-        return listeners;
+    public List<Action> getActions() {
+        return actions;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class MonitorMock implements Monitor {
 
     @Override
     public void run() {
-
+        actions.stream().forEach(action -> action.execute());
     }
 
     public Controls getControls() {

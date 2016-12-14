@@ -13,22 +13,13 @@ public class UITestConfigruation extends UIConfiguration {
 
     @Bean
     public Engine engine() {
-        Listener listener1 = new DefaultListener();
-        listener1.addAction(new ActionA());
-        listener1.addAction(new ActionB());
-
-        Listener listener2 = new DefaultListener();
-        listener2.addAction(new ActionA ());
-
-        Listener listener3 = new DefaultListener();
-        listener3.addAction(new ActionA ());
 
         Monitor monitor1 = new MonitorA();
-        monitor1.addListener(listener3);
+        monitor1.addAction(new ActionA());
+        monitor1.addAction(new ActionB());
 
         Monitor monitor2 = new MonitorB();
-        monitor2.addListener(listener1);
-        monitor2.addListener(listener2);
+        monitor2.addAction(new ActionA());
 
         Monitor monitor3 = new MonitorC();
 

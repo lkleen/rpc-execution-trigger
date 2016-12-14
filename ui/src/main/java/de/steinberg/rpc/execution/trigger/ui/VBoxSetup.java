@@ -1,7 +1,9 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
 import de.steinberg.rpc.execution.trigger.core.engine.Control;
+import de.steinberg.rpc.execution.trigger.core.engine.Controls;
 import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
+import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import javafx.event.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,33 +17,31 @@ import java.util.Map;
  */
 public class VBoxSetup {
 
-    public void setup(VBox monitorVBox, Monitor monitor) {
+    public void setup(VBox monitorVBox, Controls controls, Settings settings) {
 
         monitorVBox.getChildren().clear();
 
         GridPane settingsPane = createSettingsPane();
-        addSettingsUIComponents(monitor, settingsPane);
+        addSettingsUIComponents(settings, settingsPane);
         monitorVBox.getChildren().add(settingsPane);
 
         HBox buttonsHBox = createButtonsHBox();
-        addControlsUIComponents(monitor, buttonsHBox);
+        addControlsUIComponents(controls, buttonsHBox);
         monitorVBox.getChildren().add(buttonsHBox);
-
     }
 
-    private void addControlsUIComponents(Monitor monitor, HBox buttonsHBox) {
-        for (Map.Entry<String, Control> entry : monitor.getControls().entrySet()) {
+    private void addControlsUIComponents(Controls controls, HBox buttonsHBox) {
+        for (Map.Entry<String, Control> entry : controls.entrySet()) {
             Button button = new Button(entry.getKey());
             Control control = entry.getValue();
-            control.setSettings(monitor.getSettings());
             button.setOnAction(event -> {control.trigger();});
             buttonsHBox.getChildren().add(button);
         }
     }
 
-    private void addSettingsUIComponents(Monitor monitor, GridPane settingsPane) {
+    private void addSettingsUIComponents(Settings settings, GridPane settingsPane) {
         int row = 0;
-        for (Map.Entry<String, String> entry : monitor.getSettings().entrySet()) {
+        for (Map.Entry<String, String> entry : settings.entrySet()) {
             Label label = new Label(entry.getKey());
             TextField textField = new TextField(entry.getValue());
             settingsPane.add(label, 0, row);
