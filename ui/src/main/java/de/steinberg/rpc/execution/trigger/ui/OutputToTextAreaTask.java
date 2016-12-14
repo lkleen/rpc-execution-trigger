@@ -23,12 +23,11 @@ public class OutputToTextAreaTask extends Task<Void> {
     @Override
     protected Void call() throws Exception {
         StringBuilder builder = new StringBuilder(1024);
-
         while (true) {
-            LoggingEvent event = messageQueue.receive(LoggingEvent.class, 100, TimeUnit.MILLISECONDS);
-            while (event != null) {
-                builder.append(event.toString() + "\n");
-                event = messageQueue.receive(LoggingEvent.class, 0, TimeUnit.MILLISECONDS);
+            String message = messageQueue.receive(String.class, 100, TimeUnit.MILLISECONDS);
+            while (message != null) {
+                builder.append(message);
+                message = messageQueue.receive(String.class, 0, TimeUnit.MILLISECONDS);
             }
             if (builder.length() > 0) {
                 output.appendText(builder.toString());
