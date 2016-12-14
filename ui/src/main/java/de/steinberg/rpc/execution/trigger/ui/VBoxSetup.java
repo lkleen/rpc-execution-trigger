@@ -1,9 +1,7 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Controller;
-import de.steinberg.rpc.execution.trigger.core.engine.Controllers;
+import de.steinberg.rpc.execution.trigger.core.engine.Control;
 import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
-import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import javafx.event.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,16 +30,11 @@ public class VBoxSetup {
     }
 
     private void addControlsUIComponents(Monitor monitor, HBox buttonsHBox) {
-        for (Map.Entry<String, Controller> entry : monitor.getControllers().entrySet()) {
+        for (Map.Entry<String, Control> entry : monitor.getControls().entrySet()) {
             Button button = new Button(entry.getKey());
-            Controller controller = entry.getValue();
-            controller.setSettings(monitor.getSettings());
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    controller.trigger();
-                }
-            });
+            Control control = entry.getValue();
+            control.setSettings(monitor.getSettings());
+            button.setOnAction(event -> {control.trigger();});
             buttonsHBox.getChildren().add(button);
         }
     }

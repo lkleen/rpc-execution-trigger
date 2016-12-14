@@ -1,7 +1,6 @@
 package de.steinberg.rpc.execution.trigger.core.engine;
 
 import de.steinberg.rpc.execution.trigger.core.annotations.DisplayNameResolver;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +19,11 @@ public abstract class AbstractAsyncMonitor implements Monitor {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     List<Listener> listeners = new ArrayList<Listener>();
-    Controllers controllers = new Controllers();
+    Controls controls = new Controls();
     Settings settings = new Settings();
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
-    public Controllers getControllers () {return controllers;}
+    public Controls getControls() {return controls;}
     public Settings getSettings() {return settings;}
 
     public void addListener(Listener listener) {

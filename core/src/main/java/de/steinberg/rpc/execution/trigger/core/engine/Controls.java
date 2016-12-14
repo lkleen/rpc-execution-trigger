@@ -1,9 +1,9 @@
 package de.steinberg.rpc.execution.trigger.core.engine;
 
+import java.util.HashMap;
+
 /**
  * Created by lkleen on 11/29/2016.
  */
-public interface Controller {
-    void setSettings(Settings settings);
-    void trigger();
+public class Controls extends HashMap<String, Control> {
 }

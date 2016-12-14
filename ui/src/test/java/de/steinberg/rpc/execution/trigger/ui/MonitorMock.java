@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Controllers;
+import de.steinberg.rpc.execution.trigger.core.engine.Controls;
 import de.steinberg.rpc.execution.trigger.core.engine.Listener;
 import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
@@ -56,8 +56,7 @@ public class MonitorMock implements Monitor {
 
     }
 
-    @Override
-    public Controllers getControllers() {
-        return new Controllers();
+    public Controls getControls() {
+        return new Controls();
     }
 }

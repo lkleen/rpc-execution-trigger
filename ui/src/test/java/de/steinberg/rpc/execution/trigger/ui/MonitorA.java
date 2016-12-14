@@ -1,8 +1,8 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
 import de.steinberg.rpc.execution.trigger.core.annotations.DisplayName;
-import de.steinberg.rpc.execution.trigger.core.engine.Controller;
-import de.steinberg.rpc.execution.trigger.core.engine.Controllers;
+import de.steinberg.rpc.execution.trigger.core.engine.Control;
+import de.steinberg.rpc.execution.trigger.core.engine.Controls;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,16 +22,16 @@ public class MonitorA extends MonitorMock {
     }
 
     @Override
-    public Controllers getControllers () {
-        Controllers controllers = new Controllers();
-        createController(controllers, "foo");
-        createController(controllers, "bar");
-        createController(controllers, "baz");
-        return controllers;
+    public Controls getControls() {
+        Controls controls = new Controls();
+        createController(controls, "foo");
+        createController(controls, "bar");
+        createController(controls, "baz");
+        return controls;
     }
 
-    private void createController(Controllers controllers, String str) {
-        controllers.put(str, new Controller() {
+    private void createController(Controls controls, String str) {
+        controls.put(str, new Control() {
             @Override
             public void setSettings(Settings settings) {
 
