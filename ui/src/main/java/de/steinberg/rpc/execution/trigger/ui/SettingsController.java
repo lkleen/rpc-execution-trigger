@@ -22,17 +22,24 @@ public class SettingsController {
     @FXML
     VBox monitorVBox;
 
+    @FXML
+    VBox actionVBox;
 
     VBoxSetup vBoxSetup = new VBoxSetup();
 
     public void refreshMonitorSettings() {
         Monitor monitor = selectMonitor.getSelectionModel().getSelectedItem();
+        monitorVBox.getChildren().clear();
         vBoxSetup.setup(monitorVBox, monitor.getControls(), monitor.getSettings());
         updateActionComboBox();
     }
 
     public void refreshActionSettings() {
-
+        Action action = selectAction.getSelectionModel().getSelectedItem();
+        actionVBox.getChildren().clear();
+        if (action != null) {
+            vBoxSetup.setup(actionVBox, action.getControls(), action.getSettings());
+        }
     }
 
     private void updateActionComboBox() {

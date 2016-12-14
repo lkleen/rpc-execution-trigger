@@ -18,16 +18,17 @@ import java.util.Map;
 public class VBoxSetup {
 
     public void setup(VBox monitorVBox, Controls controls, Settings settings) {
+        if (settings != null) {
+            GridPane settingsPane = createSettingsPane();
+            addSettingsUIComponents(settings, settingsPane);
+            monitorVBox.getChildren().add(settingsPane);
+        }
 
-        monitorVBox.getChildren().clear();
-
-        GridPane settingsPane = createSettingsPane();
-        addSettingsUIComponents(settings, settingsPane);
-        monitorVBox.getChildren().add(settingsPane);
-
-        HBox buttonsHBox = createButtonsHBox();
-        addControlsUIComponents(controls, buttonsHBox);
-        monitorVBox.getChildren().add(buttonsHBox);
+        if (controls != null) {
+            HBox buttonsHBox = createButtonsHBox();
+            addControlsUIComponents(controls, buttonsHBox);
+            monitorVBox.getChildren().add(buttonsHBox);
+        }
     }
 
     private void addControlsUIComponents(Controls controls, HBox buttonsHBox) {
