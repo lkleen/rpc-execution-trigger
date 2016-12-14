@@ -13,8 +13,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class BlockingMessageQueue implements MessageQueue {
 
-    final int secondsTimeout = 1;
-
     boolean shutdown = false;
 
     HashMap<Class<?>, Queue<?>> map = new HashMap<Class<?>, Queue<?>>();
@@ -30,18 +28,17 @@ public class BlockingMessageQueue implements MessageQueue {
         queue.offer(message);
     }
 
-    public <T> T receive(Class<T> type) {
+    public <T> T receive(Class<T> type, long timeout, TimeUnit timeUnit) {
         try {
             LinkedBlockingQueue<T> queue = (LinkedBlockingQueue<T>) map.get(type);
-            while (queue == null && !shutdown) {
-                Thread.sleep(1000);
+
+            if (queue == null && !shutdown) {
+                Thread.sleep(timeUnit.toMillis(timeout));
                 queue = (LinkedBlockingQueue<T>) map.get(type);
+                return queue == null ? null : queue.poll(0, TimeUnit.SECONDS);
             }
-            T message = null;
-            while (message == null && !shutdown) {
-                message = queue.poll(secondsTimeout, TimeUnit.SECONDS);
-            }
-            return message;
+
+            return queue.poll(timeout, timeUnit);
         } catch (InterruptedException e) {
             throw new MessageQueueException(e);
         }

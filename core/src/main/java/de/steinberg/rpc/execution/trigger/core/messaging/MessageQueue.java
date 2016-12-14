@@ -16,6 +16,6 @@ public interface MessageQueue {
 
     <T> void send(T message);
 
-    <T> T receive(Class<T> type);
+    <T> T receive(Class<T> type, long timeout, TimeUnit timeUnit);
 
 }

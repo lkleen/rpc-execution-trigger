@@ -1,11 +1,14 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
+import ch.qos.logback.classic.spi.LoggingEvent;
 import de.steinberg.rpc.execution.trigger.core.engine.Engine;
 import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import javax.inject.Inject;
@@ -40,6 +43,8 @@ public class EngineUI {
         MessageQueueAppender.messageQueue = blockingMessageQueue;
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
+        TextArea output = (TextArea) scene.lookup("#output");
+        outputToTextAreaTask.setOutput(output);
         executorService.submit(outputToTextAreaTask);
     }
 

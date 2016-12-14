@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import javax.jnlp.IntegrationService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lkleen on 11/28/2016.
@@ -33,10 +34,10 @@ public class BlockingMessageQueueTest extends AbstractTestNGSpringContextTests {
         queue.send(bar);
         queue.send(y);
 
-        Assert.assertEquals(foo, queue.receive(String.class));
-        Assert.assertEquals(bar, queue.receive(String.class));
-        Assert.assertEquals(x, (int) queue.receive(Integer.class));
-        Assert.assertEquals(y, (int) queue.receive(Integer.class));
+        Assert.assertEquals(foo, queue.receive(String.class, 1, TimeUnit.MILLISECONDS));
+        Assert.assertEquals(bar, queue.receive(String.class, 1, TimeUnit.MILLISECONDS));
+        Assert.assertEquals(x, (int) queue.receive(Integer.class, 1, TimeUnit.MILLISECONDS));
+        Assert.assertEquals(y, (int) queue.receive(Integer.class, 1, TimeUnit.MILLISECONDS));
 
         queue.shutdown ();
     }
