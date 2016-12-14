@@ -24,7 +24,7 @@ public class EngineUI {
         URL resource = getClass().getClassLoader().getSystemResource("ui.fxml");
         FXMLLoader loader = new FXMLLoader(resource);
         Parent root = loader.load(resource);
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 800, 600);
         stage.setTitle("Notification Engine 0.0.1");
         stage.setScene(scene);
         stage.show();

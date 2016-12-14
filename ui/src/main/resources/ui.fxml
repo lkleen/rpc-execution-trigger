@@ -7,13 +7,13 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.steinberg.rpc.execution.trigger.ui.SettingsController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.steinberg.rpc.execution.trigger.ui.SettingsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="2000.0" minHeight="10.0" percentHeight="30.0" prefHeight="150.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="4000.0" minHeight="10.0" percentHeight="70.0" prefHeight="250.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="2000.0" minHeight="230.4" percentHeight="30.0" prefHeight="230.4" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="4000.0" minHeight="537.6" percentHeight="70.0" prefHeight="537.6" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -40,22 +40,10 @@
                      </GridPane.margin></ComboBox>
                   <AnchorPane fx:id="monitorSettings" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <VBox fx:id="monitorVBox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                              <HBox prefHeight="100.0" prefWidth="200.0" />
-                           </children>
-                        </VBox>
+                        <VBox fx:id="monitorVBox" prefHeight="200.0" prefWidth="100.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding></VBox>
                      </children></AnchorPane>
                </children>
             </GridPane>

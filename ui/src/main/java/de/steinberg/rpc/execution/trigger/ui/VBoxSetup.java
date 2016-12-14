@@ -21,33 +21,17 @@ public class VBoxSetup {
 
         monitorVBox.getChildren().clear();
 
-        GridPane settingsGridPane = new GridPane();
-        int row = 0;
+        GridPane settingsPane = createSettingsPane();
+        addSettingsUIComponents(monitor, settingsPane);
+        monitorVBox.getChildren().add(settingsPane);
 
-        settingsGridPane.setGridLinesVisible(true);
+        HBox buttonsHBox = createButtonsHBox();
+        addControlsUIComponents(monitor, buttonsHBox);
+        monitorVBox.getChildren().add(buttonsHBox);
 
-        settingsGridPane.setMaxWidth(Double.MAX_VALUE);
-        ColumnConstraints leftColumn = new ColumnConstraints(10, 100, Double.MAX_VALUE);
-        leftColumn.setHgrow(Priority.ALWAYS);
-        leftColumn.setFillWidth(true);
-        ColumnConstraints rightColumn = new ColumnConstraints(10, 100, Double.MAX_VALUE);
-        rightColumn.setHgrow(Priority.ALWAYS);
-        rightColumn.setFillWidth(true);
-        settingsGridPane.getColumnConstraints().add(leftColumn);
-        settingsGridPane.getColumnConstraints().add(rightColumn);
+    }
 
-        for (Map.Entry<String, String> entry : monitor.getSettings().entrySet()) {
-            Label label = new Label(entry.getKey());
-            TextField textField = new TextField(entry.getValue());
-            settingsGridPane.add(label, 0, row);
-            settingsGridPane.add(textField, 1, row);
-            row++;
-        }
-
-        monitorVBox.getChildren().add(settingsGridPane);
-
-        HBox buttonsHBox = new HBox();
-
+    private void addControlsUIComponents(Monitor monitor, HBox buttonsHBox) {
         for (Map.Entry<String, Controller> entry : monitor.getControllers().entrySet()) {
             Button button = new Button(entry.getKey());
             Controller controller = entry.getValue();
@@ -60,9 +44,44 @@ public class VBoxSetup {
             });
             buttonsHBox.getChildren().add(button);
         }
-
-        monitorVBox.getChildren().add(buttonsHBox);
-
     }
 
+    private void addSettingsUIComponents(Monitor monitor, GridPane settingsPane) {
+        int row = 0;
+        for (Map.Entry<String, String> entry : monitor.getSettings().entrySet()) {
+            Label label = new Label(entry.getKey());
+            TextField textField = new TextField(entry.getValue());
+            settingsPane.add(label, 0, row);
+            settingsPane.add(textField, 1, row);
+            row++;
+        }
+    }
+
+    private GridPane createSettingsPane() {
+        GridPane settingsGridPane = new GridPane();
+
+        settingsGridPane.setGridLinesVisible(false);
+        settingsGridPane.setMaxWidth(Double.MAX_VALUE);
+
+        RowConstraints rowConstraints = new RowConstraints(30,30,30);
+        settingsGridPane.getRowConstraints().add(rowConstraints);
+
+        ColumnConstraints leftColumn = new ColumnConstraints(50, 80, 80);
+        leftColumn.setHgrow(Priority.ALWAYS);
+        leftColumn.setFillWidth(true);
+        ColumnConstraints rightColumn = new ColumnConstraints(10, 100, Double.MAX_VALUE);
+        rightColumn.setHgrow(Priority.ALWAYS);
+        rightColumn.setFillWidth(true);
+        settingsGridPane.getColumnConstraints().add(leftColumn);
+        settingsGridPane.getColumnConstraints().add(rightColumn);
+
+        return settingsGridPane;
+    }
+
+    private HBox createButtonsHBox() {
+        HBox buttonsHBox = new HBox();
+        buttonsHBox.setSpacing(3);
+        return buttonsHBox;
+
+    }
 }
