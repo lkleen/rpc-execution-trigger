@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by lkleen on 11/29/2016.
@@ -22,6 +24,11 @@ public class EngineUI {
     @Inject
     BlockingMessageQueue blockingMessageQueue;
 
+    @Inject
+    OutputToTextAreaTask outputToTextAreaTask;
+
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     public void initialize(Engine engine, Stage stage) throws Exception {
         URL resource = getClass().getClassLoader().getSystemResource("ui.fxml");
         FXMLLoader loader = new FXMLLoader(resource);
@@ -33,6 +40,11 @@ public class EngineUI {
         MessageQueueAppender.messageQueue = blockingMessageQueue;
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
+        executorService.submit(outputToTextAreaTask);
     }
 
+    public void shutdown() {
+        outputToTextAreaTask.cancel(true);
+        executorService.shutdown();
+    }
 }
