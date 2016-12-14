@@ -10,6 +10,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ActionA extends ActionMock {
+
+    public ActionA() {
+        settings.put("schni","this");
+        settings.put("schna","is");
+        settings.put("schnuck","text");
+    }
+
     @Override
     public Controls getControls() {
         Controls controls = new Controls();
@@ -25,15 +32,6 @@ public class ActionA extends ActionMock {
             }
         });
         return controls;
-    }
-
-    @Override
-    public Settings getSettings() {
-        Settings settings = new Settings();
-        settings.put("schni","this");
-        settings.put("schna","is");
-        settings.put("schnuck","text");
-        return settings;
     }
 
 }

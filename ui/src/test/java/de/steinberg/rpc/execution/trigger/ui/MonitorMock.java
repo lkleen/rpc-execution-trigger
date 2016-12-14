@@ -16,9 +16,11 @@ public class MonitorMock implements Monitor {
 
     List<Action> actions = new ArrayList<>();
 
+    Settings settings = new Settings();
+
     @Override
     public Settings getSettings() {
-        return null;
+        return settings;
     }
 
 

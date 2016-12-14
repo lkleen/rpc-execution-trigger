@@ -9,12 +9,9 @@ import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 @DisplayName("awkward monitor")
 public class MonitorB extends MonitorMock {
 
-    @Override
-    public Settings getSettings() {
-        Settings settings = new Settings();
+    public MonitorB() {
         settings.put("schnick",null);
         settings.put("schnack",null);
-        return settings;
     }
 
 }

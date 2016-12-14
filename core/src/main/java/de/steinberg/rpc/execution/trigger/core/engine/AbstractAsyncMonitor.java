@@ -25,6 +25,11 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
     @Override
+    public void addAction(Action action) {
+        actions.add(action);
+    }
+
+    @Override
     public List<Action> getActions() {return actions;}
 
     @Override

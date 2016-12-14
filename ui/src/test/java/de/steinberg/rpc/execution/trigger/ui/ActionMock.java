@@ -1,6 +1,7 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
 import de.steinberg.rpc.execution.trigger.core.engine.AbstractAction;
+import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,10 +9,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ActionMock extends AbstractAction {
+
     @Override
     public void execute() {
         log.debug("executing action {}",this);
-
-
     }
 }

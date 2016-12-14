@@ -8,8 +8,7 @@ import lombok.Data;
 @Data
 public abstract class AbstractAction implements Action {
 
-    Settings settings = new Settings();
-
-    Controls controls = new Controls();
+    protected Settings settings = new Settings();
+    protected Controls controls = new Controls();
 
 }

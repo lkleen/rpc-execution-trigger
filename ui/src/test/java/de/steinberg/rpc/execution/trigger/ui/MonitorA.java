@@ -14,12 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 @DisplayName("glitch monitor")
 public class MonitorA extends MonitorMock {
 
-    @Override
-    public Settings getSettings() {
-        Settings settings = new Settings();
+    public MonitorA() {
         settings.put("path",null);
         settings.put("somethingelse",null);
-        return settings;
     }
 
     @Override

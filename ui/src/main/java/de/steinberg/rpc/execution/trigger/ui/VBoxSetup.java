@@ -4,6 +4,8 @@ import de.steinberg.rpc.execution.trigger.core.engine.Control;
 import de.steinberg.rpc.execution.trigger.core.engine.Controls;
 import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,6 +47,12 @@ public class VBoxSetup {
         for (Map.Entry<String, String> entry : settings.entrySet()) {
             Label label = new Label(entry.getKey());
             TextField textField = new TextField(entry.getValue());
+            textField.textProperty().addListener(
+                    (ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                        settings.put(entry.getKey(), newValue);
+                    }
+            );
+
             settingsPane.add(label, 0, row);
             settingsPane.add(textField, 1, row);
             row++;
