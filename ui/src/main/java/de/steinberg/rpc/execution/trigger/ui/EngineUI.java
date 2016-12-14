@@ -1,7 +1,7 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
 import de.steinberg.rpc.execution.trigger.core.engine.Engine;
-import javafx.fxml.FXML;
+import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +19,9 @@ public class EngineUI {
     @Inject
     ComboBoxSetup comboBoxSetup;
 
-    @FXML
+    @Inject
+    BlockingMessageQueue blockingMessageQueue;
+
     public void initialize(Engine engine, Stage stage) throws Exception {
         URL resource = getClass().getClassLoader().getSystemResource("ui.fxml");
         FXMLLoader loader = new FXMLLoader(resource);
@@ -28,7 +30,7 @@ public class EngineUI {
         stage.setTitle("Notification Engine 0.0.1");
         stage.setScene(scene);
         stage.show();
-
+        MessageQueueAppender.messageQueue = blockingMessageQueue;
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
     }
