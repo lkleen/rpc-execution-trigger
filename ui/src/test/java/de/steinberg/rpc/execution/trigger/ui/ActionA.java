@@ -1,6 +1,5 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Action;
 import de.steinberg.rpc.execution.trigger.core.engine.Control;
 import de.steinberg.rpc.execution.trigger.core.engine.Controls;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
@@ -10,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by lkleen on 11/29/2016.
  */
 @Slf4j
-public class ActionA implements Action {
+public class ActionA extends ActionMock {
     @Override
     public Controls getControls() {
         Controls controls = new Controls();
@@ -37,8 +36,4 @@ public class ActionA implements Action {
         return settings;
     }
 
-    @Override
-    public void execute() {
-
-    }
 }
