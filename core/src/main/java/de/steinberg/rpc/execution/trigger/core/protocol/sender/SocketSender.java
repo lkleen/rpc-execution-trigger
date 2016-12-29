@@ -4,6 +4,7 @@ import de.steinberg.rpc.execution.trigger.core.exception.RpcExecutionTriggerExce
 import de.steinberg.rpc.execution.trigger.core.exception.SocketInitializationException;
 import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
 import de.steinberg.rpc.execution.trigger.core.protocol.receiver.SocketStringReceiver;
+import javafx.application.Platform;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -67,11 +68,12 @@ public abstract class SocketSender<T> implements Sender<T> {
 
     private Socket createSocket() {
         try {
-            log.info("connecting to {}", socket.getInetAddress().toString());
+            log.info("connecting to {}:{}", host, port);
             Socket socket = new Socket(host, port);
+            log.info("connection established");
             return socket;
         } catch (Exception e) {
-            log.error("could connect to {}", socket.getInetAddress().toString());
+            log.error("could connect to {}:{}", host, port);
             return null;
         }
     }
