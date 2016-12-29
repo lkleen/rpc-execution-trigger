@@ -4,6 +4,7 @@ import de.steinberg.rpc.execution.trigger.core.engine.Control;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import de.steinberg.rpc.execution.trigger.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.rpc.execution.trigger.core.protocol.sender.IntegerSocketSender;
+import de.steinberg.rpc.execution.trigger.core.protocol.sender.SocketSender;
 
 import javax.inject.Inject;
 
@@ -37,7 +38,15 @@ public class GlitchNotificationAction extends AbstractAction {
     @Override
     public void execute() {
         sender.setHost(settings.get(HOST_SETTING));
-        sender.setPort(Integer.valueOf(settings.get(PORT_SETTING)));
+        sender.setPort(parseString(settings.get(PORT_SETTING)));
         sender.send(message);
+    }
+
+    private int parseString(String number) {
+        try {
+            return Integer.valueOf(number);
+        } catch (NumberFormatException e) {
+            return SocketSender.UNINITIALIZED;
+        }
     }
 }

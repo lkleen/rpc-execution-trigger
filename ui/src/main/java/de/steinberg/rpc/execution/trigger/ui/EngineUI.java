@@ -4,6 +4,10 @@ import ch.qos.logback.classic.spi.LoggingEvent;
 import de.steinberg.rpc.execution.trigger.core.engine.Engine;
 import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,9 +32,7 @@ public class EngineUI {
     BlockingMessageQueue blockingMessageQueue;
 
     @Inject
-    OutputToTextAreaTask outputToTextAreaTask;
-
-    ExecutorService executorService = Executors.newSingleThreadExecutor();
+    OutputToTextAreaService outputToTextAreaService;
 
     public void initialize(Engine engine, Stage stage) throws Exception {
         URL resource = getClass().getClassLoader().getSystemResource("ui.fxml");
@@ -44,12 +46,16 @@ public class EngineUI {
         ComboBox selectMonitor = (ComboBox) scene.lookup("#selectMonitor");
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
         TextArea output = (TextArea) scene.lookup("#output");
-        outputToTextAreaTask.setOutput(output);
-        executorService.submit(outputToTextAreaTask);
+        outputToTextAreaService.setOutput(output);
+        outputToTextAreaService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                System.out.print("SOOOOOOOOOO COMPLICATED");
+            }
+        });
+        outputToTextAreaService.start();
     }
 
     public void shutdown() {
-        outputToTextAreaTask.cancel(true);
-        executorService.shutdown();
     }
 }

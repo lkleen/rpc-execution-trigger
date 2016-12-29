@@ -1,4 +1,4 @@
-package de.steinberg.rpc.execution.trigger.slave.engine;
+package de.steinberg.rpc.execution.trigger.core.engine.monitor;
 
 import de.steinberg.rpc.execution.trigger.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.rpc.execution.trigger.core.exception.MonitorException;
@@ -9,6 +9,7 @@ import java.io.File;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 /**
@@ -16,21 +17,26 @@ import java.util.stream.Stream;
  */
 public class FileAddedMonitor extends AbstractAsyncMonitor {
 
+    private static String PATH = "path";
+    private static String EXTENSION = "file extension";
+
     long previousNumMatches = -1;
     long numMatches = -1;
 
-    @Getter
-    @Setter
     Path path;
 
-    @Getter
-    @Setter
     String extension;
+
+    public FileAddedMonitor() {
+        settings.put(PATH, "");
+        settings.put(EXTENSION, "");
+    }
 
     public boolean conditionFulfilled() {
         try {
+            path = Paths.get(settings.get(PATH));
+            extension = settings.get(EXTENSION);
             Stream<Path> files = Files.walk(path, 1, FileVisitOption.FOLLOW_LINKS);
-
             numMatches = files.filter((p) -> {
                 File file = p.toFile();
                 return file.isFile() && file.getAbsolutePath().endsWith(extension);

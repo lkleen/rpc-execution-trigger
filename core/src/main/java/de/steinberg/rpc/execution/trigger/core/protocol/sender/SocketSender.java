@@ -19,7 +19,7 @@ import java.net.Socket;
 @Slf4j
 public abstract class SocketSender<T> implements Sender<T> {
 
-    private static int UNINITIALIZED = -1;
+    public static int UNINITIALIZED = -1;
 
     @Getter
     @Setter
@@ -37,18 +37,17 @@ public abstract class SocketSender<T> implements Sender<T> {
                 && socket.getLocalPort() == port) {
             return socket;
         }
-        if (host == null) {
+        if (host == null || host.length() == 0) {
             throw new SocketInitializationException("host == null");
         }
         if (port == UNINITIALIZED) {
-            throw new SocketInitializationException("host == null");
+            throw new SocketInitializationException("port == UNINITIALIZED");
         }
         if (socket != null) {
             log.info("closing connection to " + socket.getInetAddress().toString());
             socket.close();
         }
-        Socket socket = new Socket(host, port);
-        log.info("established connection to " + socket.getInetAddress().toString());
+        Socket socket = createSocket();
         return socket;
     }
 
@@ -56,12 +55,24 @@ public abstract class SocketSender<T> implements Sender<T> {
     public void send(Message<T> message) {
         try {
             socket = initializeSocket();
+            if (socket == null) {return;}
             log.info("sending request");
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             sendMessage(bw, message);
             bw.close();
         } catch (Exception e) {
-            throw new RpcExecutionTriggerException(e);
+            log.error(e.getMessage());
+        }
+    }
+
+    private Socket createSocket() {
+        try {
+            log.info("connecting to {}", socket.getInetAddress().toString());
+            Socket socket = new Socket(host, port);
+            return socket;
+        } catch (Exception e) {
+            log.error("could connect to {}", socket.getInetAddress().toString());
+            return null;
         }
     }
 
