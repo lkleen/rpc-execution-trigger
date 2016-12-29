@@ -1,4 +1,4 @@
-package de.steinberg.rpc.execution.trigger.master.network;
+package de.steinberg.rpc.execution.trigger.core.network;
 
 import de.steinberg.rpc.execution.trigger.core.exception.RpcExecutionTriggerException;
 
@@ -13,7 +13,7 @@ public class NetworkInterfacesInfo {
 
     public static String create() {
         try {
-            String interfaces = "";
+            String interfaces = "\n";
             for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
                 interfaces += "----------------------------------------\n";
                 interfaces += createInterfaceString (networkInterface);

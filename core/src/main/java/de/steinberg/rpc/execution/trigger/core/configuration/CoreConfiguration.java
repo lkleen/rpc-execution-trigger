@@ -5,6 +5,9 @@ import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 /**
  * core components bean definitions
  *
@@ -21,6 +24,11 @@ public class CoreConfiguration {
     @Bean
     public BlockingMessageQueue blockingMessageQueue() {
         return new BlockingMessageQueue();
+    }
+
+    @Bean
+    public ScheduledExecutorService scheduledExecutorService() {
+        return Executors.newSingleThreadScheduledExecutor();
     }
 
 }
