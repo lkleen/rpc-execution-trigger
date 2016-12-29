@@ -1,5 +1,7 @@
-package de.steinberg.rpc.execution.trigger.core.engine;
+package de.steinberg.rpc.execution.trigger.core.engine.action;
 
+import de.steinberg.rpc.execution.trigger.core.engine.Controls;
+import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 import lombok.Data;
 
 /**

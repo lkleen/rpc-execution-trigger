@@ -1,5 +1,7 @@
 package de.steinberg.rpc.execution.trigger.core.engine;
 
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
+
 import java.util.List;
 
 /**

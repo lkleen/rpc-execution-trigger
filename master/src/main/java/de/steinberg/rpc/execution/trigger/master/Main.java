@@ -1,7 +1,7 @@
 package de.steinberg.rpc.execution.trigger.master;
 
-import de.steinberg.rpc.execution.trigger.core.protocol.Message;
-import de.steinberg.rpc.execution.trigger.core.protocol.impl.SocketStringReceiver;
+import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
+import de.steinberg.rpc.execution.trigger.core.protocol.receiver.SocketStringReceiver;
 import de.steinberg.rpc.execution.trigger.master.network.NetworkInterfacesInfo;
 import lombok.extern.slf4j.Slf4j;
 

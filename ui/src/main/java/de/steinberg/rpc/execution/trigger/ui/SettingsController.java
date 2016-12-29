@@ -1,12 +1,10 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Action;
-import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
+import de.steinberg.rpc.execution.trigger.core.engine.action.Action;
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
-
-import java.util.Map;
 
 /**
  * Created by lkleen on 11/29/2016.

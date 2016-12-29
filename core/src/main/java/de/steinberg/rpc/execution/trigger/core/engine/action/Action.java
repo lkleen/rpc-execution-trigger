@@ -1,4 +1,7 @@
-package de.steinberg.rpc.execution.trigger.core.engine;
+package de.steinberg.rpc.execution.trigger.core.engine.action;
+
+import de.steinberg.rpc.execution.trigger.core.engine.ControlsAware;
+import de.steinberg.rpc.execution.trigger.core.engine.SettingsAware;
 
 /**
  * engine -> monitors -> listeners -> ACTIONS

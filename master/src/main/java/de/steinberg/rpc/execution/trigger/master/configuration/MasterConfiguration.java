@@ -2,8 +2,8 @@ package de.steinberg.rpc.execution.trigger.master.configuration;
 
 import de.steinberg.rpc.execution.trigger.core.engine.DefaultEngine;
 import de.steinberg.rpc.execution.trigger.core.engine.Engine;
-import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
-import de.steinberg.rpc.execution.trigger.master.engine.GlitchMonitor;
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.GlitchMonitor;
 import org.springframework.context.annotation.Bean;
 
 /**

@@ -1,8 +1,8 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Action;
+import de.steinberg.rpc.execution.trigger.core.engine.action.Action;
 import de.steinberg.rpc.execution.trigger.core.engine.Controls;
-import de.steinberg.rpc.execution.trigger.core.engine.Monitor;
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
 import de.steinberg.rpc.execution.trigger.core.engine.Settings;
 
 import java.util.ArrayList;

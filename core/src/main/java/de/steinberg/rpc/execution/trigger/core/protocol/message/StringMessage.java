@@ -1,5 +1,6 @@
-package de.steinberg.rpc.execution.trigger.core.protocol;
+package de.steinberg.rpc.execution.trigger.core.protocol.message;
 
+import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
 import lombok.Data;
 
 /**

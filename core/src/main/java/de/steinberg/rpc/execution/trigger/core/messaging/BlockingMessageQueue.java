@@ -31,7 +31,6 @@ public class BlockingMessageQueue implements MessageQueue {
     public <T> T receive(Class<T> type, long timeout, TimeUnit timeUnit) {
         try {
             LinkedBlockingQueue<T> queue = (LinkedBlockingQueue<T>) map.get(type);
-
             if (queue == null && !shutdown) {
                 Thread.sleep(timeUnit.toMillis(timeout));
                 queue = (LinkedBlockingQueue<T>) map.get(type);

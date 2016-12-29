@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.slave.engine;
 
-import de.steinberg.rpc.execution.trigger.core.engine.AbstractAsyncMonitor;
+import de.steinberg.rpc.execution.trigger.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.rpc.execution.trigger.core.exception.MonitorException;
 import lombok.Getter;
 import lombok.Setter;

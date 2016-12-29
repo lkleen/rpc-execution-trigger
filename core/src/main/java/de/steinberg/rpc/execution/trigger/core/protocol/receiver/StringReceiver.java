@@ -1,4 +1,7 @@
-package de.steinberg.rpc.execution.trigger.core.protocol;
+package de.steinberg.rpc.execution.trigger.core.protocol.receiver;
+
+import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
+import de.steinberg.rpc.execution.trigger.core.protocol.receiver.Receiver;
 
 /**
  * Created by lkleen on 22.11.2016.

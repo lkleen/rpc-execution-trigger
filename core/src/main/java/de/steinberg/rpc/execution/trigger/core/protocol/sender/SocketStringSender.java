@@ -1,9 +1,9 @@
-package de.steinberg.rpc.execution.trigger.core.protocol.impl;
+package de.steinberg.rpc.execution.trigger.core.protocol.sender;
 
 import de.steinberg.rpc.execution.trigger.core.exception.RpcExecutionTriggerException;
 import de.steinberg.rpc.execution.trigger.core.exception.SocketInitializationException;
-import de.steinberg.rpc.execution.trigger.core.protocol.Message;
-import de.steinberg.rpc.execution.trigger.core.protocol.StringSender;
+import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
+import de.steinberg.rpc.execution.trigger.core.protocol.receiver.SocketStringReceiver;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

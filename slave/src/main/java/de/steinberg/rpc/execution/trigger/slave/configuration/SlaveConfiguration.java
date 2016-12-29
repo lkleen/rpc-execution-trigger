@@ -31,9 +31,6 @@ public class SlaveConfiguration {
     @Bean
     public FileAddedMonitor fileAddedMonitor() {
         FileAddedMonitor fileAddedMonitor = new FileAddedMonitor();
-        DefaultListener listener = new DefaultListener();
-        listener.addAction(sendGlitchNotification());
-        fileAddedMonitor.addListener(listener);
         return fileAddedMonitor;
     }
 

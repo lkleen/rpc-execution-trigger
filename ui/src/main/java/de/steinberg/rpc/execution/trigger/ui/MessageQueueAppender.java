@@ -2,11 +2,8 @@ package de.steinberg.rpc.execution.trigger.ui;
 
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
-import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.ConsoleAppender;
 import ch.qos.logback.core.Layout;
-import com.sun.deploy.cache.BaseLocalApplicationProperties;
 import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
 
 /**

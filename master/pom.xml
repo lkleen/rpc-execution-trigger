@@ -16,7 +16,12 @@
         <dependency>
             <groupId>de.steinberg.rpc-execution-trigger</groupId>
             <artifactId>core</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.steinberg.rpc-execution-trigger</groupId>
+            <artifactId>ui</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

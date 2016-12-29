@@ -1,9 +1,8 @@
-package de.steinberg.rpc.execution.trigger.core.protocol.impl;
+package de.steinberg.rpc.execution.trigger.core.protocol.receiver;
 
 import de.steinberg.rpc.execution.trigger.core.exception.RpcExecutionTriggerException;
-import de.steinberg.rpc.execution.trigger.core.protocol.Message;
-import de.steinberg.rpc.execution.trigger.core.protocol.StringMessage;
-import de.steinberg.rpc.execution.trigger.core.protocol.StringReceiver;
+import de.steinberg.rpc.execution.trigger.core.protocol.message.Message;
+import de.steinberg.rpc.execution.trigger.core.protocol.message.StringMessage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
