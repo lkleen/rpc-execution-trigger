@@ -10,7 +10,8 @@ public class EngineException extends RuntimeException {
         super(cause);
     }
 
-    protected EngineException(String message) {
+    public EngineException(String message) {
         super(message);
     }
+
 }

@@ -2,6 +2,8 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Lars Kleen
  * @since ?version
@@ -19,11 +21,17 @@ public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
     }
 
     public void validateParameters(SelectQueryParameters parameters) {
+        if (parameters == null) {
+            throw new QueryBuilderException("parameters == null");
+        }
         if (parameters.range == null || parameters.symbol == null) {
-            //throw new QueryBuilderException("parameter with null value is not allowed");
+            throw new QueryBuilderException("parameter with null value is not allowed");
         }
         if (parameters.symbol.length() == 0) {
-            //throw new QueryBuilderException("empty symbol not allowed");
+            throw new QueryBuilderException("empty symbol not allowed");
+        }
+        if (parameters.range.getValue(TimeUnit.DAYS) <= 0) {
+            throw new QueryBuilderException("query range <= 0 days");
         }
     }
 }
