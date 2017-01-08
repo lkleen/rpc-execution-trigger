@@ -11,9 +11,10 @@
 
     <modules>
         <module>core</module>
+        <module>ui</module>
         <module>glitchtest-detector</module>
         <module>glitchtest-tracer</module>
-        <module>ui</module>
+        <module>market-data-collector</module>
     </modules>
 
     <properties>
