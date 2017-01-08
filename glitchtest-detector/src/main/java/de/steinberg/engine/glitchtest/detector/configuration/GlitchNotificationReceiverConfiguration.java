@@ -1,9 +1,9 @@
-package de.steinberg.rpc.execution.trigger.master.configuration;
+package de.steinberg.engine.glitchtest.detector.configuration;
 
 import de.steinberg.engine.core.engine.action.WriteTraceAction;
 import de.steinberg.engine.core.engine.monitor.GlitchNotificationMonitor;
 import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
-import de.steinberg.rpc.execution.trigger.master.engine.GlitchNotificationReceiverEngine;
+import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationReceiverEngine;
 import org.springframework.context.annotation.Bean;
 
 /**
