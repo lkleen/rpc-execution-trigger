@@ -2,6 +2,8 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,7 +32,7 @@ public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
         if (parameters.symbol.length() == 0) {
             throw new QueryBuilderException("empty symbol not allowed");
         }
-        if (parameters.range.getValue(TimeUnit.DAYS) <= 0) {
+        if (parameters.range.getValue(ChronoUnit.DAYS) <= 0) {
             throw new QueryBuilderException("query range <= 0 days");
         }
     }
