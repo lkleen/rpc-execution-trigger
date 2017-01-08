@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.glitchnotificationsender;
 
-import de.steinberg.rpc.execution.trigger.core.configuration.CoreConfiguration;
+import de.steinberg.engine.core.configuration.CoreConfiguration;
 import de.steinberg.rpc.execution.trigger.glitchnotificationsender.configuration.GlitchNotificationSenderConfiguration;
 import de.steinberg.rpc.execution.trigger.ui.AppInitializer;
 import de.steinberg.rpc.execution.trigger.ui.configuration.UIConfiguration;

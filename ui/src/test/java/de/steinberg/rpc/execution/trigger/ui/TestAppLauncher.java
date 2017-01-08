@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.configuration.CoreConfiguration;
+import de.steinberg.engine.core.configuration.CoreConfiguration;
 import de.steinberg.rpc.execution.trigger.ui.configuration.UITestConfigruation;
 import javafx.application.Application;
 import javafx.stage.Stage;

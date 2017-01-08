@@ -1,10 +1,10 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.annotations.DisplayName;
-import de.steinberg.rpc.execution.trigger.core.engine.Control;
-import de.steinberg.rpc.execution.trigger.core.engine.Controls;
-import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
-import de.steinberg.rpc.execution.trigger.core.engine.Settings;
+import de.steinberg.engine.core.annotations.DisplayName;
+import de.steinberg.engine.core.engine.Control;
+import de.steinberg.engine.core.engine.Controls;
+import de.steinberg.engine.core.engine.monitor.Monitor;
+import de.steinberg.engine.core.engine.Settings;
 import lombok.extern.slf4j.Slf4j;
 
 /**

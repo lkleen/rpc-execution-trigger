@@ -4,7 +4,7 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.ConsoleAppender;
 import ch.qos.logback.core.Layout;
-import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
+import de.steinberg.engine.core.messaging.BlockingMessageQueue;
 
 /**
  * Created by lkleen on 12/14/2016.

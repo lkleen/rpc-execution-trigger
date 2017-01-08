@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.master;
 
-import de.steinberg.rpc.execution.trigger.core.configuration.CoreConfiguration;
+import de.steinberg.engine.core.configuration.CoreConfiguration;
 import de.steinberg.rpc.execution.trigger.master.configuration.GlitchNotificationReceiverConfiguration;
 import de.steinberg.rpc.execution.trigger.ui.AppInitializer;
 import de.steinberg.rpc.execution.trigger.ui.configuration.UIConfiguration;

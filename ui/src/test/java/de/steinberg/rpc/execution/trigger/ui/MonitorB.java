@@ -1,7 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.annotations.DisplayName;
-import de.steinberg.rpc.execution.trigger.core.engine.Settings;
+import de.steinberg.engine.core.annotations.DisplayName;
 
 /**
  * Created by lkleen on 11/29/2016.

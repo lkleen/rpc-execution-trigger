@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
+import de.steinberg.engine.core.messaging.BlockingMessageQueue;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;

@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.SettingsAware;
+import de.steinberg.engine.core.engine.SettingsAware;
 import javafx.scene.control.ComboBox;
 
 import java.util.List;

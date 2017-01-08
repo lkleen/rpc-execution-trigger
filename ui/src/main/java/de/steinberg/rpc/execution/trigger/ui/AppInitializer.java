@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Engine;
+import de.steinberg.engine.core.engine.Engine;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 

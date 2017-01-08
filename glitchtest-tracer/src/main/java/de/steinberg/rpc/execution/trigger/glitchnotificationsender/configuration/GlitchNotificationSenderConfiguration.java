@@ -1,15 +1,13 @@
 package de.steinberg.rpc.execution.trigger.glitchnotificationsender.configuration;
 
-import de.steinberg.rpc.execution.trigger.core.configuration.CoreConfiguration;
-import de.steinberg.rpc.execution.trigger.core.engine.action.GlitchNotificationAction;
-import de.steinberg.rpc.execution.trigger.core.engine.monitor.FileAddedMonitor;
-import de.steinberg.rpc.execution.trigger.core.protocol.sender.IntegerSocketSender;
+import de.steinberg.engine.core.configuration.CoreConfiguration;
+import de.steinberg.engine.core.engine.action.GlitchNotificationAction;
+import de.steinberg.engine.core.engine.monitor.FileAddedMonitor;
+import de.steinberg.engine.core.protocol.sender.IntegerSocketSender;
 import de.steinberg.rpc.execution.trigger.glitchnotificationsender.engine.GlitchNotificationSenderEngine;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import javax.xml.ws.WebEndpoint;
 
 /**
  * Created by lkleen on 11/28/2016.

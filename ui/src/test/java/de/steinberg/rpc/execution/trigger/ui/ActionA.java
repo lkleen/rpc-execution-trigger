@@ -1,8 +1,8 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.engine.Control;
-import de.steinberg.rpc.execution.trigger.core.engine.Controls;
-import de.steinberg.rpc.execution.trigger.core.engine.Settings;
+import de.steinberg.engine.core.engine.Control;
+import de.steinberg.engine.core.engine.Controls;
+import de.steinberg.engine.core.engine.Settings;
 import lombok.extern.slf4j.Slf4j;
 
 /**

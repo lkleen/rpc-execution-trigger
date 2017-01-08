@@ -1,13 +1,9 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import ch.qos.logback.classic.spi.LoggingEvent;
-import de.steinberg.rpc.execution.trigger.core.engine.Engine;
-import de.steinberg.rpc.execution.trigger.core.messaging.BlockingMessageQueue;
-import javafx.application.Platform;
-import javafx.concurrent.Service;
+import de.steinberg.engine.core.engine.Engine;
+import de.steinberg.engine.core.messaging.BlockingMessageQueue;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,8 +13,6 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.net.URL;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by lkleen on 11/29/2016.

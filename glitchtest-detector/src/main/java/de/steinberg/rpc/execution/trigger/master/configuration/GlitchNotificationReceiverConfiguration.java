@@ -1,11 +1,8 @@
 package de.steinberg.rpc.execution.trigger.master.configuration;
 
-import de.steinberg.rpc.execution.trigger.core.engine.DefaultEngine;
-import de.steinberg.rpc.execution.trigger.core.engine.Engine;
-import de.steinberg.rpc.execution.trigger.core.engine.action.WriteTraceAction;
-import de.steinberg.rpc.execution.trigger.core.engine.monitor.Monitor;
-import de.steinberg.rpc.execution.trigger.core.engine.monitor.GlitchNotificationMonitor;
-import de.steinberg.rpc.execution.trigger.core.protocol.receiver.GlitchNotificationMessageReceiver;
+import de.steinberg.engine.core.engine.action.WriteTraceAction;
+import de.steinberg.engine.core.engine.monitor.GlitchNotificationMonitor;
+import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
 import de.steinberg.rpc.execution.trigger.master.engine.GlitchNotificationReceiverEngine;
 import org.springframework.context.annotation.Bean;
 

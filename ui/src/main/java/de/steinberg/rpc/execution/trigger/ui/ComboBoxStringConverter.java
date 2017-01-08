@@ -1,6 +1,6 @@
 package de.steinberg.rpc.execution.trigger.ui;
 
-import de.steinberg.rpc.execution.trigger.core.annotations.DisplayNameResolver;
+import de.steinberg.engine.core.annotations.DisplayNameResolver;
 import javafx.util.StringConverter;
 
 import java.util.HashMap;
