@@ -14,7 +14,7 @@
         <module>ui</module>
         <module>glitchtest-detector</module>
         <module>glitchtest-tracer</module>
-        <module>market-data-collector</module>
+        <module>trading-data-collector</module>
     </modules>
 
     <properties>

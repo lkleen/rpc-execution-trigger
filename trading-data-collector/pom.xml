@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>market-data-collector</artifactId>
+    <artifactId>trading-data-collector</artifactId>
 
     <dependencies>
         <dependency>
