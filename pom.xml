@@ -11,8 +11,8 @@
 
     <modules>
         <module>core</module>
-        <module>master</module>
-        <module>slave</module>
+        <module>glitchtest-detector</module>
+        <module>glitchtest-tracer</module>
         <module>ui</module>
     </modules>
 

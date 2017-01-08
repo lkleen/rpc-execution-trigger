@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>master</artifactId>
+    <artifactId>glitchtest-detector</artifactId>
 
     <dependencies>
         <dependency>
