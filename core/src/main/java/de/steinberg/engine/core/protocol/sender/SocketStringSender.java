@@ -1,6 +1,6 @@
 package de.steinberg.engine.core.protocol.sender;
 
-import de.steinberg.engine.core.exception.RpcExecutionTriggerException;
+import de.steinberg.engine.core.exception.EngineException;
 import de.steinberg.engine.core.exception.SocketInitializationException;
 import de.steinberg.engine.core.protocol.message.Message;
 import de.steinberg.engine.core.protocol.receiver.SocketStringReceiver;
@@ -40,7 +40,7 @@ public class SocketStringSender extends StringSender {
             bw.close();
 
         } catch (Exception e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 

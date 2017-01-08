@@ -1,6 +1,6 @@
 package de.steinberg.engine.core.protocol.receiver;
 
-import de.steinberg.engine.core.exception.RpcExecutionTriggerException;
+import de.steinberg.engine.core.exception.EngineException;
 import de.steinberg.engine.core.protocol.message.Message;
 import de.steinberg.engine.core.protocol.message.StringMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class SocketStringReceiver extends StringReceiver {
         try {
             serverSocket.close();
         } catch (IOException e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 
@@ -49,7 +49,7 @@ public class SocketStringReceiver extends StringReceiver {
             stringMessage.setValue (value);
             return stringMessage;
         } catch (Exception e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 

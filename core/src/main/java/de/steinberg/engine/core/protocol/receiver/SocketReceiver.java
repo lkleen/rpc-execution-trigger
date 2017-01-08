@@ -1,6 +1,6 @@
 package de.steinberg.engine.core.protocol.receiver;
 
-import de.steinberg.engine.core.exception.RpcExecutionTriggerException;
+import de.steinberg.engine.core.exception.EngineException;
 import de.steinberg.engine.core.exception.SocketInitializationException;
 import de.steinberg.engine.core.protocol.message.Message;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public abstract class SocketReceiver<T> implements Receiver<T> {
             serverSocket.close();
             serverSocket = null;
         } catch (IOException e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 
@@ -60,7 +60,7 @@ public abstract class SocketReceiver<T> implements Receiver<T> {
             Socket socket = serverSocket.accept();
             return receiveMessage(new InputStreamReader(socket.getInputStream()));
         } catch (Exception e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 

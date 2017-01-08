@@ -1,6 +1,6 @@
 package de.steinberg.engine.core.network;
 
-import de.steinberg.engine.core.exception.RpcExecutionTriggerException;
+import de.steinberg.engine.core.exception.EngineException;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -20,7 +20,7 @@ public class NetworkInterfacesInfo {
             }
             return interfaces;
         } catch (Exception e) {
-            throw new RpcExecutionTriggerException(e);
+            throw new EngineException(e);
         }
     }
 
