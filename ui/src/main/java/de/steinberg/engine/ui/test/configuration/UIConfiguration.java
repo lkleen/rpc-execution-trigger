@@ -1,9 +1,9 @@
-package de.steinberg.rpc.execution.trigger.ui.configuration;
+package de.steinberg.engine.ui.test.configuration;
 
-import de.steinberg.rpc.execution.trigger.ui.ComboBoxSetup;
-import de.steinberg.rpc.execution.trigger.ui.EngineUI;
-import de.steinberg.rpc.execution.trigger.ui.OutputToTextAreaService;
-import de.steinberg.rpc.execution.trigger.ui.OutputToTextAreaTask;
+import de.steinberg.engine.ui.ComboBoxSetup;
+import de.steinberg.engine.ui.EngineUI;
+import de.steinberg.engine.ui.OutputToTextAreaService;
+import de.steinberg.engine.ui.OutputToTextAreaTask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

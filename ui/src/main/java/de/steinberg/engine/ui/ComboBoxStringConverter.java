@@ -1,4 +1,4 @@
-package de.steinberg.rpc.execution.trigger.ui;
+package de.steinberg.engine.ui;
 
 import de.steinberg.engine.core.annotations.DisplayNameResolver;
 import javafx.util.StringConverter;

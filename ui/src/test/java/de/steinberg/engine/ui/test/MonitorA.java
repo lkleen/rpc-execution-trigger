@@ -1,4 +1,4 @@
-package de.steinberg.rpc.execution.trigger.ui;
+package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.engine.Control;

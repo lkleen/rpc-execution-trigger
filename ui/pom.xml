@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>de.steinberg.rpc-execution-trigger</groupId>
+        <groupId>de.steinberg.engine</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.steinberg.rpc-execution-trigger</groupId>
+            <groupId>de.steinberg.engine</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>

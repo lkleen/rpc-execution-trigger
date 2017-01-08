@@ -1,8 +1,8 @@
-package de.steinberg.rpc.execution.trigger.ui.configuration;
+package de.steinberg.engine.ui.test.configuration;
 
 import de.steinberg.engine.core.engine.*;
 import de.steinberg.engine.core.engine.monitor.Monitor;
-import de.steinberg.rpc.execution.trigger.ui.*;
+import de.steinberg.engine.ui.test.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

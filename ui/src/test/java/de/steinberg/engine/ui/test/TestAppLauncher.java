@@ -1,7 +1,8 @@
-package de.steinberg.rpc.execution.trigger.ui;
+package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.configuration.CoreConfiguration;
-import de.steinberg.rpc.execution.trigger.ui.configuration.UITestConfigruation;
+import de.steinberg.engine.ui.AppInitializer;
+import de.steinberg.engine.ui.test.configuration.UITestConfigruation;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

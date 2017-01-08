@@ -2,8 +2,8 @@ package de.steinberg.engine.glitchtest.tracer;
 
 import de.steinberg.engine.core.configuration.CoreConfiguration;
 import de.steinberg.engine.glitchtest.tracer.configuration.GlitchNotificationSenderConfiguration;
-import de.steinberg.rpc.execution.trigger.ui.AppInitializer;
-import de.steinberg.rpc.execution.trigger.ui.configuration.UIConfiguration;
+import de.steinberg.engine.ui.AppInitializer;
+import de.steinberg.engine.ui.test.configuration.UIConfiguration;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
