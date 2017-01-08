@@ -1,7 +1,7 @@
-package de.steinberg.rpc.execution.trigger.glitchnotificationsender;
+package de.steinberg.engine.glitchtest.tracer;
 
 import de.steinberg.engine.core.configuration.CoreConfiguration;
-import de.steinberg.rpc.execution.trigger.glitchnotificationsender.configuration.GlitchNotificationSenderConfiguration;
+import de.steinberg.engine.glitchtest.tracer.configuration.GlitchNotificationSenderConfiguration;
 import de.steinberg.rpc.execution.trigger.ui.AppInitializer;
 import de.steinberg.rpc.execution.trigger.ui.configuration.UIConfiguration;
 import javafx.application.Application;
