@@ -1,13 +1,15 @@
-package de.steinberg.engine.core.engine.monitor;
+package de.steinberg.engine.glitchtest.detector.engine;
 
 import de.steinberg.engine.core.engine.Control;
 import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.engine.core.network.NetworkInterfacesInfo;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.message.Message;
 import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -29,16 +31,12 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
     Future<?> currentFuture;
 
     public GlitchNotificationMonitor() {
-        controls.put("start", new Control() {
-            @Override
-            public void setSettings(Settings settings) {
-            }
+        System.out.println(toString());
+    }
 
-            @Override
-            public void trigger() {
-                GlitchNotificationMonitor.this.startMonitoring();
-            }
-        });
+    @Override
+    protected void initializeControls() {
+        controls.put("start", new StartMonitoringControl(this));
         controls.put("stop", new Control() {
             @Override
             public void setSettings(Settings settings) {

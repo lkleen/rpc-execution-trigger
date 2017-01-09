@@ -54,4 +54,6 @@ public class FileAddedMonitor extends AbstractAsyncMonitor {
     }
 
 
+    @Override
+    protected void initializeControls() {}
 }

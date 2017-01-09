@@ -16,16 +16,17 @@ import java.util.concurrent.*;
  */
 public abstract class AbstractAsyncMonitor implements Monitor {
 
+    protected Controls controls = new Controls();
+    protected Settings settings = new Settings();
+
     // scheduling defaults to once per second
     long period = 1;
     TimeUnit timeUnit = TimeUnit.SECONDS;
-
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
     List<Action> actions = new ArrayList<>();
-    Controls controls = new Controls();
-    Settings settings = new Settings();
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
+
+    private boolean controlsInitialized = false;
 
     @Override
     public void addAction(Action action) {
@@ -36,7 +37,13 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     public List<Action> getActions() {return actions;}
 
     @Override
-    public Controls getControls() {return controls;}
+    public Controls getControls() {
+        if (!controlsInitialized) {
+            controlsInitialized = true;
+            initializeControls();
+        }
+        return controls;
+    }
 
     @Override
     public Settings getSettings() {return settings;}
@@ -72,5 +79,7 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     public String toString() {
         return displayNameResolver.resolveFrom(this);
     }
+
+    protected abstract void initializeControls();
 
 }
