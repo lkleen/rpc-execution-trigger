@@ -28,8 +28,10 @@ public abstract class SocketReceiver<T> implements Receiver<T> {
 
     public void close() {
         try {
-            serverSocket.close();
-            serverSocket = null;
+            if (serverSocket != null) {
+                serverSocket.close();
+                serverSocket = null;
+            }
         } catch (IOException e) {
             throw new EngineException(e);
         }

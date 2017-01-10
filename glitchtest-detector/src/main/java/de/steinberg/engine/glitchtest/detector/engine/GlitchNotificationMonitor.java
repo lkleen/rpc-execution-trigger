@@ -91,6 +91,13 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
     }
 
     @Override
+    public void shutdown() {
+        super.shutdown();
+        stopMonitoring();
+        executorService.shutdown();
+    }
+
+    @Override
     public boolean conditionFulfilled() {
         if (detectedGlitch) {log.info("glitch detected");}
         boolean glitchDetected = detectedGlitch;
