@@ -30,13 +30,18 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     Future<?> currentFuture;
 
-    public GlitchNotificationMonitor() {
-        System.out.println(toString());
-    }
-
     @Override
     protected void initializeControls() {
-        controls.put("start", new StartMonitoringControl(this));
+        controls.put("start", new Control() {
+            @Override
+            public void setSettings(Settings settings) {
+            }
+
+            @Override
+            public void trigger() {
+                GlitchNotificationMonitor.this.startMonitoring();
+            }
+        });
         controls.put("stop", new Control() {
             @Override
             public void setSettings(Settings settings) {

@@ -6,16 +6,19 @@ import de.steinberg.engine.ui.AppInitializer;
 import de.steinberg.engine.ui.test.configuration.UIConfiguration;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Created by lkleen on 12/14/2016.
  */
+@Slf4j
 public class AppLauncher extends Application {
 
     final AppInitializer initializer;
 
     public AppLauncher() {
+        log.debug("initializing application");
         initializer = new AppInitializer(new AnnotationConfigApplicationContext(
                 CoreConfiguration.class,
                 UIConfiguration.class,

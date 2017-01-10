@@ -5,10 +5,12 @@ import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageRecei
 import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationMonitor;
 import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationReceiverEngine;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by lkleen on 11/28/2016.
  */
+@Configuration
 public class GlitchNotificationReceiverConfiguration {
 
     @Bean
