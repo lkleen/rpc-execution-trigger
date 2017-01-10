@@ -26,8 +26,6 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     List<Action> actions = new ArrayList<>();
     DisplayNameResolver displayNameResolver = new DisplayNameResolver();
 
-    private boolean controlsInitialized = false;
-
     @Override
     public void addAction(Action action) {
         actions.add(action);
@@ -37,13 +35,7 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     public List<Action> getActions() {return actions;}
 
     @Override
-    public Controls getControls() {
-        if (!controlsInitialized) {
-            controlsInitialized = true;
-            initializeControls();
-        }
-        return controls;
-    }
+    public Controls getControls() {return controls;}
 
     @Override
     public Settings getSettings() {return settings;}
@@ -79,7 +71,5 @@ public abstract class AbstractAsyncMonitor implements Monitor {
     public String toString() {
         return displayNameResolver.resolveFrom(this);
     }
-
-    protected abstract void initializeControls();
 
 }

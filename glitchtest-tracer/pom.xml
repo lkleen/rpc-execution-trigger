@@ -16,7 +16,7 @@
         <dependency>
             <groupId>de.steinberg.engine</groupId>
             <artifactId>core</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>de.steinberg.engine</groupId>
