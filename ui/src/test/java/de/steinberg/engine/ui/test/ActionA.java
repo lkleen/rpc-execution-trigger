@@ -22,11 +22,6 @@ public class ActionA extends ActionMock {
         Controls controls = new Controls();
         controls.put("action control a", new Control() {
             @Override
-            public void setSettings(Settings settings) {
-
-            }
-
-            @Override
             public void trigger() {
                 log.info("action control a triggered");
             }

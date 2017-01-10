@@ -26,9 +26,6 @@ public class GlitchNotificationAction extends AbstractAction {
         settings.put(PORT_SETTING, "");
         controls.put("send glitch notification", new Control() {
             @Override
-            public void setSettings(Settings settings) {
-            }
-            @Override
             public void trigger() {
                 GlitchNotificationAction.this.execute();
             }

@@ -32,11 +32,6 @@ public class MonitorA extends MonitorMock {
     private void createTrigger (Controls controls, Monitor monitor) {
         controls.put("trigger", new Control() {
             @Override
-            public void setSettings(Settings settings) {
-
-            }
-
-            @Override
             public void trigger() {
                 monitor.run();
             }
@@ -45,11 +40,6 @@ public class MonitorA extends MonitorMock {
 
     private void createController(Controls controls, String str) {
         controls.put(str, new Control() {
-            @Override
-            public void setSettings(Settings settings) {
-
-            }
-
             @Override
             public void trigger() {
                 log.info(str);

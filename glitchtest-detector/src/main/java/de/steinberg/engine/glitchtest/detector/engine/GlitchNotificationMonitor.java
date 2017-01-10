@@ -2,6 +2,7 @@ package de.steinberg.engine.glitchtest.detector.engine;
 
 import de.steinberg.engine.core.engine.Control;
 import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.SettingsAwareControl;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.engine.core.network.NetworkInterfacesInfo;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
@@ -30,37 +31,24 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     Future<?> currentFuture;
 
+    public GlitchNotificationMonitor() {
+        settings.put("host","localhost");
+        settings.put("port", null);
+    }
+
     @Override
     protected void initializeControls() {
-        controls.put("start", new Control() {
-            @Override
-            public void setSettings(Settings settings) {
-            }
-
+        controls.put("start", new SettingsAwareControl(settings) {
             @Override
             public void trigger() {
                 GlitchNotificationMonitor.this.startMonitoring();
             }
         });
-        controls.put("stop", new Control() {
-            @Override
-            public void setSettings(Settings settings) {
-            }
-
-            @Override
-            public void trigger() {
-                GlitchNotificationMonitor.this.stopMonitoring();
-            }
+        controls.put("stop", () -> {
+            GlitchNotificationMonitor.this.stopMonitoring();
         });
-        controls.put("show interfaces", new Control() {
-            @Override
-            public void setSettings(Settings settings) {
-            }
-
-            @Override
-            public void trigger() {
-                GlitchNotificationMonitor.this.showInterfaces();
-            }
+        controls.put("show interfaces", () -> {
+            GlitchNotificationMonitor.this.showInterfaces();
         });
     }
 
@@ -77,7 +65,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
                         log.debug("glitch notification receiver received {}", msg.getValue());
                     }
                 } catch (Exception e) {
-                    log.debug("glitch notification receiver interrupted");
+                    log.error(e.getMessage());
                 }
             }
         });
