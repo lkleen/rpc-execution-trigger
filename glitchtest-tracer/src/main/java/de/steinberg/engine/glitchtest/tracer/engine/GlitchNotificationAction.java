@@ -1,7 +1,7 @@
-package de.steinberg.engine.core.engine.action;
+package de.steinberg.engine.glitchtest.tracer.engine;
 
 import de.steinberg.engine.core.engine.Control;
-import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.action.AbstractAction;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.sender.IntegerSocketSender;
 import de.steinberg.engine.core.protocol.sender.SocketSender;

@@ -32,11 +32,8 @@ public class OutputToTextAreaTask extends Task<Void> {
                 }
                 if (builder.length() > 0) {
                     String text = builder.toString();
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            output.appendText(text);
-                        }
+                    Platform.runLater( () -> {
+                        output.appendText(text);
                     });
                     builder.delete(0, builder.length());
                 }
