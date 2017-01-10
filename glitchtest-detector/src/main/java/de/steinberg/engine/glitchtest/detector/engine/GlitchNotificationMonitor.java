@@ -92,7 +92,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     @Override
     public boolean conditionFulfilled() {
-        log.info("glitch detected");
+        if (detectedGlitch) {log.info("glitch detected");}
         boolean glitchDetected = detectedGlitch;
         detectedGlitch = false;
         return glitchDetected;
