@@ -8,8 +8,14 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
  */
 public class SelectQuery implements Query {
 
+    final String value;
+
+    public SelectQuery(String value) {
+        this.value = value;
+    }
+
     @Override
-    public String createQueryString() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public String getString() {
+        return value;
     }
 }
