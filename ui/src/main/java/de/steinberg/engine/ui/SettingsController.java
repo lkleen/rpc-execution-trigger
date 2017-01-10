@@ -24,6 +24,7 @@ public class SettingsController {
     VBox actionVBox;
 
     VBoxSetup vBoxSetup = new VBoxSetup();
+    ComboBoxSetup comboBoxSetup = new ComboBoxSetup();
 
     public void refreshMonitorSettings() {
         Monitor monitor = selectMonitor.getSelectionModel().getSelectedItem();
@@ -43,15 +44,7 @@ public class SettingsController {
     private void updateActionComboBox() {
         Monitor monitor = selectMonitor.getSelectionModel().getSelectedItem();
         selectAction.getItems().clear();
-
-        for (Action action : monitor.getActions()) {
-            selectAction.getItems().add(action);
-        }
-
-        if (monitor.getActions().size() > 0) {
-            selectAction.getSelectionModel().selectFirst();
-        }
-
+        comboBoxSetup.setup(monitor.getActions(), selectAction);
     }
 
 }

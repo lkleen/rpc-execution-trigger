@@ -1,5 +1,6 @@
 package de.steinberg.engine.core.engine.action;
 
+import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.engine.Controls;
 import de.steinberg.engine.core.engine.Settings;
 import lombok.Data;
