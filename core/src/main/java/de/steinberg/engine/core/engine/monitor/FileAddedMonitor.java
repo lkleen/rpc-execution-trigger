@@ -1,6 +1,7 @@
 package de.steinberg.engine.core.engine.monitor;
 
 import de.steinberg.engine.core.exception.MonitorException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.nio.file.FileVisitOption;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 /**
  * Created by lkleen on 11/28/2016.
  */
+@Slf4j
 public class FileAddedMonitor extends AbstractAsyncMonitor {
 
     private static String PATH = "path";
@@ -39,7 +41,7 @@ public class FileAddedMonitor extends AbstractAsyncMonitor {
                 return file.isFile() && file.getAbsolutePath().endsWith(extension);
             }).count();
         } catch (Exception e) {
-            throw new MonitorException(e);
+            log.error(e.toString());
         }
 
         if (previousNumMatches == -1) {

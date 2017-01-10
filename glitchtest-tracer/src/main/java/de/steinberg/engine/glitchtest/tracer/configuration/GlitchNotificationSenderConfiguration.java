@@ -1,7 +1,7 @@
 package de.steinberg.engine.glitchtest.tracer.configuration;
 
 import de.steinberg.engine.core.engine.monitor.FileAddedMonitor;
-import de.steinberg.engine.core.protocol.sender.IntegerSocketSender;
+import de.steinberg.engine.core.protocol.sender.SingleCharSocketSender;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationAction;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationSenderEngine;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +28,8 @@ public class GlitchNotificationSenderConfiguration {
     }
 
     @Bean
-    public IntegerSocketSender integerSocketSender() {
-        return new IntegerSocketSender();
+    public SingleCharSocketSender integerSocketSender() {
+        return new SingleCharSocketSender();
     }
 
     @Bean

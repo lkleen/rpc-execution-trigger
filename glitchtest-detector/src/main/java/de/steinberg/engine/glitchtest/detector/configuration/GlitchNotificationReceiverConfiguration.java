@@ -1,7 +1,7 @@
 package de.steinberg.engine.glitchtest.detector.configuration;
 
 import de.steinberg.engine.core.engine.action.WriteTraceAction;
-import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
+import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationMessageReceiver;
 import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationMonitor;
 import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationReceiverEngine;
 import org.springframework.context.annotation.Bean;

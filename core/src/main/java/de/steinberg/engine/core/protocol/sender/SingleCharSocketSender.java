@@ -8,9 +8,9 @@ import java.io.IOException;
 /**
  * Created by LKLeen on 29.12.2016.
  */
-public class IntegerSocketSender extends SocketSender<Integer> {
+public class SingleCharSocketSender extends SocketSender<Character> {
     @Override
-    protected void sendMessage(BufferedWriter writer, Message<Integer> message) throws IOException {
+    protected void sendMessage(BufferedWriter writer, Message<Character> message) throws IOException {
         writer.write(message.getValue());
     }
 }

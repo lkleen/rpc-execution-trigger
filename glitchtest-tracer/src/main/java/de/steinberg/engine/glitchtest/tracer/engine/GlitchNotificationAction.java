@@ -3,7 +3,7 @@ package de.steinberg.engine.glitchtest.tracer.engine;
 import de.steinberg.engine.core.engine.Control;
 import de.steinberg.engine.core.engine.action.AbstractAction;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
-import de.steinberg.engine.core.protocol.sender.IntegerSocketSender;
+import de.steinberg.engine.core.protocol.sender.SingleCharSocketSender;
 import de.steinberg.engine.core.protocol.sender.SocketSender;
 
 import javax.inject.Inject;
@@ -19,7 +19,7 @@ public class GlitchNotificationAction extends AbstractAction {
     static final GlitchNotificationMessage message = new GlitchNotificationMessage();
 
     @Inject
-    IntegerSocketSender sender;
+    SingleCharSocketSender sender;
 
     public GlitchNotificationAction() {
         settings.put(HOST_SETTING, "");

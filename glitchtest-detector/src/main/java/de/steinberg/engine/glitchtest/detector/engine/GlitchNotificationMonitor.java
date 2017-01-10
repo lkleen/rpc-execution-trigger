@@ -1,11 +1,9 @@
 package de.steinberg.engine.glitchtest.detector.engine;
 
-import de.steinberg.engine.core.engine.SettingsAwareControl;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.engine.core.network.NetworkInterfacesInfo;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.message.Message;
-import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -60,7 +58,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
                     while (true) {
                         receiver.setPort(Integer.valueOf(settings.get(PORT)));
                         log.debug("glitch notification receiver waiting for messages");
-                        Message<Integer> msg = receiver.receive();
+                        Message<Character> msg = receiver.receive();
                         GlitchNotificationMonitor.this.detectedGlitch = msg.getValue() == GlitchNotificationMessage.ID;
                         log.debug("glitch notification receiver received {}", msg.getValue());
                     }

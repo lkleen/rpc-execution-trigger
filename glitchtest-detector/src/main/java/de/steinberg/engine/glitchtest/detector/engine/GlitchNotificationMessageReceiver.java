@@ -1,15 +1,16 @@
-package de.steinberg.engine.core.protocol.receiver;
+package de.steinberg.engine.glitchtest.detector.engine;
 
 import de.steinberg.engine.core.exception.SocketReceiverException;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.message.Message;
+import de.steinberg.engine.core.protocol.receiver.SingleCharSocketReceiver;
 
 /**
  * Created by LKLeen on 29.12.2016.
  */
-public class GlitchNotificationMessageReceiver extends IntegerSocketReceiver {
+public class GlitchNotificationMessageReceiver extends SingleCharSocketReceiver {
     @Override
-    protected Message<Integer> createMessage(int value) {
+    protected Message<Character> createMessage(char value) {
         if (value == GlitchNotificationMessage.ID) {
             return new GlitchNotificationMessage();
         } else {
