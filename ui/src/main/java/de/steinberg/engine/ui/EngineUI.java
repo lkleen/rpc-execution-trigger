@@ -41,15 +41,7 @@ public class EngineUI {
         comboBoxSetup.setup(engine.getMonitors(), selectMonitor);
         TextArea output = (TextArea) scene.lookup("#output");
         outputToTextAreaService.setOutput(output);
-        outputToTextAreaService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                System.out.print("SOOOOOOOOOO COMPLICATED");
-            }
-        });
         outputToTextAreaService.start();
     }
 
-    public void shutdown() {
-    }
 }

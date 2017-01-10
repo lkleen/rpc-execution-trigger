@@ -1,7 +1,5 @@
 package de.steinberg.engine.glitchtest.detector.engine;
 
-import de.steinberg.engine.core.engine.Control;
-import de.steinberg.engine.core.engine.Settings;
 import de.steinberg.engine.core.engine.SettingsAwareControl;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.engine.core.network.NetworkInterfacesInfo;
@@ -10,8 +8,8 @@ import de.steinberg.engine.core.protocol.message.Message;
 import de.steinberg.engine.core.protocol.receiver.GlitchNotificationMessageReceiver;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.net.SocketException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -31,24 +29,25 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     Future<?> currentFuture;
 
+    private static final String PORT = "port";
+
     public GlitchNotificationMonitor() {
-        settings.put("host","localhost");
-        settings.put("port", null);
+        settings.put(PORT, null);
     }
 
     @Override
     protected void initializeControls() {
-        controls.put("start", new SettingsAwareControl(settings) {
-            @Override
-            public void trigger() {
-                GlitchNotificationMonitor.this.startMonitoring();
-            }
+        controls.put("start", () -> {
+            GlitchNotificationMonitor.this.startMonitoring();
         });
         controls.put("stop", () -> {
             GlitchNotificationMonitor.this.stopMonitoring();
         });
         controls.put("show interfaces", () -> {
             GlitchNotificationMonitor.this.showInterfaces();
+        });
+        controls.put("trigger", () -> {
+            GlitchNotificationMonitor.this.detectedGlitch = true;
         });
     }
 
@@ -59,13 +58,20 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
             public void run() {
                 try {
                     while (true) {
+                        receiver.setPort(Integer.valueOf(settings.get(PORT)));
                         log.debug("glitch notification receiver waiting for messages");
                         Message<Integer> msg = receiver.receive();
                         GlitchNotificationMonitor.this.detectedGlitch = msg.getValue() == GlitchNotificationMessage.ID;
                         log.debug("glitch notification receiver received {}", msg.getValue());
                     }
+                } catch (NumberFormatException e) {
+                    log.error("invalid port: {}", settings.get(PORT));
                 } catch (Exception e) {
-                    log.error(e.getMessage());
+                    if (e.getCause() instanceof SocketException) {
+                        log.info(e.getCause().getMessage());
+                        return;
+                    }
+                    log.error(e.toString());
                 }
             }
         });
@@ -74,6 +80,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
     void stopMonitoring() {
         log.info("stop listening to glitch notifications");
         if (currentFuture != null) {
+            receiver.close();
             currentFuture.cancel(true);
         }
     }
@@ -85,6 +92,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     @Override
     public boolean conditionFulfilled() {
+        log.info("glitch detected");
         boolean glitchDetected = detectedGlitch;
         detectedGlitch = false;
         return glitchDetected;
