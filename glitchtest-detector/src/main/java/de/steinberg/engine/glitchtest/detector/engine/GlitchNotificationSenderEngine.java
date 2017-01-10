@@ -1,4 +1,4 @@
-package de.steinberg.engine.glitchtest.tracer.engine;
+package de.steinberg.engine.glitchtest.detector.engine;
 
 import de.steinberg.engine.core.engine.DefaultEngine;
 

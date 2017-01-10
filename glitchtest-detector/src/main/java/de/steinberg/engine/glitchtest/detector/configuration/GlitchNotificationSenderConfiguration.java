@@ -1,9 +1,9 @@
-package de.steinberg.engine.glitchtest.tracer.configuration;
+package de.steinberg.engine.glitchtest.detector.configuration;
 
 import de.steinberg.engine.core.engine.monitor.FileAddedMonitor;
 import de.steinberg.engine.core.protocol.sender.SingleCharSocketSender;
-import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationAction;
-import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationSenderEngine;
+import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationAction;
+import de.steinberg.engine.glitchtest.detector.engine.GlitchNotificationSenderEngine;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

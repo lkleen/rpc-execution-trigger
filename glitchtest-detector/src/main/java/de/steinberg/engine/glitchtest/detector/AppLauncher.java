@@ -1,7 +1,7 @@
-package de.steinberg.engine.glitchtest.tracer;
+package de.steinberg.engine.glitchtest.detector;
 
 import de.steinberg.engine.core.configuration.CoreConfiguration;
-import de.steinberg.engine.glitchtest.tracer.configuration.GlitchNotificationSenderConfiguration;
+import de.steinberg.engine.glitchtest.detector.configuration.GlitchNotificationSenderConfiguration;
 import de.steinberg.engine.ui.AppInitializer;
 import de.steinberg.engine.ui.test.configuration.UIConfiguration;
 import javafx.application.Application;
