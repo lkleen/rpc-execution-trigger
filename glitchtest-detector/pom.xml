@@ -27,7 +27,7 @@
 
     <properties>
         <mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</mainClass>
-        <launch4j.outfile>target/${project.artifactId}.exe</launch4j.outfile>
+        <launch4j.outfile>${project.build.directory}/${project.artifactId}.exe</launch4j.outfile>
     </properties>
 
     <build>
