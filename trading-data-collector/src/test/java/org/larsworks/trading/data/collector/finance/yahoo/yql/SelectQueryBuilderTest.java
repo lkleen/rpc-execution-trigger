@@ -1,6 +1,7 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -76,6 +77,20 @@ public class SelectQueryBuilderTest {
         parameters.symbol = "FOO";
         builder.validateParameters(parameters);
     }
+
+    @Test
+    public void testBuildQuery() {
+        final String expected = "select * from yahoo.finance.historicaldata where symbol = \"YHOO\" and startDate = \"2015-01-01\" and endDate = \"2016-01-01\"";
+        SelectQueryParameters parameters = new SelectQueryParameters();
+        parameters.symbol = "YHOO";
+        parameters.range = new SelectQueryRange(
+                LocalDate.of(2015,1,1),
+                LocalDate.of(2016,1,1)
+        );
+        final String actual = builder.build(parameters).getString();
+        Assert.assertEquals(actual, expected);
+    }
+
 
 
 }

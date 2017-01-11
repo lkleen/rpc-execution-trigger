@@ -8,6 +8,6 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
  */
 public interface Query {
 
-    String createQueryString();
+    String getString();
 
 }

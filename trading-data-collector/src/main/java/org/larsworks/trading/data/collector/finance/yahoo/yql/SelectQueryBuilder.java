@@ -2,9 +2,10 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Lars Kleen
@@ -14,12 +15,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
 
-    static final String PREFIX = "select * from";
+    static final String PREFIX = "select * from yahoo.finance.historicaldata where symbol =";
 
     @Override
     public Query build(SelectQueryParameters parameters) {
         validateParameters(parameters);
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        String startDate = formatDate("startDate", parameters.range.startDate);
+        String endDate   = formatDate("endDate", parameters.range.endDate);
+        return new SelectQuery(PREFIX + " \""+parameters.symbol+"\" and " + startDate + " and " + endDate);
     }
 
     public void validateParameters(SelectQueryParameters parameters) {
@@ -32,8 +35,13 @@ public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
         if (parameters.symbol.length() == 0) {
             throw new QueryBuilderException("empty symbol not allowed");
         }
-        if (parameters.range.getValue(ChronoUnit.DAYS) <= 0) {
+        Period period = parameters.range.getPeriod();
+        if (period.isNegative() || period.isZero()) {
             throw new QueryBuilderException("query range <= 0 days");
         }
+    }
+
+    private String formatDate(String prefix, LocalDate date) {
+        return prefix + " = \"" + date.format(DateTimeFormatter.ISO_LOCAL_DATE) + "\"";
     }
 }

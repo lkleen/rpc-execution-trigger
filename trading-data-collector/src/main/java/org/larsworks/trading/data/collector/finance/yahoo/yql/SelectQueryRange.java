@@ -26,11 +26,11 @@ public class SelectQueryRange {
         this.endDate = endDate;
     }
 
-    public long getValue(TemporalUnit unit) {
+    public Period getPeriod() {
         if (startDate == null || endDate == null) {
             throw new InvalidRangeException("startDate or endDate == null");
         }
-        return startDate.until(endDate).get(unit);
+        return startDate.until(endDate);
     }
 
 }
