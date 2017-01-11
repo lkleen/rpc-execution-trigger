@@ -71,30 +71,9 @@
                             <outfile>${launch4j.outfile}</outfile>
                             <jar>${project.build.directory}/${project.artifactId}-${project.parent.version}-jar-with-dependencies.jar</jar>
                             <errTitle>ERROR</errTitle>
-                            <classPath>
-                                <mainClass>${mainClass}</mainClass>
-                                <addDependencies>true</addDependencies>
-                                <preCp>anything</preCp>
-                            </classPath>
                             <jre>
                                 <minVersion>1.5.0</minVersion>
-                                <opts>
-                                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
-                                </opts>
                             </jre>
-                            <!--
-                            <versionInfo>
-                                <fileVersion>1.2.3.4</fileVersion>
-                                <txtFileVersion>txt file version?</txtFileVersion>
-                                <fileDescription>a description</fileDescription>
-                                <copyright>my copyright</copyright>
-                                <productVersion>1.2.3.4</productVersion>
-                                <txtProductVersion>txt product version</txtProductVersion>
-                                <productName>${project.artifactId}</productName>
-                                <internalName>ccne</internalName>
-                                <originalFilename>original.exe</originalFilename>
-                            </versionInfo>
-                            -->
                         </configuration>
                     </execution>
                 </executions>
