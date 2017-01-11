@@ -26,8 +26,8 @@
     </dependencies>
 
     <properties>
+        <mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</mainClass>
         <launch4j.outfile>target/${project.artifactId}.exe</launch4j.outfile>
-        <launch4j.mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</launch4j.mainClass>
     </properties>
 
     <build>
@@ -50,7 +50,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -69,10 +69,10 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <outfile>${launch4j.outfile}</outfile>
-                            <jar>target/glitchtest-detector-0.0.1-SNAPSHOT-jar-with-dependencies.jar</jar>
+                            <jar>${project.build.directory}/${project.artifactId}-${project.parent.version}-jar-with-dependencies.jar</jar>
                             <errTitle>ERROR</errTitle>
                             <classPath>
-                                <mainClass>${launch4j.mainClass}</mainClass>
+                                <mainClass>${mainClass}</mainClass>
                                 <addDependencies>true</addDependencies>
                                 <preCp>anything</preCp>
                             </classPath>
