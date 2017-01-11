@@ -26,32 +26,34 @@
     </dependencies>
 
     <properties>
-        <mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</mainClass>
+        <launch4j.outfile>target/${project.artifactId}.exe</launch4j.outfile>
+        <launch4j.mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</launch4j.mainClass>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
-                <configuration>
-                    <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <manifestEntries>
-                                <Main-Class>${mainClass}</Main-Class>
-                            </manifestEntries>
-                        </transformer>
-                    </transformers>
-                </configuration>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>de.steinberg.engine.glitchtest.detector.AppLauncher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
@@ -67,17 +69,32 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <outfile>${launch4j.outfile}</outfile>
-                            <jar>${project.build.directory}/${artifactId}-${version}-jar-with-dependencies.jar</jar>
+                            <jar>target/glitchtest-detector-0.0.1-SNAPSHOT-jar-with-dependencies.jar</jar>
                             <errTitle>ERROR</errTitle>
                             <classPath>
-                                <mainClass>${project.build.directory}/${project.artifactId}.exe</mainClass>
+                                <mainClass>${launch4j.mainClass}</mainClass>
+                                <addDependencies>true</addDependencies>
+                                <preCp>anything</preCp>
                             </classPath>
                             <jre>
                                 <minVersion>1.5.0</minVersion>
-                                <path>jre</path>
-                                <bundledJre64Bit>true</bundledJre64Bit>
-                                <bundledJreAsFallback>true</bundledJreAsFallback>
+                                <opts>
+                                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
+                                </opts>
                             </jre>
+                            <!--
+                            <versionInfo>
+                                <fileVersion>1.2.3.4</fileVersion>
+                                <txtFileVersion>txt file version?</txtFileVersion>
+                                <fileDescription>a description</fileDescription>
+                                <copyright>my copyright</copyright>
+                                <productVersion>1.2.3.4</productVersion>
+                                <txtProductVersion>txt product version</txtProductVersion>
+                                <productName>${project.artifactId}</productName>
+                                <internalName>ccne</internalName>
+                                <originalFilename>original.exe</originalFilename>
+                            </versionInfo>
+                            -->
                         </configuration>
                     </execution>
                 </executions>
