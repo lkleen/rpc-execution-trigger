@@ -1,6 +1,7 @@
 package de.steinberg.engine.glitchtest.tracer.configuration;
 
 import de.steinberg.engine.core.engine.action.TracerRecorder;
+import de.steinberg.engine.core.process.ScriptRunner;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationMessageReceiver;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationMonitor;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationReceiverEngine;
@@ -36,5 +37,8 @@ public class GlitchNotificationReceiverConfiguration {
     public TracerRecorder writeTraceAction() {
         return new TracerRecorder();
     }
+
+    @Bean
+    public ScriptRunner scriptRunner() {return new ScriptRunner();}
 
 }

@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by LKLeen on 12.01.2017.
@@ -34,13 +37,23 @@ public class ScriptRunner {
         try {
             validateArguments(script, args);
             batchFile = TemporaryBatchFile.createFrom(script);
-            Process process = Runtime.getRuntime().exec(batchFile.path.toAbsolutePath().toString(), args);
+            Process process = exec(batchFile, args);
+            //Process process = Runtime.getRuntime().exec(batchFile.path.toAbsolutePath().toString(), args);
             printOutput(process.getInputStream());
             printError(process.getErrorStream());
             batchFile.delete();
         } catch (Exception e) {
             throw new ExecutionException(e);
         }
+    }
+
+    private Process exec(TemporaryBatchFile batchFile, String[] args) throws Exception {
+        String command = "cmd /c ";
+        command += batchFile.path.toAbsolutePath().toString() + " ";
+        for (String arg : args) {
+            command += arg + " ";
+        }
+        return Runtime.getRuntime().exec(command);
     }
 
     private void validateArguments(Script script, String[] args) {
@@ -65,6 +78,7 @@ public class ScriptRunner {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = reader.readLine()) != null) {
+            System.out.println(line);
             printer.println(log, line);
         }
     }

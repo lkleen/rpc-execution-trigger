@@ -51,7 +51,7 @@ public class TemporaryBatchFile {
     }
 
     public void delete() throws IOException {
-        Files.delete(path);
+        Files.delete(path.toAbsolutePath());
     }
 
     private static String getBatchFileExtension() {

@@ -3,3 +3,4 @@ echo "hello world"
 echo "foo"
 echo "bar"
 echo "baz"
+xperf
