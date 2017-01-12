@@ -1,5 +1,6 @@
 package de.steinberg.engine.core.process;
 
+import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ExecutionException;
 import de.steinberg.engine.core.exception.script.InvalidArgumentsException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +23,17 @@ public class ScriptRunner {
         void println(Logger logger, String str);
     }
 
+    private ErrorStreamParser errorStreamParser = new ErrorStreamParser();
+
+    public void addErrorStreamValidator(ErrorStreamParser.Validator validator) {
+        errorStreamParser.addValidator(validator);
+    }
+
     public void run(Command command) {
         try {
             Process process = Runtime.getRuntime().exec(command.command);
             printOutput(process.getInputStream());
-            printError(process.getErrorStream());
+            printAndParseError(process.getErrorStream());
         } catch (Exception e) {
             throw new ExecutionException(e);
         }
@@ -38,10 +45,14 @@ public class ScriptRunner {
             validateArguments(script, args);
             batchFile = TemporaryBatchFile.createFrom(script);
             Process process = exec(batchFile, args);
-            //Process process = Runtime.getRuntime().exec(batchFile.path.toAbsolutePath().toString(), args);
             printOutput(process.getInputStream());
-            printError(process.getErrorStream());
+            printAndParseError(process.getErrorStream());
             batchFile.delete();
+            if (errorStreamParser.getErrors().size() > 0) {
+                ErrorStreamParserException ex = new ErrorStreamParserException("Script Execution Error", Collections.unmodifiableList(errorStreamParser.getErrors()));
+                errorStreamParser.clearErrors();
+                throw ex;
+            }
         } catch (Exception e) {
             throw new ExecutionException(e);
         }
@@ -66,8 +77,11 @@ public class ScriptRunner {
         }
     }
 
-    private void printError(InputStream inputStream) throws Exception {
-        printInputStream(inputStream, (Logger logger, String str) -> {logger.error(str);});
+    private void printAndParseError(InputStream inputStream) throws Exception {
+        printInputStream(inputStream, (Logger logger, String str) -> {
+            errorStreamParser.parseLine(str);
+            logger.error(str);
+        });
     }
 
     private void printOutput(InputStream inputStream) throws Exception {

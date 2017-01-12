@@ -39,6 +39,13 @@ public class GlitchNotificationReceiverConfiguration {
     }
 
     @Bean
-    public ScriptRunner scriptRunner() {return new ScriptRunner();}
+    public ScriptRunner scriptRunner() {
+        ScriptRunner scriptRunner = new ScriptRunner();
+        scriptRunner.addErrorStreamValidator( (String text) -> {
+            if (text == null) {return false;}
+            return text.contains("xperf: error");
+        });
+        return scriptRunner;
+    }
 
 }

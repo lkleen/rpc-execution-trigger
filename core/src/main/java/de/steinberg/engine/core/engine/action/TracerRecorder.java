@@ -1,6 +1,8 @@
 package de.steinberg.engine.core.engine.action;
 
 import de.steinberg.engine.core.annotations.DisplayName;
+import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
+import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;
 import de.steinberg.engine.core.process.Scripts;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +38,13 @@ public class TracerRecorder extends AbstractAction {
     }
 
     private void startTrace() {
-        scriptRunner.run(Scripts.START_TRACE_RECORDER);
+        try {
+            scriptRunner.run(Scripts.START_TRACE_RECORDER);
+        } catch (ScriptException e) {
+            log.error(e.getMessage());
+            log.error("could not start trace. PLEASE NOTE THAT TRACING REQUIRES ADNMIN PRIVILEGS");
+        }
+
     }
 
     private void stopTrace() {
