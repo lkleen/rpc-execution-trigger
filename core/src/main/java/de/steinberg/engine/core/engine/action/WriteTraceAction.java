@@ -2,15 +2,40 @@ package de.steinberg.engine.core.engine.action;
 
 import de.steinberg.engine.core.annotations.DisplayName;
 import lombok.extern.slf4j.Slf4j;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by LKLeen on 29.12.2016.
  */
 @Slf4j
-@DisplayName("Write Trace")
+@DisplayName("Trace Recorder")
 public class WriteTraceAction extends AbstractAction {
+
+    private enum State {STOPPED, RUNNING};
+
+    State state = State.STOPPED;
+
+    public WriteTraceAction() {
+        controls.put("start", () -> {startTrace();});
+        controls.put("stop", () -> {stopTrace();});
+        controls.put("flush", () -> {flushTrace();});
+    }
+
     @Override
     public void execute() {
-        log.error("NOT IMPLEMENTED");
+        flushTrace();
     }
+
+    private void startTrace() {
+        throw new NotImplementedException();
+    }
+
+    private void stopTrace() {
+        throw new NotImplementedException();
+    }
+
+    private void flushTrace() {
+        throw new NotImplementedException();
+    }
+
 }

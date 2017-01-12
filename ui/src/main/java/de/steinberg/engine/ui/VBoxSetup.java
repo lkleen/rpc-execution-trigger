@@ -8,12 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
 /**
  * Created by lkleen on 12/7/2016.
  */
+@Slf4j
 public class VBoxSetup {
 
     public void setup(VBox monitorVBox, Controls controls, Settings settings) {
@@ -34,7 +36,14 @@ public class VBoxSetup {
         for (Map.Entry<String, Control> entry : controls.entrySet()) {
             Button button = new Button(entry.getKey());
             Control control = entry.getValue();
-            button.setOnAction(event -> {control.trigger();});
+            button.setOnAction(event -> {
+                try {
+                    control.trigger();
+                } catch (Exception e) {
+                    log.error(e.toString());
+                    throw e;
+                }
+            });
             buttonsHBox.getChildren().add(button);
         }
     }
