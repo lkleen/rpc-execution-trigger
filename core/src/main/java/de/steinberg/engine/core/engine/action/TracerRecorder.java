@@ -9,13 +9,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 @Slf4j
 @DisplayName("Trace Recorder")
-public class WriteTraceAction extends AbstractAction {
+public class TracerRecorder extends AbstractAction {
 
     private enum State {STOPPED, RUNNING};
 
     State state = State.STOPPED;
 
-    public WriteTraceAction() {
+    public TracerRecorder() {
         controls.put("start", () -> {startTrace();});
         controls.put("stop", () -> {stopTrace();});
         controls.put("flush", () -> {flushTrace();});

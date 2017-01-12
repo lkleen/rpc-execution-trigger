@@ -1,6 +1,7 @@
 package de.steinberg.engine.core.process;
 
-import de.steinberg.engine.core.exception.ScriptRunnerException;
+import de.steinberg.engine.core.exception.script.ExecutionException;
+import de.steinberg.engine.core.exception.script.InvalidArgumentsException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 
@@ -18,13 +19,37 @@ public class ScriptRunner {
         void println(Logger logger, String str);
     }
 
-    public void run(Script script, String... args) {
+    public void run(Command command) {
         try {
-            Process process = Runtime.getRuntime().exec(script.filename, args);
+            Process process = Runtime.getRuntime().exec(command.command);
             printOutput(process.getInputStream());
             printError(process.getErrorStream());
         } catch (Exception e) {
-            throw new ScriptRunnerException(e);
+            throw new ExecutionException(e);
+        }
+    }
+
+    public void run(Script script, String... args) {
+        TemporaryBatchFile batchFile = null;
+        try {
+            validateArguments(script, args);
+            batchFile = TemporaryBatchFile.createFrom(script);
+            Process process = Runtime.getRuntime().exec(batchFile.path.toAbsolutePath().toString(), args);
+            printOutput(process.getInputStream());
+            printError(process.getErrorStream());
+            batchFile.delete();
+        } catch (Exception e) {
+            throw new ExecutionException(e);
+        }
+    }
+
+    private void validateArguments(Script script, String[] args) {
+        if (script.numParameters == 0) {return;}
+        if (script.numParameters > 0 && args == null) {
+            throw new InvalidArgumentsException("numParameters > 0 and args == null");
+        }
+        if (script.numParameters > 0 && script.numParameters != args.length) {
+            throw new InvalidArgumentsException("numParameters != args.length");
         }
     }
 
