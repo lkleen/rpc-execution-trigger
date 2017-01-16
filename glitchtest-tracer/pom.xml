@@ -72,7 +72,7 @@
                             <jar>${project.build.directory}/${project.artifactId}-${project.parent.version}-jar-with-dependencies.jar</jar>
                             <errTitle>ERROR</errTitle>
                             <jre>
-                                <minVersion>1.5.0</minVersion>
+                                <minVersion>1.8.0</minVersion>
                             </jre>
                         </configuration>
                     </execution>
