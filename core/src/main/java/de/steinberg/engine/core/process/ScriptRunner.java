@@ -49,7 +49,7 @@ public class ScriptRunner {
             printAndParseError(process.getErrorStream());
             batchFile.delete();
             if (errorStreamParser.getErrors().size() > 0) {
-                ErrorStreamParserException ex = new ErrorStreamParserException("Script Execution Error", Collections.unmodifiableList(errorStreamParser.getErrors()));
+                ErrorStreamParserException ex = new ErrorStreamParserException("Script Execution Error", new ArrayList<>(errorStreamParser.getErrors()));
                 errorStreamParser.clearErrors();
                 throw ex;
             }

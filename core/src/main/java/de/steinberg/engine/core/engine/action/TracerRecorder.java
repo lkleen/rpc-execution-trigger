@@ -21,6 +21,8 @@ public class TracerRecorder extends AbstractAction {
 
     private enum State {STOPPED, RUNNING};
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd.HHmmss");
+
     State state = State.STOPPED;
 
     @Inject
@@ -39,25 +41,58 @@ public class TracerRecorder extends AbstractAction {
 
     private void startTrace() {
         try {
+            if (state == State.RUNNING) {
+                log.warn ("trace already started");
+                log.info("TRACER RUNNING");
+                return;
+            }
             scriptRunner.run(Scripts.START_TRACE_RECORDER);
+            state = State.RUNNING;
+            log.info("TRACER RUNNING");
         } catch (ScriptException e) {
-            log.error(e.getMessage());
-            log.error("could not start trace. PLEASE NOTE THAT TRACING REQUIRES ADNMIN PRIVILEGS");
+            handleRunScirptException(e);
         }
 
     }
 
     private void stopTrace() {
+        if (state == State.STOPPED) {
+            log.warn("tracing is not running");
+            return;
+        }
         scriptRunner.run(Scripts.STOP_TRACE_RECORDER);
+        state = State.STOPPED;
+        log.info("TRACER STOPPED");
     }
 
     private void flushTrace() {
+        if (state == State.STOPPED) {
+            log.warn("could not write trace. Please start tracing first");
+            return;
+        }
+        log.info("WRITING TRACE");
         scriptRunner.run(Scripts.FLUSH_TRACE_RECORDER, getTraceFileName());
     }
 
     private String getTraceFileName() {
         LocalDateTime time = LocalDateTime.now();
-        return time.format(DateTimeFormatter.ISO_DATE_TIME) + ".etl";
+        return time.format(formatter) + ".etl";
+    }
+
+    private void handleRunScirptException(ScriptException exception) {
+        if (exception.getCause() instanceof ErrorStreamParserException) {
+            ErrorStreamParserException espe = (ErrorStreamParserException) exception.getCause();
+            for(String error : espe.errors) {
+                if (error.contains("0xb7")) {
+                    log.warn(exception.getMessage());
+                    log.warn("could not start trace. trace is already running");
+                    state = State.RUNNING;
+                    return;
+                }
+            }
+        }
+        log.error(exception.getMessage());
+        log.error("could not start trace. PLEASE NOTE THAT TRACING REQUIRES ADMIN PRIVILEGES");
     }
 
 }
