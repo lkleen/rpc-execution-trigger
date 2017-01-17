@@ -1,6 +1,8 @@
 package de.steinberg.engine.core.engine.action;
 
 import de.steinberg.engine.core.annotations.DisplayName;
+import de.steinberg.engine.core.annotations.TooltipText;
+import de.steinberg.engine.core.engine.Control;
 import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;
@@ -21,6 +23,30 @@ public class TracerRecorder extends AbstractAction {
 
     private enum State {STOPPED, RUNNING};
 
+    @TooltipText("start the tracer in the background. the tracer must be running before traces can be captured with 'capture trace'")
+    private class Start implements Control {
+        @Override
+        public void trigger() {
+            startTrace();
+        }
+    }
+
+    @TooltipText("stops running the tracer in the background.")
+    private class Stop implements Control {
+        @Override
+        public void trigger() {
+            stopTrace();
+        }
+    }
+
+    @TooltipText("captures a trace for the last ~10 seconds. the tracer must be started before capturing")
+    private class Capture implements Control {
+        @Override
+        public void trigger() {
+            flushTrace();
+        }
+    }
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd.HHmmss");
 
     State state = State.STOPPED;
@@ -28,10 +54,14 @@ public class TracerRecorder extends AbstractAction {
     @Inject
     ScriptRunner scriptRunner;
 
+    private final Control start = new Start();
+    private final Control stop = new Stop();
+    private final Control captureTrace = new Capture();
+
     public TracerRecorder() {
-        controls.put("start", () -> {startTrace();});
-        controls.put("stop", () -> {stopTrace();});
-        controls.put("flush", () -> {flushTrace();});
+        controls.put("start", start);
+        controls.put("stop", stop);
+        controls.put("capture trace", captureTrace);
     }
 
     @Override

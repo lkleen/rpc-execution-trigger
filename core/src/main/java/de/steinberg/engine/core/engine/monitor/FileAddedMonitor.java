@@ -1,5 +1,7 @@
 package de.steinberg.engine.core.engine.monitor;
 
+import de.steinberg.engine.core.annotations.TooltipText;
+import de.steinberg.engine.core.engine.SettingsKey;
 import de.steinberg.engine.core.exception.MonitorException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,8 +18,24 @@ import java.util.stream.Stream;
 @Slf4j
 public class FileAddedMonitor extends AbstractAsyncMonitor {
 
-    private static String PATH = "path";
-    private static String EXTENSION = "file extension";
+    @TooltipText("the folder which should be monitored (once every second)")
+    private class PathSetting implements SettingsKey {
+        @Override
+        public String get() {
+            return "path";
+        }
+    }
+
+    @TooltipText("only files with the given file extension are monitored eg .log")
+    private class ExtensionSetting implements SettingsKey {
+        @Override
+        public String get() {
+            return "file extension";
+        }
+    }
+
+    private final SettingsKey PATH = new PathSetting();
+    private final SettingsKey EXTENSION = new ExtensionSetting();
 
     long previousNumMatches = -1;
     long numMatches = -1;

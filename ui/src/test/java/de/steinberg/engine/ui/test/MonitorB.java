@@ -1,6 +1,7 @@
 package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.annotations.DisplayName;
+import de.steinberg.engine.core.engine.SettingsKey;
 
 /**
  * Created by lkleen on 11/29/2016.
@@ -9,8 +10,8 @@ import de.steinberg.engine.core.annotations.DisplayName;
 public class MonitorB extends MonitorMock {
 
     public MonitorB() {
-        settings.put("schnick",null);
-        settings.put("schnack",null);
+        settings.put( () -> {return "schnick";}, null);
+        settings.put( () -> {return "schnuck";}, null);
     }
 
 }

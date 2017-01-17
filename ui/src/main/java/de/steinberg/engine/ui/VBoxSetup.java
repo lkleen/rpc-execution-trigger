@@ -1,12 +1,15 @@
 package de.steinberg.engine.ui;
 
+import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.Control;
 import de.steinberg.engine.core.engine.Controls;
 import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.SettingsKey;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,21 +47,29 @@ public class VBoxSetup {
                     throw e;
                 }
             });
+            addTooltipText(button, control);
             buttonsHBox.getChildren().add(button);
         }
     }
 
+    private void addTooltipText(javafx.scene.control.Control control, Object source) {
+        TooltipText tooltipText = source.getClass().getAnnotation(TooltipText.class);
+        if (tooltipText == null) {return;}
+        control.setTooltip(new Tooltip(tooltipText.value()));
+    }
+
     private void addSettingsUIComponents(Settings settings, GridPane settingsPane) {
         int row = 0;
-        for (Map.Entry<String, String> entry : settings.entrySet()) {
-            Label label = new Label(entry.getKey());
+        for (Map.Entry<SettingsKey, String> entry : settings.entrySet()) {
+            SettingsKey key = entry.getKey();
+            Label label = new Label(key.get());
             TextField textField = new TextField(entry.getValue());
             textField.textProperty().addListener(
                     (ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
                         settings.put(entry.getKey(), newValue);
                     }
             );
-
+            addTooltipText(label, key);
             settingsPane.add(label, 0, row);
             settingsPane.add(textField, 1, row);
             row++;

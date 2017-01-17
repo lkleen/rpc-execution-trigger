@@ -1,12 +1,16 @@
 package de.steinberg.engine.glitchtest.tracer.engine;
 
+import de.steinberg.engine.core.annotations.TooltipText;
+import de.steinberg.engine.core.engine.Control;
+import de.steinberg.engine.core.engine.SettingsKey;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
-import de.steinberg.engine.core.network.NetworkInterfacesInfo;
+import de.steinberg.engine.core.exception.MonitorException;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.message.Message;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,6 +20,42 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 @Slf4j
 public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
+
+    @TooltipText("network port to listen for glitch notifications from the glitchtest-detector tool")
+    private class PortSetting implements SettingsKey {
+        @Override
+        public String get() {
+            return "port";
+        }
+    }
+
+    @TooltipText("starts listening to network port")
+    private class Start implements Control {
+        @Override
+        public void trigger() {
+            GlitchNotificationMonitor.this.startMonitoring();
+        }
+    }
+
+    @TooltipText("stops listening to network port")
+    private class Stop implements Control {
+        @Override
+        public void trigger() {
+            GlitchNotificationMonitor.this.stopMonitoring();
+        }
+    }
+
+    @TooltipText("shows the local host and ip address. please note that the " +
+            "ip address might be wrong since there are a lot of interfaces present. " +
+            "in this case use 'ipconfig' (win) or 'ifconfig' (mac) to retrive the correct address")
+    private class ShowLocalhost implements Control {
+        @Override
+        public void trigger() {
+            GlitchNotificationMonitor.this.showLocalhost();
+        }
+    }
+
+
 
     boolean detectedGlitch = false;
 
@@ -27,7 +67,11 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
 
     Future<?> currentFuture;
 
-    private static final String PORT = "port";
+    private final PortSetting PORT = new PortSetting();
+
+    private final Control start = new Start();
+    private final Control stop = new Stop();
+    private final Control showLocalHost = new ShowLocalhost();
 
     public GlitchNotificationMonitor() {
         settings.put(PORT, null);
@@ -35,18 +79,9 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
     }
 
     protected void initializeControls() {
-        controls.put("start", () -> {
-            GlitchNotificationMonitor.this.startMonitoring();
-        });
-        controls.put("stop", () -> {
-            GlitchNotificationMonitor.this.stopMonitoring();
-        });
-        controls.put("show interfaces", () -> {
-            GlitchNotificationMonitor.this.showInterfaces();
-        });
-        controls.put("trigger", () -> {
-            GlitchNotificationMonitor.this.detectedGlitch = true;
-        });
+        controls.put("start", start);
+        controls.put("stop", stop);
+        controls.put("show localhost", showLocalHost);
     }
 
     void startMonitoring() {
@@ -83,9 +118,14 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
         }
     }
 
-    void showInterfaces() {
-        log.info("reading network interfaces list");
-        log.info(NetworkInterfacesInfo.create());
+    void showLocalhost() {
+        try {
+            log.info(InetAddress.getLocalHost().toString());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new MonitorException(e);
+        }
+
     }
 
     @Override

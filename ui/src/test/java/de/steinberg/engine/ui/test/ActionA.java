@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ActionA extends ActionMock {
 
     public ActionA() {
-        settings.put("schni","this");
-        settings.put("schna","is");
-        settings.put("schnuck","text");
+        settings.put( () -> "schni","this");
+        settings.put( () -> "schna","is");
+        settings.put( () -> "schnuck","text");
     }
 
     @Override

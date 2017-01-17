@@ -15,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MonitorA extends MonitorMock {
 
     public MonitorA() {
-        settings.put("path",null);
-        settings.put("somethingelse",null);
+        settings.put( () -> "path",null);
+        settings.put( () -> "somethingelse",null);
     }
 
     @Override
@@ -30,12 +30,7 @@ public class MonitorA extends MonitorMock {
     }
 
     private void createTrigger (Controls controls, Monitor monitor) {
-        controls.put("trigger", new Control() {
-            @Override
-            public void trigger() {
-                monitor.run();
-            }
-        });
+        controls.put("trigger", () -> {monitor.run();});
     }
 
     private void createController(Controls controls, String str) {

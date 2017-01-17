@@ -11,10 +11,6 @@ import de.steinberg.engine.core.protocol.receiver.SingleCharSocketReceiver;
 public class GlitchNotificationMessageReceiver extends SingleCharSocketReceiver {
     @Override
     protected Message<Character> createMessage(char value) {
-        if (value == GlitchNotificationMessage.ID) {
-            return new GlitchNotificationMessage();
-        } else {
-            throw new SocketReceiverException("deserialization for value " + value + " not implemented");
-        }
+        return new GlitchNotificationMessage();
     }
 }
