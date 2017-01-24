@@ -1,6 +1,6 @@
 package de.steinberg.engine.ui;
 
-import de.steinberg.engine.core.engine.SettingsAware;
+import de.steinberg.engine.core.engine.setting.SettingsAware;
 import javafx.scene.control.ComboBox;
 
 import java.util.List;

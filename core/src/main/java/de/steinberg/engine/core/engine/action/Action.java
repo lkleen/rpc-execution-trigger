@@ -1,7 +1,7 @@
 package de.steinberg.engine.core.engine.action;
 
-import de.steinberg.engine.core.engine.ControlsAware;
-import de.steinberg.engine.core.engine.SettingsAware;
+import de.steinberg.engine.core.engine.control.ControlsAware;
+import de.steinberg.engine.core.engine.setting.SettingsAware;
 
 /**
  * engine -> monitors -> listeners -> ACTIONS

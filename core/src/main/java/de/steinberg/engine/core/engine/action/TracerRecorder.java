@@ -2,7 +2,7 @@ package de.steinberg.engine.core.engine.action;
 
 import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.annotations.TooltipText;
-import de.steinberg.engine.core.engine.Control;
+import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;

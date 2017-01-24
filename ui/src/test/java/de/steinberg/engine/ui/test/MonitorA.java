@@ -1,10 +1,9 @@
 package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.annotations.DisplayName;
-import de.steinberg.engine.core.engine.Control;
-import de.steinberg.engine.core.engine.Controls;
+import de.steinberg.engine.core.engine.control.Control;
+import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.monitor.Monitor;
-import de.steinberg.engine.core.engine.Settings;
 import lombok.extern.slf4j.Slf4j;
 
 /**

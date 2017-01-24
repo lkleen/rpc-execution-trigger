@@ -1,8 +1,7 @@
 package de.steinberg.engine.core.engine.monitor;
 
 import de.steinberg.engine.core.annotations.TooltipText;
-import de.steinberg.engine.core.engine.SettingsKey;
-import de.steinberg.engine.core.exception.MonitorException;
+import de.steinberg.engine.core.engine.setting.SettingsKey;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

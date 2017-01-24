@@ -1,8 +1,8 @@
 package de.steinberg.engine.glitchtest.detector.engine;
 
 import de.steinberg.engine.core.annotations.TooltipText;
-import de.steinberg.engine.core.engine.Control;
-import de.steinberg.engine.core.engine.SettingsKey;
+import de.steinberg.engine.core.engine.control.Control;
+import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.engine.action.AbstractAction;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.sender.SingleCharSocketSender;

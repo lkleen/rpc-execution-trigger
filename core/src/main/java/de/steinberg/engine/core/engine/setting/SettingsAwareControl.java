@@ -1,4 +1,6 @@
-package de.steinberg.engine.core.engine;
+package de.steinberg.engine.core.engine.setting;
+
+import de.steinberg.engine.core.engine.control.Control;
 
 /**
  * Created by LKLeen on 10.01.2017.

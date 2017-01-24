@@ -1,10 +1,10 @@
 package de.steinberg.engine.ui;
 
 import de.steinberg.engine.core.annotations.TooltipText;
-import de.steinberg.engine.core.engine.Control;
-import de.steinberg.engine.core.engine.Controls;
-import de.steinberg.engine.core.engine.Settings;
-import de.steinberg.engine.core.engine.SettingsKey;
+import de.steinberg.engine.core.engine.control.Control;
+import de.steinberg.engine.core.engine.control.Controls;
+import de.steinberg.engine.core.engine.setting.Settings;
+import de.steinberg.engine.core.engine.setting.SettingsKey;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

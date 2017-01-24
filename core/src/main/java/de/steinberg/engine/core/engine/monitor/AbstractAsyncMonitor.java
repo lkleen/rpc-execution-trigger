@@ -1,8 +1,8 @@
 package de.steinberg.engine.core.engine.monitor;
 
 import de.steinberg.engine.core.annotations.DisplayNameResolver;
-import de.steinberg.engine.core.engine.Controls;
-import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.control.Controls;
+import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.action.Action;
 
 import java.util.ArrayList;

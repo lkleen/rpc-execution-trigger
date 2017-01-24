@@ -1,4 +1,4 @@
-package de.steinberg.engine.core.engine;
+package de.steinberg.engine.core.engine.setting;
 
 import java.util.HashMap;
 

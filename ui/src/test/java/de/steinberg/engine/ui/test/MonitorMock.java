@@ -1,9 +1,9 @@
 package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.engine.action.Action;
-import de.steinberg.engine.core.engine.Controls;
+import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.monitor.Monitor;
-import de.steinberg.engine.core.engine.Settings;
+import de.steinberg.engine.core.engine.setting.Settings;
 
 import java.util.ArrayList;
 import java.util.List;

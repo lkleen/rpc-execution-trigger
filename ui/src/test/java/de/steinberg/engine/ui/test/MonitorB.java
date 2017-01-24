@@ -1,7 +1,6 @@
 package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.annotations.DisplayName;
-import de.steinberg.engine.core.engine.SettingsKey;
 
 /**
  * Created by lkleen on 11/29/2016.

@@ -1,7 +1,7 @@
 package de.steinberg.engine.core.engine.monitor;
 
-import de.steinberg.engine.core.engine.ControlsAware;
-import de.steinberg.engine.core.engine.SettingsAware;
+import de.steinberg.engine.core.engine.control.ControlsAware;
+import de.steinberg.engine.core.engine.setting.SettingsAware;
 import de.steinberg.engine.core.engine.action.Action;
 
 import java.util.List;
