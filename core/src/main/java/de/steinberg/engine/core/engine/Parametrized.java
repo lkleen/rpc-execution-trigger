@@ -7,5 +7,5 @@ import de.steinberg.engine.core.engine.setting.SettingsAware;
 /**
  * Created by lars on 24.01.2017.
  */
-public interface Parameterized extends ControlsAware, SelectionsAware, SettingsAware {
+public interface Parametrized extends ControlsAware, SelectionsAware, SettingsAware {
 }

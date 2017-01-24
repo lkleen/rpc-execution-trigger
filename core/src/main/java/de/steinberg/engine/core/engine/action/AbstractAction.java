@@ -1,13 +1,11 @@
 package de.steinberg.engine.core.engine.action;
 
-import de.steinberg.engine.core.engine.DefaultParameterized;
-import de.steinberg.engine.core.engine.control.Controls;
-import de.steinberg.engine.core.engine.setting.Settings;
+import de.steinberg.engine.core.engine.DefaultParametrized;
 import lombok.Data;
 
 /**
  * Created by lkleen on 11/29/2016.
  */
 @Data
-public abstract class AbstractAction extends DefaultParameterized implements Action {
+public abstract class AbstractAction extends DefaultParametrized implements Action {
 }

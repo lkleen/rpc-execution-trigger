@@ -7,11 +7,12 @@ import de.steinberg.engine.core.engine.setting.Settings;
 /**
  * Created by lars on 24.01.2017.
  */
-public abstract class DefaultParameterized implements Parameterized {
+public abstract class DefaultParametrized implements Parametrized {
 
     protected final Controls controls = new Controls();
     protected final Selections selections = new Selections();
     protected final Settings settings = new Settings();
+
 
 
     @Override

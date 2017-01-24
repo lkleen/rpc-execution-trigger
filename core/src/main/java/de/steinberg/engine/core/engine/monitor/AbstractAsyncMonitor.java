@@ -1,9 +1,7 @@
 package de.steinberg.engine.core.engine.monitor;
 
 import de.steinberg.engine.core.annotations.DisplayNameResolver;
-import de.steinberg.engine.core.engine.DefaultParameterized;
-import de.steinberg.engine.core.engine.control.Controls;
-import de.steinberg.engine.core.engine.setting.Settings;
+import de.steinberg.engine.core.engine.DefaultParametrized;
 import de.steinberg.engine.core.engine.action.Action;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ import java.util.concurrent.*;
  *
  * Created by lkleen on 11/28/2016.
  */
-public abstract class AbstractAsyncMonitor extends DefaultParameterized implements Monitor {
+public abstract class AbstractAsyncMonitor extends DefaultParametrized implements Monitor {
 
     // scheduling defaults to once per second
     long period = 1;

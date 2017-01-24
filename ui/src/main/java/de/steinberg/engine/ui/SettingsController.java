@@ -29,7 +29,7 @@ public class SettingsController {
     public void refreshMonitorSettings() {
         Monitor monitor = selectMonitor.getSelectionModel().getSelectedItem();
         monitorVBox.getChildren().clear();
-        vBoxSetup.setup(monitorVBox, monitor.getControls(), monitor.getSettings());
+        vBoxSetup.setup(monitorVBox, monitor);
         updateActionComboBox();
     }
 
@@ -37,7 +37,7 @@ public class SettingsController {
         Action action = selectAction.getSelectionModel().getSelectedItem();
         actionVBox.getChildren().clear();
         if (action != null) {
-            vBoxSetup.setup(actionVBox, action.getControls(), action.getSettings());
+            vBoxSetup.setup(actionVBox, action);
         }
     }
 

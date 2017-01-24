@@ -1,19 +1,22 @@
 package de.steinberg.engine.ui;
 
 import de.steinberg.engine.core.annotations.TooltipText;
+import de.steinberg.engine.core.engine.Parametrized;
 import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.control.Controls;
+import de.steinberg.engine.core.engine.selection.SelectionList;
+import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.collections.ListChangeListener;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * Created by lkleen on 12/7/2016.
@@ -21,18 +24,41 @@ import java.util.Map;
 @Slf4j
 public class VBoxSetup {
 
-    public void setup(VBox monitorVBox, Controls controls, Settings settings) {
+    public void setup(VBox vbox, Parametrized parametrized) {
+        Selections selections = parametrized.getSelections();
+        if (selections != null) {
+            for (Map.Entry<String, SelectionList> entry : selections.entrySet()) {
+                HBox selectionsHBox = createHBox();
+                addSelectionsUIComponents(entry, selectionsHBox);
+                vbox.getChildren().add(selectionsHBox);
+            }
+        }
+
+        Settings settings = parametrized.getSettings();
         if (settings != null) {
             GridPane settingsPane = createSettingsPane();
             addSettingsUIComponents(settings, settingsPane);
-            monitorVBox.getChildren().add(settingsPane);
+            vbox.getChildren().add(settingsPane);
         }
 
+        Controls controls = parametrized.getControls();
         if (controls != null) {
-            HBox buttonsHBox = createButtonsHBox();
+            HBox buttonsHBox = createHBox();
             addControlsUIComponents(controls, buttonsHBox);
-            monitorVBox.getChildren().add(buttonsHBox);
+            vbox.getChildren().add(buttonsHBox);
         }
+    }
+
+    private void addSelectionsUIComponents(Map.Entry<String, SelectionList> entry, HBox selectionsHBox) {
+        Label label = new Label(entry.getKey());
+        selectionsHBox.getChildren().add(label);
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.getItems().addListener((ListChangeListener.Change<? extends String> c) -> entry.getValue().setSelected(c.toString()));
+        for (String choice : entry.getValue()) {
+            choiceBox.getItems().add(choice);
+        }
+        choiceBox.getSelectionModel().selectFirst();
+        selectionsHBox.getChildren().add(choiceBox);
     }
 
     private void addControlsUIComponents(Controls controls, HBox buttonsHBox) {
@@ -97,7 +123,7 @@ public class VBoxSetup {
         return settingsGridPane;
     }
 
-    private HBox createButtonsHBox() {
+    private HBox createHBox() {
         HBox buttonsHBox = new HBox();
         buttonsHBox.setSpacing(3);
         return buttonsHBox;
