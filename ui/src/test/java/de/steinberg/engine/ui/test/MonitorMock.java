@@ -1,5 +1,6 @@
 package de.steinberg.engine.ui.test;
 
+import de.steinberg.engine.core.engine.DefaultParameterized;
 import de.steinberg.engine.core.engine.action.Action;
 import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.monitor.Monitor;
@@ -12,17 +13,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by lkleen on 11/29/2016.
  */
-public class MonitorMock implements Monitor {
+public class MonitorMock extends DefaultParameterized implements Monitor {
 
     List<Action> actions = new ArrayList<>();
-
-    Settings settings = new Settings();
-
-    @Override
-    public Settings getSettings() {
-        return settings;
-    }
-
 
     @Override
     public void addAction(Action action) {
@@ -59,7 +52,4 @@ public class MonitorMock implements Monitor {
         actions.stream().forEach(action -> action.execute());
     }
 
-    public Controls getControls() {
-        return new Controls();
-    }
 }

@@ -16,16 +16,12 @@ public class MonitorA extends MonitorMock {
     public MonitorA() {
         settings.put( () -> "path",null);
         settings.put( () -> "somethingelse",null);
-    }
 
-    @Override
-    public Controls getControls() {
-        Controls controls = new Controls();
         createTrigger(controls, this);
         createController(controls, "foo");
         createController(controls, "bar");
         createController(controls, "baz");
-        return controls;
+
     }
 
     private void createTrigger (Controls controls, Monitor monitor) {

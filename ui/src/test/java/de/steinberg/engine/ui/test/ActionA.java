@@ -14,18 +14,13 @@ public class ActionA extends ActionMock {
         settings.put( () -> "schni","this");
         settings.put( () -> "schna","is");
         settings.put( () -> "schnuck","text");
-    }
 
-    @Override
-    public Controls getControls() {
-        Controls controls = new Controls();
         controls.put("action control a", new Control() {
             @Override
             public void trigger() {
                 log.info("action control a triggered");
             }
         });
-        return controls;
     }
 
 }

@@ -1,5 +1,6 @@
 package de.steinberg.engine.core.engine.action;
 
+import de.steinberg.engine.core.engine.Parameterized;
 import de.steinberg.engine.core.engine.control.ControlsAware;
 import de.steinberg.engine.core.engine.setting.SettingsAware;
 
@@ -10,7 +11,7 @@ import de.steinberg.engine.core.engine.setting.SettingsAware;
  *
  * Created by lkleen on 11/28/2016.
  */
-public interface Action extends SettingsAware, ControlsAware {
+public interface Action extends Parameterized {
 
     void execute();
 

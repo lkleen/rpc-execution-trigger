@@ -1,5 +1,6 @@
 package de.steinberg.engine.core.engine.monitor;
 
+import de.steinberg.engine.core.engine.Parameterized;
 import de.steinberg.engine.core.engine.control.ControlsAware;
 import de.steinberg.engine.core.engine.setting.SettingsAware;
 import de.steinberg.engine.core.engine.action.Action;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  *
  * Created by lkleen on 11/28/2016.
  */
-public interface Monitor extends Runnable, SettingsAware, ControlsAware {
+public interface Monitor extends Runnable, Parameterized {
 
     void addAction(Action action);
 
