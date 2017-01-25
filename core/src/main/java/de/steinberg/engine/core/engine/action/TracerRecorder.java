@@ -3,13 +3,13 @@ package de.steinberg.engine.core.engine.action;
 import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.control.Control;
+import de.steinberg.engine.core.engine.selection.SelectionList;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;
 import de.steinberg.engine.core.process.Scripts;
 import lombok.extern.slf4j.Slf4j;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
@@ -63,6 +63,10 @@ public class TracerRecorder extends AbstractAction {
     @Inject
     ScriptRunner scriptRunner;
 
+    private final String TRACER_TYPE = "type";
+    private final String TRACER_TYPE_FULL = "full";
+    private final String TRACER_TYPE_THREAD_PRIORITIES = "thread priorities";
+
     private final SettingsKey bufferSize = new BufferSettingsKey();
 
     private final Control start = new Start();
@@ -70,10 +74,14 @@ public class TracerRecorder extends AbstractAction {
     private final Control captureTrace = new Capture();
 
     public TracerRecorder() {
+        SelectionList tracerTypes = new SelectionList();
+        tracerTypes.add(TRACER_TYPE_FULL);
+        tracerTypes.add(TRACER_TYPE_THREAD_PRIORITIES);
+        selections.put(TRACER_TYPE, tracerTypes);
+        settings.put(bufferSize, "1024");
         controls.put("start", start);
         controls.put("stop", stop);
         controls.put("capture trace", captureTrace);
-        settings.put(bufferSize, "1024");
     }
 
     @Override
@@ -88,7 +96,14 @@ public class TracerRecorder extends AbstractAction {
                 log.info("TRACER RUNNING");
                 return;
             }
-            scriptRunner.run(Scripts.START_TRACE_RECORDER, settings.get(bufferSize));
+            String selectedType = selections.get(TRACER_TYPE).getSelected();
+            if (selectedType.equals(TRACER_TYPE_FULL)) {
+                scriptRunner.run(Scripts.START_FULL_TRACE, settings.get(bufferSize));
+            } else if (selectedType.equals(TRACER_TYPE_THREAD_PRIORITIES)) {
+                scriptRunner.run(Scripts.START_THREAD_PRIORITIES_TRACE, settings.get(bufferSize));
+            } else {
+                throw new ScriptException("unsupported tracer type: " + selectedType);
+            }
             state = State.RUNNING;
             log.info("TRACER RUNNING");
         } catch (ScriptException e) {
@@ -102,7 +117,7 @@ public class TracerRecorder extends AbstractAction {
             log.warn("tracing is not running");
             return;
         }
-        scriptRunner.run(Scripts.STOP_TRACE_RECORDER);
+        scriptRunner.run(Scripts.STOP_TRACE);
         state = State.STOPPED;
         log.info("TRACER STOPPED");
     }
@@ -113,7 +128,7 @@ public class TracerRecorder extends AbstractAction {
             return;
         }
         log.info("WRITING TRACE");
-        scriptRunner.run(Scripts.FLUSH_TRACE_RECORDER, getTraceFileName());
+        scriptRunner.run(Scripts.FLUSH_TRACE, getTraceFileName());
     }
 
     private String getTraceFileName() {
