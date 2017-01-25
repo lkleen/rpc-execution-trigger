@@ -73,7 +73,7 @@ public class TracerRecorder extends AbstractAction {
         controls.put("start", start);
         controls.put("stop", stop);
         controls.put("capture trace", captureTrace);
-        settings.put(bufferSize, "256");
+        settings.put(bufferSize, "1024");
     }
 
     @Override
@@ -128,12 +128,6 @@ public class TracerRecorder extends AbstractAction {
                 if (error.contains("0xb7")) {
                     log.warn(exception.getMessage());
                     log.warn("trace is already running");
-                    state = State.RUNNING;
-                    return;
-                }
-                if (error.contains("0x3ec")) {
-                    log.warn(exception.getMessage());
-                    log.warn("trace started with warnigs");
                     state = State.RUNNING;
                     return;
                 }
