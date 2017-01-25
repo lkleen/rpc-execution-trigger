@@ -8,9 +8,7 @@ import de.steinberg.engine.core.engine.selection.SelectionList;
 import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
@@ -28,16 +26,18 @@ public class VBoxSetup {
     public void setup(VBox vbox, Parametrized parametrized) {
         Selections selections = parametrized.getSelections();
         if (selections != null) {
+            int row = 0;
+            GridPane selectionsGridPane = createGridPane();
             for (Map.Entry<String, SelectionList> entry : selections.entrySet()) {
-                HBox selectionsHBox = createHBox();
-                addSelectionsUIComponents(entry, selectionsHBox);
-                vbox.getChildren().add(selectionsHBox);
+                addSelectionsUIComponents(entry, selectionsGridPane, row);
+                row++;
             }
+            vbox.getChildren().add(selectionsGridPane);
         }
 
         Settings settings = parametrized.getSettings();
         if (settings != null) {
-            GridPane settingsPane = createSettingsPane();
+            GridPane settingsPane = createGridPane();
             addSettingsUIComponents(settings, settingsPane);
             vbox.getChildren().add(settingsPane);
         }
@@ -50,10 +50,9 @@ public class VBoxSetup {
         }
     }
 
-    private void addSelectionsUIComponents(Map.Entry<String, SelectionList> entry, HBox selectionsHBox) {
-        Label label = new Label(entry.getKey());
-        selectionsHBox.getChildren().add(label);
+    private void addSelectionsUIComponents(Map.Entry<String, SelectionList> entry, GridPane selectionsGridPane, int row) {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.setMaxWidth(Double.MAX_VALUE);
         for (String choice : entry.getValue()) {
             choiceBox.getItems().add(choice);
         }
@@ -61,7 +60,9 @@ public class VBoxSetup {
                 (ObservableValue<? extends String> observable, String oldValue, String newValue) -> entry.getValue().setSelected(newValue)
         );
         choiceBox.getSelectionModel().selectFirst();
-        selectionsHBox.getChildren().add(choiceBox);
+        Label label = new Label(entry.getKey());
+        selectionsGridPane.add(label, 0, row);
+        selectionsGridPane.add(choiceBox, 1, row);
     }
 
     private void addControlsUIComponents(Controls controls, HBox buttonsHBox) {
@@ -105,7 +106,7 @@ public class VBoxSetup {
         }
     }
 
-    private GridPane createSettingsPane() {
+    private GridPane createGridPane() {
         GridPane settingsGridPane = new GridPane();
 
         settingsGridPane.setGridLinesVisible(false);
