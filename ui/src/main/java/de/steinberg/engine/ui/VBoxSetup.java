@@ -8,6 +8,7 @@ import de.steinberg.engine.core.engine.selection.SelectionList;
 import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.*;
@@ -53,10 +54,12 @@ public class VBoxSetup {
         Label label = new Label(entry.getKey());
         selectionsHBox.getChildren().add(label);
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
-        choiceBox.getItems().addListener((ListChangeListener.Change<? extends String> c) -> entry.getValue().setSelected(c.toString()));
         for (String choice : entry.getValue()) {
             choiceBox.getItems().add(choice);
         }
+        choiceBox.valueProperty().addListener(
+                (ObservableValue<? extends String> observable, String oldValue, String newValue) -> entry.getValue().setSelected(newValue)
+        );
         choiceBox.getSelectionModel().selectFirst();
         selectionsHBox.getChildren().add(choiceBox);
     }

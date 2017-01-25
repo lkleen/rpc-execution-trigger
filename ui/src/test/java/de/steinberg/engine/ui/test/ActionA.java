@@ -34,7 +34,13 @@ public class ActionA extends ActionMock {
         sizes.add("medium");
         sizes.add("extra large");
 
+        SelectionList colors = new SelectionList();
+        colors.add("green");
+        colors.add("black");
+        colors.add("blue");
+
         selections.put("size", sizes);
+        selections.put("color", colors);
     }
 
 }
