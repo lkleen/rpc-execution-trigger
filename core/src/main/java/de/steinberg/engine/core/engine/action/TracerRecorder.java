@@ -3,6 +3,7 @@ package de.steinberg.engine.core.engine.action;
 import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.control.Control;
+import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;
@@ -47,12 +48,22 @@ public class TracerRecorder extends AbstractAction {
         }
     }
 
+    @TooltipText("tracing buffer size eg. 128 256 1024")
+    private class BufferSettingsKey implements SettingsKey {
+        @Override
+        public String get() {
+            return "buffer size";
+        }
+    }
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd.HHmmss");
 
     State state = State.STOPPED;
 
     @Inject
     ScriptRunner scriptRunner;
+
+    private final SettingsKey bufferSize = new BufferSettingsKey();
 
     private final Control start = new Start();
     private final Control stop = new Stop();
@@ -62,6 +73,7 @@ public class TracerRecorder extends AbstractAction {
         controls.put("start", start);
         controls.put("stop", stop);
         controls.put("capture trace", captureTrace);
+        settings.put(bufferSize, "256");
     }
 
     @Override
@@ -76,7 +88,7 @@ public class TracerRecorder extends AbstractAction {
                 log.info("TRACER RUNNING");
                 return;
             }
-            scriptRunner.run(Scripts.START_TRACE_RECORDER);
+            scriptRunner.run(Scripts.START_TRACE_RECORDER, settings.get(bufferSize));
             state = State.RUNNING;
             log.info("TRACER RUNNING");
         } catch (ScriptException e) {
@@ -115,7 +127,13 @@ public class TracerRecorder extends AbstractAction {
             for(String error : espe.errors) {
                 if (error.contains("0xb7")) {
                     log.warn(exception.getMessage());
-                    log.warn("could not start trace. trace is already running");
+                    log.warn("trace is already running");
+                    state = State.RUNNING;
+                    return;
+                }
+                if (error.contains("0x3ec")) {
+                    log.warn(exception.getMessage());
+                    log.warn("trace started with warnigs");
                     state = State.RUNNING;
                     return;
                 }
