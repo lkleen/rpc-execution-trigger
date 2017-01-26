@@ -5,6 +5,7 @@ import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.selection.SelectionList;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
+import de.steinberg.engine.core.engine.status.Status;
 import de.steinberg.engine.core.exception.script.ErrorStreamParserException;
 import de.steinberg.engine.core.exception.script.ScriptException;
 import de.steinberg.engine.core.process.ScriptRunner;
@@ -22,7 +23,7 @@ import java.time.format.DateTimeFormatter;
 @DisplayName("Trace Recorder")
 public class TracerRecorder extends AbstractAction {
 
-    private enum State {STOPPED, RUNNING};
+    private enum State {STOPPED, RUNNING, WRITING};
 
     @TooltipText("start the tracer in the background. the tracer must be running before traces can be captured with 'capture trace'")
     private class Start implements Control {
@@ -58,14 +59,18 @@ public class TracerRecorder extends AbstractAction {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd.HHmmss");
 
-    State state = State.STOPPED;
-
     @Inject
     ScriptRunner scriptRunner;
+
+    private State state = State.STOPPED;
 
     private final String TRACER_TYPE = "type";
     private final String TRACER_TYPE_FULL = "full";
     private final String TRACER_TYPE_THREAD_PRIORITIES = "thread priorities";
+
+    private final Status RUNNING = new Status(Status.Color.GREEN, "running");
+    private final Status STOPPED = new Status(Status.Color.RED, "stopped");
+    private final Status WRITING = new Status(Status.Color.YELLOW, "writing trace");
 
     private final SettingsKey bufferSize = new BufferSettingsKey();
 
@@ -82,6 +87,7 @@ public class TracerRecorder extends AbstractAction {
         controls.put("start", start);
         controls.put("stop", stop);
         controls.put("capture trace", captureTrace);
+        status = STOPPED;
     }
 
     @Override
@@ -91,11 +97,6 @@ public class TracerRecorder extends AbstractAction {
 
     private void startTrace() {
         try {
-            if (state == State.RUNNING) {
-                log.warn ("trace already started");
-                log.info("TRACER RUNNING");
-                return;
-            }
             String selectedType = selections.get(TRACER_TYPE).getSelected();
             if (selectedType.equals(TRACER_TYPE_FULL)) {
                 scriptRunner.run(Scripts.START_FULL_TRACE, settings.get(bufferSize));
@@ -104,8 +105,9 @@ public class TracerRecorder extends AbstractAction {
             } else {
                 throw new ScriptException("unsupported tracer type: " + selectedType);
             }
-            state = State.RUNNING;
             log.info("TRACER RUNNING");
+            status.set(RUNNING);
+            state = State.RUNNING;
         } catch (ScriptException e) {
             handleRunScirptException(e);
         }
@@ -113,22 +115,23 @@ public class TracerRecorder extends AbstractAction {
     }
 
     private void stopTrace() {
-        if (state == State.STOPPED) {
-            log.warn("tracing is not running");
-            return;
-        }
         scriptRunner.run(Scripts.STOP_TRACE);
-        state = State.STOPPED;
         log.info("TRACER STOPPED");
+        status.set(STOPPED);
+        state = State.STOPPED;
     }
 
     private void flushTrace() {
-        if (state == State.STOPPED) {
+        if (state != State.RUNNING) {
             log.warn("could not write trace. Please start tracing first");
             return;
         }
+        status.set(WRITING);
+        state = State.WRITING;
         log.info("WRITING TRACE");
         scriptRunner.run(Scripts.FLUSH_TRACE, getTraceFileName());
+        status.set(RUNNING);
+        state = State.RUNNING;
     }
 
     private String getTraceFileName() {
@@ -143,6 +146,7 @@ public class TracerRecorder extends AbstractAction {
                 if (error.contains("0xb7")) {
                     log.warn(exception.getMessage());
                     log.warn("trace is already running");
+                    status.set(RUNNING);
                     state = State.RUNNING;
                     return;
                 }

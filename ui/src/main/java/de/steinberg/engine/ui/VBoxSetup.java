@@ -53,6 +53,8 @@ public class VBoxSetup {
         Status status = parametrized.getStatus();
         if (status != null) {
             LabeledGlowBulb glowBulb = new LabeledGlowBulb();
+            glowBulb.setColor(getGlowColorFrom(status.getColor()));
+            glowBulb.setText(status.getText());
             status.addListener((observable, oldValue, newValue) -> {
                 glowBulb.setColor(getGlowColorFrom(newValue.getColor()));
                 glowBulb.setText(newValue.getText());

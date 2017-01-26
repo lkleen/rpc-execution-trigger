@@ -13,8 +13,9 @@ public abstract class DefaultParametrized implements Parametrized {
     protected final Controls controls = new Controls();
     protected final Selections selections = new Selections();
     protected final Settings settings = new Settings();
-    protected final Status status = new Status(Status.Color.RED, "uninitialized");
 
+    // defaults to null since the status it is not mandatory
+    protected Status status;
 
     @Override
     public final Controls getControls() {

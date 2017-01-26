@@ -18,6 +18,8 @@ public class MonitorA extends MonitorMock {
         settings.put(() -> "path", null);
         settings.put(() -> "somethingelse", null);
 
+        status = new Status(Status.Color.GREEN, "everything is fine");
+
         createTrigger(controls, this);
         createController(controls, Status.Color.GREEN, "run", "running");
         createController(controls, Status.Color.YELLOW, "process", "processing");
