@@ -1,7 +1,14 @@
 #green-glow {
-    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, derive(green, -30%), derive(green, 30%), black);
+    -fx-background-radius: 50%;
+    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#4d9900, 50%), derive(#4d9900, -50%), black);
+}
+
+#red-glow {
+    -fx-background-radius: 50%;
+    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#ad1414, 50%), derive(#ad1414, -50%), black);
 }
 
 #yellow-glow {
-    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, derive(yellow, -30%), derive(yellow, 30%), black);
+    -fx-background-radius: 50%;
+    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#ffff00, 50%), derive(#ffff00, -50%), #ff0c00);
 }
