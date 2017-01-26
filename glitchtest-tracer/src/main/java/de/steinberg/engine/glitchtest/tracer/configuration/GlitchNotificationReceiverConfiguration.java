@@ -1,6 +1,6 @@
 package de.steinberg.engine.glitchtest.tracer.configuration;
 
-import de.steinberg.engine.core.engine.action.TracerRecorder;
+import de.steinberg.engine.core.engine.action.tracing.TracerRecorder;
 import de.steinberg.engine.core.process.ScriptRunner;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationMessageReceiver;
 import de.steinberg.engine.glitchtest.tracer.engine.GlitchNotificationMonitor;

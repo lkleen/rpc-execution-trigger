@@ -1,10 +1,10 @@
 package de.steinberg.engine.ui.test;
 
 import de.steinberg.engine.core.annotations.DisplayName;
-import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.monitor.Monitor;
 import de.steinberg.engine.core.engine.status.Status;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -18,7 +18,7 @@ public class MonitorA extends MonitorMock {
         settings.put(() -> "path", null);
         settings.put(() -> "somethingelse", null);
 
-        status = new Status(Status.Color.GREEN, "everything is fine");
+        statusProperty = new SimpleObjectProperty<>(new Status(Status.Color.GREEN, "everything is fine"));
 
         createTrigger(controls, this);
         createController(controls, Status.Color.GREEN, "run", "running");
@@ -32,7 +32,7 @@ public class MonitorA extends MonitorMock {
 
     private void createController(Controls controls, Status.Color color, String buttonLabel, String str) {
         controls.put(buttonLabel, () -> {
-            status.set(new Status(color, str));
+            statusProperty.set(new Status(color, str));
         });
     }
 

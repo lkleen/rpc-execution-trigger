@@ -7,7 +7,7 @@ import lombok.Setter;
 /**
  * Created by lars on 26.01.2017.
  */
-public class Status extends SimpleObjectProperty<Status> {
+public class Status {
 
     public enum Color {
         RED,
