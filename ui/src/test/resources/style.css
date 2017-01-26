@@ -1,0 +1,7 @@
+#green-glow {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, derive(green, -30%), derive(green, 30%), black);
+}
+
+#yellow-glow {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, derive(yellow, -30%), derive(yellow, 30%), black);
+}

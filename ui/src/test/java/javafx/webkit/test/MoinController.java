@@ -17,10 +17,10 @@ public class MoinController {
     }
 
     public void mouseEntered(MouseEvent mouseEvent) {
-        label.setStyle("-fx-background-color: radial-gradient(radius 10%, yellow, darkgray, black)");
+        label.setId("green-glow");
     }
 
     public void mouseExited(MouseEvent mouseEvent) {
-        label.setStyle("-fx-background-color: darkred");
+        label.setId("yellow-glow");
     }
 }

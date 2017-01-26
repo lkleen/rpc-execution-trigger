@@ -24,6 +24,10 @@ public class Moin extends Application {
         FXMLLoader loader = new FXMLLoader(resource);
         Parent root = loader.load(resource);
         Scene scene = new Scene(root, 800, 600);
+
+        URL css = getClass().getClassLoader().getSystemResource("style.css");
+        scene.getStylesheets().add(css.toString());
+
         stage.setTitle("test playground");
         stage.setScene(scene);
         stage.show();
