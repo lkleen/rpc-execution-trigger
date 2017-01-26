@@ -23,14 +23,17 @@ public class MoinController {
         label.setOnMouseEntered((MouseEvent m) -> mouseEntered(m));
         label.setOnMouseExited((MouseEvent m) -> mouseExited(m));
         main.getChildren().add(label);
-        label.setColor(GlowBulb.Color.YELLOW, "yellow");
+        label.setColor(GlowBulb.Color.YELLOW);
+        label.setText("yellow");
     }
 
     public void mouseEntered(MouseEvent mouseEvent) {
-        label.setColor(GlowBulb.Color.GREEN, "green");
+        label.setColor(GlowBulb.Color.GREEN);
+        label.setText("green");
     }
 
     public void mouseExited(MouseEvent mouseEvent) {
-        label.setColor(GlowBulb.Color.RED, "red");
+        label.setColor(GlowBulb.Color.RED);
+        label.setText("red");
     }
 }

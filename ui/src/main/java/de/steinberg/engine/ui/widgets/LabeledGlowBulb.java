@@ -26,8 +26,11 @@ public class LabeledGlowBulb extends HBox {
         getChildren().add(label);
     }
 
-    public void setColor(GlowBulb.Color color, String text) {
+    public void setColor(GlowBulb.Color color) {
         glowBulb.setColor(color);
+    }
+
+    public void setText(String text) {
         label.setText(text);
     }
 

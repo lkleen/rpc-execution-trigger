@@ -3,6 +3,7 @@ package de.steinberg.engine.core.engine;
 import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
+import de.steinberg.engine.core.engine.status.Status;
 
 /**
  * Created by lars on 24.01.2017.
@@ -12,7 +13,7 @@ public abstract class DefaultParametrized implements Parametrized {
     protected final Controls controls = new Controls();
     protected final Selections selections = new Selections();
     protected final Settings settings = new Settings();
-
+    protected final Status status = new Status(Status.Color.RED, "uninitialized");
 
 
     @Override
@@ -29,4 +30,7 @@ public abstract class DefaultParametrized implements Parametrized {
     public final Settings getSettings() {
         return settings;
     }
+
+    @Override
+    public final Status getStatus() { return status; }
 }

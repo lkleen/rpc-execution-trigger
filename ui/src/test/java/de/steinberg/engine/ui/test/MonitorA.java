@@ -4,6 +4,7 @@ import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.control.Controls;
 import de.steinberg.engine.core.engine.monitor.Monitor;
+import de.steinberg.engine.core.engine.status.Status;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,26 +15,22 @@ import lombok.extern.slf4j.Slf4j;
 public class MonitorA extends MonitorMock {
 
     public MonitorA() {
-        settings.put( () -> "path",null);
-        settings.put( () -> "somethingelse",null);
+        settings.put(() -> "path", null);
+        settings.put(() -> "somethingelse", null);
 
         createTrigger(controls, this);
-        createController(controls, "foo");
-        createController(controls, "bar");
-        createController(controls, "baz");
-
+        createController(controls, Status.Color.GREEN, "run", "running");
+        createController(controls, Status.Color.YELLOW, "process", "processing");
+        createController(controls, Status.Color.RED, "stop", "stopped");
     }
 
     private void createTrigger (Controls controls, Monitor monitor) {
         controls.put("trigger", () -> {monitor.run();});
     }
 
-    private void createController(Controls controls, String str) {
-        controls.put(str, new Control() {
-            @Override
-            public void trigger() {
-                log.info(str);
-            }
+    private void createController(Controls controls, Status.Color color, String buttonLabel, String str) {
+        controls.put(buttonLabel, () -> {
+            status.set(new Status(color, str));
         });
     }
 

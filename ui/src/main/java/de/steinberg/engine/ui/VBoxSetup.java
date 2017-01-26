@@ -8,14 +8,15 @@ import de.steinberg.engine.core.engine.selection.SelectionList;
 import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
+import de.steinberg.engine.core.engine.status.Status;
+import de.steinberg.engine.ui.widgets.GlowBulb;
+import de.steinberg.engine.ui.widgets.LabeledGlowBulb;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
-
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * Created by lkleen on 12/7/2016.
@@ -48,6 +49,27 @@ public class VBoxSetup {
             addControlsUIComponents(controls, buttonsHBox);
             vbox.getChildren().add(buttonsHBox);
         }
+
+        Status status = parametrized.getStatus();
+        if (status != null) {
+            LabeledGlowBulb glowBulb = new LabeledGlowBulb();
+            status.addListener((observable, oldValue, newValue) -> {
+                glowBulb.setColor(getGlowColorFrom(newValue.getColor()));
+                glowBulb.setText(newValue.getText());
+            });
+            HBox statusHBox = createHBox();
+            statusHBox.getChildren().add(glowBulb);
+            vbox.getChildren().add(statusHBox);
+        }
+    }
+
+    private GlowBulb.Color getGlowColorFrom(Status.Color color) {
+        switch (color) {
+            case GREEN: return GlowBulb.Color.GREEN;
+            case YELLOW: return GlowBulb.Color.YELLOW;
+            case RED: return GlowBulb.Color.RED;
+        }
+        throw new IllegalArgumentException("color no supported");
     }
 
     private void addSelectionsUIComponents(Map.Entry<String, SelectionList> entry, GridPane selectionsGridPane, int row) {
