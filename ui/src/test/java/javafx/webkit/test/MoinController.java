@@ -1,14 +1,11 @@
 package javafx.webkit.test;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import de.steinberg.engine.ui.widgets.GlowBulb;
+import de.steinberg.engine.ui.widgets.LabeledGlowBulb;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Glow;
+import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by lars on 26.01.2017.
@@ -16,30 +13,24 @@ import javafx.util.Duration;
 public class MoinController {
 
     @FXML
-    Label label;
+    Pane main;
+
+    LabeledGlowBulb label;
 
     @FXML
     public void initialize() {
-
-        Glow glow = new Glow();
-        glow.setLevel(0);
-        label.setEffect(glow);
-        final Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.8);
-        final KeyFrame kf = new KeyFrame(Duration.millis(900), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-
-        label.setId("red-glow");
+        label = new LabeledGlowBulb();
+        label.setOnMouseEntered((MouseEvent m) -> mouseEntered(m));
+        label.setOnMouseExited((MouseEvent m) -> mouseExited(m));
+        main.getChildren().add(label);
+        label.setColor(GlowBulb.Color.YELLOW, "yellow");
     }
 
     public void mouseEntered(MouseEvent mouseEvent) {
-        label.setId("green-glow");
+        label.setColor(GlowBulb.Color.GREEN, "green");
     }
 
     public void mouseExited(MouseEvent mouseEvent) {
-        label.setId("yellow-glow");
+        label.setColor(GlowBulb.Color.RED, "red");
     }
 }

@@ -1,4 +1,4 @@
-package javafx.webkit.test;
+package de.steinberg.engine.ui.widgets;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -10,22 +10,22 @@ import javafx.util.Duration;
 /**
  * Created by lars on 26.01.2017.
  */
-public class GlowLabel extends Label {
+public class GlowBulb extends Label {
 
-    enum Color {
+    public enum Color {
         RED,
         GREEN,
         YELLOW
     }
 
-    public void initialize() {
+    public GlowBulb() {
         Glow glow = new Glow();
         glow.setLevel(0);
         setEffect(glow);
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.8);
+        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.6);
         final KeyFrame kf = new KeyFrame(Duration.millis(900), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,18 +24,13 @@ public class Moin extends Application {
         Parent root = loader.load(resource);
         Scene scene = new Scene(root, 800, 600);
 
-        URL css = getClass().getClassLoader().getSystemResource("style.css");
+        URL css = getClass().getClassLoader().getSystemResource("glow-bulb-style.css");
         scene.getStylesheets().add(css.toString());
 
         stage.setTitle("test playground");
         stage.setScene(scene);
         stage.show();
-
-        drawLamp(stage);
     }
 
-    private void drawLamp(Stage stage) {
-        //Pane pane = stage.
-    }
 
 }
