@@ -138,12 +138,26 @@ public class TracerRecorder extends AbstractAction {
             log.warn("could not write trace. Please start tracing first");
             return;
         }
-        statusProperty.set(WRITING);
-        state = State.WRITING;
-        log.info("WRITING TRACE");
-        scriptRunner.run(Scripts.FLUSH_TRACE, getTraceFileName());
-        statusProperty.set(RUNNING);
-        state = TracerRecorder.State.RUNNING;
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    statusProperty.set(WRITING);
+                    state = TracerRecorder.State.WRITING;
+                    log.info("WRITING TRACE");
+                    scriptRunner.run(Scripts.FLUSH_TRACE, getTraceFileName());
+                    statusProperty.set(RUNNING);
+                    state = TracerRecorder.State.RUNNING;
+                    return null;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    log.error(e.toString());
+                    return null;
+                }
+            }
+        };
+
+        new Thread(task).start();
     }
 
     private String getTraceFileName() {

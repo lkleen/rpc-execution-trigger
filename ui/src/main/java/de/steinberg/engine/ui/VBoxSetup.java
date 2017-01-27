@@ -11,6 +11,7 @@ import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.engine.status.Status;
 import de.steinberg.engine.ui.widgets.GlowBulb;
 import de.steinberg.engine.ui.widgets.LabeledGlowBulb;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
@@ -58,8 +59,10 @@ public class VBoxSetup {
             glowBulb.setColor(getGlowColorFrom(status.getColor()));
             glowBulb.setText(status.getText());
             statusProperty.addListener((observable, oldValue, newValue) -> {
-                glowBulb.setColor(getGlowColorFrom(newValue.getColor()));
-                glowBulb.setText(newValue.getText());
+                Platform.runLater(() -> {
+                    glowBulb.setColor(getGlowColorFrom(newValue.getColor()));
+                    glowBulb.setText(newValue.getText());
+                });
             });
             HBox statusHBox = createHBox();
             statusHBox.getChildren().add(glowBulb);
