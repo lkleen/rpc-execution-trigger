@@ -32,7 +32,8 @@ public class SelectQueryRange {
         if (startDate == null || endDate == null) {
             throw new InvalidRangeException("startDate or endDate == null");
         }
-        return startDate.until(endDate);
+        Period period = startDate.until(endDate);
+        return period;
     }
 
 }
