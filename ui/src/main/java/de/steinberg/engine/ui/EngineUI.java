@@ -1,5 +1,6 @@
 package de.steinberg.engine.ui;
 
+import de.steinberg.engine.core.annotations.DisplayName;
 import de.steinberg.engine.core.engine.Engine;
 import de.steinberg.engine.core.messaging.BlockingMessageQueue;
 import javafx.concurrent.WorkerStateEvent;
@@ -37,7 +38,7 @@ public class EngineUI {
         URL css = getClass().getClassLoader().getSystemResource("glow-bulb-style.css");
         scene.getStylesheets().add(css.toString());
 
-        stage.setTitle("Notification Engine 0.0.1");
+        stage.setTitle(getDisplayName(engine));
         stage.setScene(scene);
         stage.show();
         MessageQueueAppender.messageQueue = blockingMessageQueue;
@@ -46,6 +47,11 @@ public class EngineUI {
         TextArea output = (TextArea) scene.lookup("#output");
         outputToTextAreaService.setOutput(output);
         outputToTextAreaService.start();
+    }
+
+    private String getDisplayName(Engine engine) {
+        DisplayName displayName = engine.getClass().getAnnotation(DisplayName.class);
+        return (displayName != null) ? displayName.value() : engine.getClass().getSimpleName();
     }
 
 }
