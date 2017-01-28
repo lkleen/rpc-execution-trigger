@@ -4,9 +4,12 @@ import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
+import de.steinberg.engine.core.engine.status.Status;
 import de.steinberg.engine.core.exception.MonitorException;
 import de.steinberg.engine.core.protocol.message.GlitchNotificationMessage;
 import de.steinberg.engine.core.protocol.message.Message;
+import de.steinberg.engine.ui.widgets.GlowBulb;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -55,7 +58,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
         }
     }
 
-
+    private final Status DISABLED = new Status(Status.Color.RED, "not listening to network");
 
     boolean detectedGlitch = false;
 
@@ -76,6 +79,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
     public GlitchNotificationMonitor() {
         settings.put(PORT, null);
         initializeControls();
+        statusProperty = new SimpleObjectProperty<>(DISABLED);
     }
 
     protected void initializeControls() {
@@ -93,13 +97,13 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
                     while (true) {
                         receiver.setPort(Integer.valueOf(settings.get(PORT)));
                         log.debug("glitch notification receiver waiting for messages");
+                        statusProperty.set(new Status(Status.Color.GREEN, "listening to port " + receiver.getPort()));
                         Message<Character> msg = receiver.receive();
                         GlitchNotificationMonitor.this.detectedGlitch = msg.getValue() == GlitchNotificationMessage.ID;
                         log.debug("glitch notification receiver received {}", msg.getValue());
                     }
-                } catch (NumberFormatException e) {
-                    log.error("invalid port: {}", settings.get(PORT));
                 } catch (Exception e) {
+                    statusProperty.set(DISABLED);
                     if (e.getCause() instanceof SocketException) {
                         log.info(e.getCause().getMessage());
                         return;
@@ -115,6 +119,7 @@ public class GlitchNotificationMonitor extends AbstractAsyncMonitor {
         if (currentFuture != null) {
             receiver.close();
             currentFuture.cancel(true);
+            statusProperty.set(DISABLED);
         }
     }
 

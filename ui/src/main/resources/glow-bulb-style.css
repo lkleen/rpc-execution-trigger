@@ -5,10 +5,10 @@
 
 #red-glow {
     -fx-background-radius: 50%;
-    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#ad1414, 50%), derive(#ad1414, -50%), black);
+    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#f71111, 50%), derive(#f71111, -50%), black);
 }
 
 #yellow-glow {
     -fx-background-radius: 50%;
-    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#ffff00, 50%), derive(#ffff00, -50%), #ff0c00);
+    -fx-background-color: radial-gradient(center 70% 40%, radius 160%, derive(#ffd400, 50%), derive(#ffd400, -50%), #ff0c00);
 }

@@ -25,8 +25,8 @@ public class GlowBulb extends Label {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.6);
-        final KeyFrame kf = new KeyFrame(Duration.millis(900), kv);
+        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.7);
+        final KeyFrame kf = new KeyFrame(Duration.millis(850), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
     }
