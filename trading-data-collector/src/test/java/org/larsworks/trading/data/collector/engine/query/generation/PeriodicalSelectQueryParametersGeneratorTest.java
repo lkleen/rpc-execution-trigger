@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,7 +51,7 @@ public class PeriodicalSelectQueryParametersGeneratorTest {
     public void testSplitMultipleYears() {
         Period period = Period.ofYears(1);
         SelectQueryRange range = new SelectQueryRange(
-            LocalDate.of(1981, 1, 1), LocalDate.of(1983, 1, 3) // until 1983/01/2
+                LocalDate.of(1981, 1, 1), LocalDate.of(1983, 1, 3) // until 1983/01/2
         );
         List<SelectQueryRange> ranges = generator.splitRanges(period, range);
         Assert.assertEquals(ranges.size(), 3);
@@ -64,6 +66,29 @@ public class PeriodicalSelectQueryParametersGeneratorTest {
         Assert.assertEquals(numDays, 364);
         numDays = ChronoUnit.DAYS.between(year1983.getStartDate(), year1983.getEndDate());
         Assert.assertEquals(numDays, 1);
+    }
+
+    @Test
+    public void testGenerateQueryParameters() {
+        List<String> symbols = new ArrayList<>();
+        symbols.add("FOO");
+        symbols.add("BAR");
+        generator.setSymbols(symbols);
+        generator.setRange(new SelectQueryRange(
+                LocalDate.of(2000, 1, 1),
+                LocalDate.of(2005, 1, 1)
+                ));
+        generator.setPeriod(Period.ofYears(1));
+
+        List<SelectQueryParameters> parameters = generator.generateParameters(
+                symbols,
+                new SelectQueryRange(
+                        LocalDate.of(2000, 1, 1),
+                        LocalDate.of(2005, 1, 1)
+                ),
+                Period.ofYears(1));
+
+        Assert.assertEquals(parameters.size(), 2 * 5);
 
     }
 

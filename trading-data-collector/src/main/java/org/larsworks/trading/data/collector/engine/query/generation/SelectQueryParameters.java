@@ -12,4 +12,11 @@ import lombok.Data;
 public class SelectQueryParameters {
     String symbol;
     SelectQueryRange range;
+
+    public SelectQueryParameters() {}
+
+    public SelectQueryParameters(String symbol, SelectQueryRange range) {
+        this.symbol = symbol;
+        this.range = range;
+    }
 }

@@ -30,6 +30,8 @@ public class PeriodicalSelectQueryParametersGenerator implements SelectQueryPara
 
     private List<SelectQueryParameters> parameters;
 
+    private int currentQueryIndex = 0;
+
     @Override
     public void setSymbols(List<String> symbols) {
         this.symbols = symbols;
@@ -45,17 +47,18 @@ public class PeriodicalSelectQueryParametersGenerator implements SelectQueryPara
         if (parameters == null) {
             parameters = generateParameters(symbols, range, period);
         }
-        return null;
+        if (currentQueryIndex == parameters.size()) {return null;}
+        return parameters.get(currentQueryIndex++);
     }
 
     public List<SelectQueryParameters> generateParameters(List<String> symbols, SelectQueryRange range, Period period) {
+        List<SelectQueryParameters> parameters = new ArrayList<>();
         for (String symbol : symbols) {
             for (SelectQueryRange subRange : splitRanges(period, range)) {
-
+                parameters.add(new SelectQueryParameters(symbol, subRange));
             }
         }
-
-        return null;
+        return parameters;
     }
 
     /**
