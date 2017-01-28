@@ -20,7 +20,7 @@ public class LabeledGlowBulb extends HBox {
         glowBulb.setPrefHeight(35);
         glowBulb.setPrefWidth(35);
         label.setPrefHeight(35);
-        label.setPrefWidth(150);
+        label.setMaxWidth(Double.MAX_VALUE);
         setMargin(label, new Insets(0,0,0,5));
         getChildren().add(glowBulb);
         getChildren().add(label);

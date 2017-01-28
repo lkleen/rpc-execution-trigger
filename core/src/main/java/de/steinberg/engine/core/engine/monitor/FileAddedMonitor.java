@@ -2,6 +2,8 @@ package de.steinberg.engine.core.engine.monitor;
 
 import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
+import de.steinberg.engine.core.engine.status.Status;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -46,18 +48,21 @@ public class FileAddedMonitor extends AbstractAsyncMonitor {
     public FileAddedMonitor() {
         settings.put(PATH, "");
         settings.put(EXTENSION, "");
+        statusProperty = new SimpleObjectProperty<>(new Status(Status.Color.RED, "disabled"));
     }
 
     public boolean conditionFulfilled() {
         try {
             path = Paths.get(settings.get(PATH));
             extension = settings.get(EXTENSION);
+            statusProperty.set(new Status(Status.Color.GREEN, "monitoring\n" + path.toAbsolutePath().toString()));
             Stream<Path> files = Files.walk(path, 1, FileVisitOption.FOLLOW_LINKS);
             numMatches = files.filter((p) -> {
                 File file = p.toFile();
                 return file.isFile() && file.getAbsolutePath().endsWith(extension);
             }).count();
         } catch (Exception e) {
+            statusProperty.set(new Status(Status.Color.RED, "invalid path: " + path.toString()));
             log.error(e.toString());
         }
 
