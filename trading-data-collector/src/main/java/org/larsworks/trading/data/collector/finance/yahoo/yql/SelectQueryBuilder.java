@@ -1,11 +1,11 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
+import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 /**
  * @author Lars Kleen
@@ -20,22 +20,22 @@ public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
     @Override
     public Query build(SelectQueryParameters parameters) {
         validateParameters(parameters);
-        String startDate = formatDate("startDate", parameters.range.startDate);
-        String endDate   = formatDate("endDate", parameters.range.endDate);
-        return new SelectQuery(PREFIX + " \""+parameters.symbol+"\" and " + startDate + " and " + endDate);
+        String startDate = formatDate("startDate", parameters.getRange().getStartDate());
+        String endDate   = formatDate("endDate", parameters.getRange().getEndDate());
+        return new SelectQuery(PREFIX + " \""+parameters.getSymbol()+"\" and " + startDate + " and " + endDate);
     }
 
     public void validateParameters(SelectQueryParameters parameters) {
         if (parameters == null) {
             throw new QueryBuilderException("parameters == null");
         }
-        if (parameters.range == null || parameters.symbol == null) {
+        if (parameters.getRange() == null || parameters.getSymbol() == null) {
             throw new QueryBuilderException("parameter with null value is not allowed");
         }
-        if (parameters.symbol.length() == 0) {
+        if (parameters.getSymbol().length() == 0) {
             throw new QueryBuilderException("empty symbol not allowed");
         }
-        Period period = parameters.range.getPeriod();
+        Period period = parameters.getRange().getPeriod();
         if (period.isNegative() || period.isZero()) {
             throw new QueryBuilderException("query range <= 0 days");
         }

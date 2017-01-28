@@ -1,5 +1,7 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
+import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
+import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,22 +31,22 @@ public class SelectQueryBuilderTest {
     @Test(expectedExceptions = QueryBuilderException.class)
     public void testQueryParametersRangeNull() {
         SelectQueryParameters parameters = new SelectQueryParameters();
-        parameters.symbol = "ASD";
+        parameters.setSymbol("ASD");
         builder.validateParameters(parameters);
     }
 
     @Test(expectedExceptions = QueryBuilderException.class)
     public void testQueryParametersSymbolNull() {
         SelectQueryParameters parameters = new SelectQueryParameters();
-        parameters.range = validRange;
+        parameters.setRange(validRange);
         builder.validateParameters(parameters);
     }
 
     @Test(expectedExceptions = QueryBuilderException.class)
     public void testQueryParametersSymbolEmpty() {
         SelectQueryParameters parameters = new SelectQueryParameters();
-        parameters.range = validRange;
-        parameters.symbol = "";
+        parameters.setRange(validRange);
+        parameters.setSymbol("");
         builder.validateParameters(parameters);
     }
 
@@ -53,8 +55,8 @@ public class SelectQueryBuilderTest {
         SelectQueryParameters parameters = new SelectQueryParameters();
         LocalDate startDate = LocalDate.of(2016, 1, 1);
         LocalDate endDate = LocalDate.of(2016, 1, 1);
-        parameters.range = new SelectQueryRange(startDate, endDate);
-        parameters.symbol = "FOO";
+        parameters.setRange(new SelectQueryRange(startDate, endDate));
+        parameters.setSymbol("FOO");
         builder.validateParameters(parameters);
     }
 
@@ -63,8 +65,8 @@ public class SelectQueryBuilderTest {
         SelectQueryParameters parameters = new SelectQueryParameters();
         LocalDate startDate = LocalDate.of(2016, 1, 1);
         LocalDate endDate = LocalDate.of(2015, 12, 31);
-        parameters.range = new SelectQueryRange(startDate, endDate);
-        parameters.symbol = "FOO";
+        parameters.setRange(new SelectQueryRange(startDate, endDate));
+        parameters.setSymbol("FOO");
         builder.validateParameters(parameters);
     }
 
@@ -73,8 +75,8 @@ public class SelectQueryBuilderTest {
         SelectQueryParameters parameters = new SelectQueryParameters();
         LocalDate startDate = LocalDate.of(2016, 1, 1);
         LocalDate endDate = LocalDate.of(2016, 1, 2);
-        parameters.range = new SelectQueryRange(startDate, endDate);
-        parameters.symbol = "FOO";
+        parameters.setRange(new SelectQueryRange(startDate, endDate));
+        parameters.setSymbol("FOO");
         builder.validateParameters(parameters);
     }
 
@@ -82,11 +84,11 @@ public class SelectQueryBuilderTest {
     public void testBuildQuery() {
         final String expected = "select * from yahoo.finance.historicaldata where symbol = \"YHOO\" and startDate = \"2015-01-01\" and endDate = \"2016-01-01\"";
         SelectQueryParameters parameters = new SelectQueryParameters();
-        parameters.symbol = "YHOO";
-        parameters.range = new SelectQueryRange(
+        parameters.setSymbol("YHOO");
+        parameters.setRange(new SelectQueryRange(
                 LocalDate.of(2015,1,1),
                 LocalDate.of(2016,1,1)
-        );
+        ));
         final String actual = builder.build(parameters).getString();
         Assert.assertEquals(actual, expected);
     }
