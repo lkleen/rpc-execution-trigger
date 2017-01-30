@@ -1,0 +1,1 @@
+xperf -on PROC_THREAD+DISK_IO+INTERRUPT+DPC+MEMINFO+FILE_IO+PRIORITY+DISPATCHER -stackwalk CSWITCH -Buffering -buffersize %1 -minbuffers 128 -maxbuffers 128

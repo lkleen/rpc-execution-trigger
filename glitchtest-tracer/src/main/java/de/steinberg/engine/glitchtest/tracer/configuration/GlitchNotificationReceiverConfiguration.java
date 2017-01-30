@@ -45,6 +45,10 @@ public class GlitchNotificationReceiverConfiguration {
             if (text == null) {return false;}
             return text.contains("xperf: error");
         });
+        scriptRunner.addErrorStreamValidator((String text) -> {
+            if (text == null) {return false;}
+            return text.contains("is not recognized as an internal or external command");
+        });
         return scriptRunner;
     }
 
