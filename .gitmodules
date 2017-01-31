@@ -1,0 +1,3 @@
+[submodule "ci_server"]
+	path = ci_server
+	url = https://stash.steinberg-intra.net/scm/tool/ci_server.git
