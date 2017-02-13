@@ -2,14 +2,9 @@ package org.larsworks.trading.data.collector.engine.query.generation;
 
 import lombok.Data;
 import org.larsworks.trading.data.collector.exception.InvalidRangeException;
-import org.larsworks.trading.data.collector.exception.QueryBuilderException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.temporal.TemporalUnit;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Lars Kleen
