@@ -60,7 +60,7 @@ public class ScriptRunner {
 
     private Process exec(TemporaryBatchFile batchFile, String[] args) throws Exception {
         String command = "cmd /c ";
-        command += batchFile.path.toAbsolutePath().toString() + " ";
+        command += "\"" + batchFile.path.toAbsolutePath().toString() + "\" ";
         for (String arg : args) {
             command += arg + " ";
         }
