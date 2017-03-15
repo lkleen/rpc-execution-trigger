@@ -9,8 +9,10 @@ import de.steinberg.engine.core.engine.selection.Selections;
 import de.steinberg.engine.core.engine.setting.Settings;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
 import de.steinberg.engine.core.engine.status.Status;
+import de.steinberg.engine.ui.widgets.Color;
 import de.steinberg.engine.ui.widgets.GlowBulb;
 import de.steinberg.engine.ui.widgets.LabeledGlowBulb;
+import de.steinberg.engine.ui.widgets.LabeledStaticBulb;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -54,27 +56,27 @@ public class VBoxSetup {
 
         SimpleObjectProperty<Status> statusProperty = parametrized.getStatusProperty();
         if (statusProperty != null) {
-            LabeledGlowBulb glowBulb = new LabeledGlowBulb();
+            LabeledStaticBulb bulb = new LabeledStaticBulb();
             Status status = statusProperty.get();
-            glowBulb.setColor(getGlowColorFrom(status.getColor()));
-            glowBulb.setText(status.getText());
+            bulb.setColor(getColorFrom(status.getColor()));
+            bulb.setText(status.getText());
             statusProperty.addListener((observable, oldValue, newValue) -> {
                 Platform.runLater(() -> {
-                    glowBulb.setColor(getGlowColorFrom(newValue.getColor()));
-                    glowBulb.setText(newValue.getText());
+                    bulb.setColor(getColorFrom(newValue.getColor()));
+                    bulb.setText(newValue.getText());
                 });
             });
             HBox statusHBox = createHBox();
-            statusHBox.getChildren().add(glowBulb);
+            statusHBox.getChildren().add(bulb);
             vbox.getChildren().add(statusHBox);
         }
     }
 
-    private GlowBulb.Color getGlowColorFrom(Status.Color color) {
+    private Color getColorFrom(Status.Color color) {
         switch (color) {
-            case GREEN: return GlowBulb.Color.GREEN;
-            case YELLOW: return GlowBulb.Color.YELLOW;
-            case RED: return GlowBulb.Color.RED;
+            case GREEN: return Color.GREEN;
+            case YELLOW: return Color.YELLOW;
+            case RED: return Color.RED;
         }
         throw new IllegalArgumentException("color no supported");
     }

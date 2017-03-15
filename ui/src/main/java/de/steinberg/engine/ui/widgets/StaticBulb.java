@@ -10,20 +10,7 @@ import javafx.util.Duration;
 /**
  * Created by lars on 26.01.2017.
  */
-public class GlowBulb extends Label {
-
-    public GlowBulb() {
-        Glow glow = new Glow();
-        glow.setLevel(0);
-        setEffect(glow);
-        final Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(glow.levelProperty(), 0.7);
-        final KeyFrame kf = new KeyFrame(Duration.millis(850), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-    }
+public class StaticBulb extends Label {
 
     public void setColor(Color color) {
         switch (color) {

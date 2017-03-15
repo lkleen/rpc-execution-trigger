@@ -1,5 +1,6 @@
 package javafx.webkit.test;
 
+import de.steinberg.engine.ui.widgets.Color;
 import de.steinberg.engine.ui.widgets.GlowBulb;
 import de.steinberg.engine.ui.widgets.LabeledGlowBulb;
 import javafx.fxml.FXML;
@@ -23,17 +24,17 @@ public class MoinController {
         label.setOnMouseEntered((MouseEvent m) -> mouseEntered(m));
         label.setOnMouseExited((MouseEvent m) -> mouseExited(m));
         main.getChildren().add(label);
-        label.setColor(GlowBulb.Color.YELLOW);
+        label.setColor(Color.YELLOW);
         label.setText("yellow");
     }
 
     public void mouseEntered(MouseEvent mouseEvent) {
-        label.setColor(GlowBulb.Color.GREEN);
+        label.setColor(Color.GREEN);
         label.setText("green");
     }
 
     public void mouseExited(MouseEvent mouseEvent) {
-        label.setColor(GlowBulb.Color.RED);
+        label.setColor(Color.RED);
         label.setText("red");
     }
 }
