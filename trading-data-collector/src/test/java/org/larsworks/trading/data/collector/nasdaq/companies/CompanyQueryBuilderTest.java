@@ -7,6 +7,7 @@ import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilde
 import org.larsworks.trading.data.collector.finance.yahoo.yql.Query;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -31,9 +32,10 @@ public class CompanyQueryBuilderTest {
         Period maxAllowedQueryPeriod = Period.ofYears(1);
 
         Company company = new Company();
-       // company.setSymbol();
+        company.setSymbol("XYZ");
+        List<Query> queries = queryBuilder.createQuerysForCompany(company, range, maxAllowedQueryPeriod);
 
-        //List<Query> queries = queryBuilder.createQuerysForCompany();
+        Assert.assertEquals(11, queries.size());
 
     }
 
