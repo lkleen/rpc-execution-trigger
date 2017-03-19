@@ -1,5 +1,6 @@
 package org.larsworks.trading.data.collector.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.steinberg.engine.core.engine.Engine;
 import de.steinberg.engine.core.parser.csv.CsvObjectMapper;
 import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
@@ -8,6 +9,7 @@ import org.larsworks.trading.data.collector.engine.monitor.TriggerCollectionMoni
 import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
 import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.CompanyParser;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilder;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.RequestExecutor;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQuery;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -59,6 +61,18 @@ public class TradingDataCollectorConfiguration {
     @Bean
     public SelectQueryBuilder selectQueryBuilder() {
         return new SelectQueryBuilder();
+    }
+
+    @Bean
+    public RequestExecutor requestExecutor() {
+        return new RequestExecutor();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        //objectMapper.configure(Featur)
+        return objectMapper;
     }
 
     @Bean
