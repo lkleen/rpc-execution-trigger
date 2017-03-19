@@ -71,7 +71,6 @@ public class TradingDataCollectorConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
-        //objectMapper.configure(Featur)
         return objectMapper;
     }
 

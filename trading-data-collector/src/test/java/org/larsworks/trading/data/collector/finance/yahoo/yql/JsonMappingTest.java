@@ -3,13 +3,11 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.Assert;
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.*;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Query;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Response;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.Test;
 
-import javax.inject.Inject;
 import java.io.InputStream;
 
 /**
