@@ -1,9 +1,12 @@
 package org.larsworks.trading.data.collector.finance.nasdq.companies.csv;
 
+import lombok.Data;
+
 /**
  * Created by lars on 29.01.2017.
  */
-public class Company {
+@Data
+public class Company implements Comparable<Company> {
 
     String symbol = "Symbol";
     String name = "Name";
@@ -15,4 +18,8 @@ public class Company {
     String industry = "Industry";
     String summary_quote = "Summary Quote";
 
+    @Override
+    public int compareTo(Company that) {
+        return this.symbol.compareTo(that.symbol);
+    }
 }

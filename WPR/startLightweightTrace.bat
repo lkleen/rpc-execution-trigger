@@ -1,0 +1,1 @@
+xperf -on PROC_THREAD+PROFILE+PERF_COUNTER+COMPACT_CSWITCH+DISPATCHER+DPC+INTERRUPT+SYSCALL -stackwalk ThreadCreate+ThreadDelete+ReadyThread+ThreadSetPriority+ThreadSetBasePriority -Buffering -buffersize 1024 -minbuffers 128 -maxbuffers 128

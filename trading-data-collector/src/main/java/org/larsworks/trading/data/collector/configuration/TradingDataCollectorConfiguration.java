@@ -1,9 +1,11 @@
 package org.larsworks.trading.data.collector.configuration;
 
 import de.steinberg.engine.core.engine.Engine;
+import de.steinberg.engine.core.parser.csv.CsvObjectMapper;
 import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
 import org.larsworks.trading.data.collector.engine.action.CollectDataAction;
 import org.larsworks.trading.data.collector.engine.monitor.TriggerCollectionMonitor;
+import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.CompanyParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,6 +33,13 @@ public class TradingDataCollectorConfiguration {
         monitor.setInterval(2, TimeUnit.SECONDS); // to limit request to < 2000 per hour
         monitor.addAction(collectDataAction());
         return monitor;
+    }
+
+    @Bean
+    public CompanyParser companyParser() {
+        CompanyParser parser = new CompanyParser();
+        parser.setMapper(new CsvObjectMapper());
+        return parser;
     }
 
     @Bean
