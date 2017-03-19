@@ -73,12 +73,6 @@ public class PeriodicalSelectQueryParametersGeneratorTest {
         List<String> symbols = new ArrayList<>();
         symbols.add("FOO");
         symbols.add("BAR");
-        generator.setSymbols(symbols);
-        generator.setRange(new SelectQueryRange(
-                LocalDate.of(2000, 1, 1),
-                LocalDate.of(2005, 1, 1)
-                ));
-        generator.setPeriod(Period.ofYears(1));
 
         List<SelectQueryParameters> parameters = generator.generateParameters(
                 symbols,

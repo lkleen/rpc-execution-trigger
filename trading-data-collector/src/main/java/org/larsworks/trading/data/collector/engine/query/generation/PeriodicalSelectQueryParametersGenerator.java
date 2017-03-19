@@ -17,46 +17,18 @@ import java.util.List;
  */
 public class PeriodicalSelectQueryParametersGenerator implements SelectQueryParametersGenerator {
 
-    @Getter
-    @Setter
-    private Period period;
-
-    private List<String> symbols;
-
-    private SelectQueryRange range;
-
-    private String currentSymbol;
-    private SelectQueryRange currentSubRange;
-
-    private List<SelectQueryParameters> parameters;
-
-    private int currentQueryIndex = 0;
-
-    @Override
-    public void setSymbols(List<String> symbols) {
-        this.symbols = symbols;
-    }
-
-    @Override
-    public void setRange(SelectQueryRange range) {
-        this.range = range;
-    }
-
-    @Override
-    public SelectQueryParameters generateNext() {
-        if (parameters == null) {
-            parameters = generateParameters(symbols, range, period);
+    public List<SelectQueryParameters> generateParameters(String symbol, SelectQueryRange range, Period period) {
+        List<SelectQueryParameters> parameters = new ArrayList<>();
+        for (SelectQueryRange subRange : splitRanges(period, range)) {
+             parameters.add(new SelectQueryParameters(symbol, subRange));
         }
-        if (currentQueryIndex == parameters.size()) {return null;}
-        return parameters.get(currentQueryIndex++);
+        return parameters;
     }
 
     public List<SelectQueryParameters> generateParameters(List<String> symbols, SelectQueryRange range, Period period) {
         List<SelectQueryParameters> parameters = new ArrayList<>();
         for (String symbol : symbols) {
-            for (SelectQueryRange subRange : splitRanges(period, range)) {
-                parameters.add(new SelectQueryParameters(symbol, subRange));
-            }
+            parameters.addAll(generateParameters(symbol, range, period));
         }
         return parameters;
     }
@@ -73,6 +45,7 @@ public class PeriodicalSelectQueryParametersGenerator implements SelectQueryPara
      * @param range the overall range (with the last day excluded)
      * @return
      */
+    @Override
     public List<SelectQueryRange> splitRanges(Period period, SelectQueryRange range) {
         List<SelectQueryRange> ranges = new ArrayList<>();
         if (compare(range.getPeriod(), period) < 0) {

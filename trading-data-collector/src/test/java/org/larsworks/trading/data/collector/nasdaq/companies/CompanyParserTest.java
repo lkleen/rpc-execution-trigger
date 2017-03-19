@@ -25,7 +25,7 @@ public class CompanyParserTest {
         CompanyParser parser = context.getBean(CompanyParser.class);
         InputStream input = getClass().getClassLoader().getSystemResourceAsStream("nasdaq-companylist.csv");
         Set<Company> companies = new TreeSet<>(parser.read(Company.class, input));
-        //for (Company c : companies) {System.out.println (c);}
+        for (Company c : companies) {System.out.println (c);}
         Assert.assertEquals(6697, companies.size());
     }
 

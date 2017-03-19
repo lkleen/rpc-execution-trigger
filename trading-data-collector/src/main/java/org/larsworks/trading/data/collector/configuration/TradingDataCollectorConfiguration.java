@@ -5,7 +5,11 @@ import de.steinberg.engine.core.parser.csv.CsvObjectMapper;
 import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
 import org.larsworks.trading.data.collector.engine.action.CollectDataAction;
 import org.larsworks.trading.data.collector.engine.monitor.TriggerCollectionMonitor;
+import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
 import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilder;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQuery;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,6 +44,21 @@ public class TradingDataCollectorConfiguration {
         CompanyParser parser = new CompanyParser();
         parser.setMapper(new CsvObjectMapper());
         return parser;
+    }
+
+    @Bean
+    public CompanyQueryBuilder companyQueryBuilder() {
+        return new CompanyQueryBuilder();
+    }
+
+    @Bean
+    public PeriodicalSelectQueryParametersGenerator periodicalSelectQueryParametersGenerator() {
+        return new PeriodicalSelectQueryParametersGenerator();
+    }
+
+    @Bean
+    public SelectQueryBuilder selectQueryBuilder() {
+        return new SelectQueryBuilder();
     }
 
     @Bean
