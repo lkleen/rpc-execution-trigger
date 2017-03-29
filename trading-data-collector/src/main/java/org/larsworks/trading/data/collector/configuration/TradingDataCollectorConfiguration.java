@@ -1,17 +1,17 @@
 package org.larsworks.trading.data.collector.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.steinberg.engine.core.engine.Engine;
 import de.steinberg.engine.core.parser.csv.CsvObjectMapper;
 import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
 import org.larsworks.trading.data.collector.engine.action.CollectDataAction;
 import org.larsworks.trading.data.collector.engine.monitor.TriggerCollectionMonitor;
 import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
-import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilder;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.RequestExecutor;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQuery;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryWriter;
+import org.larsworks.trading.data.repository.Repository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -79,4 +79,13 @@ public class TradingDataCollectorConfiguration {
         return new CollectDataAction();
     }
 
+    @Bean
+    public Repository repository() {
+        return new Repository();
+    }
+
+    @Bean
+    public RepositoryWriter repositoryWriter() {
+        return new RepositoryWriter();
+    }
 }

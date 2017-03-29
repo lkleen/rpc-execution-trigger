@@ -2,7 +2,7 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
-import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.Company;
+import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.Test;

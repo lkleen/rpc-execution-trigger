@@ -1,12 +1,10 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
-import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.Company;
-import org.larsworks.trading.data.collector.finance.nasdq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
+import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
 
 import javax.inject.Inject;
 import java.time.Period;
