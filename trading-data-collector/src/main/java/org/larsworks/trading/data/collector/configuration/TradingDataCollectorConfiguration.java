@@ -11,6 +11,7 @@ import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilde
 import org.larsworks.trading.data.collector.finance.yahoo.yql.RequestExecutor;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryWriter;
+import org.larsworks.trading.data.repository.Evaluator;
 import org.larsworks.trading.data.repository.Repository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -87,5 +88,10 @@ public class TradingDataCollectorConfiguration {
     @Bean
     public RepositoryWriter repositoryWriter() {
         return new RepositoryWriter();
+    }
+
+    @Bean
+    public Evaluator evaluator() {
+        return new Evaluator();
     }
 }
