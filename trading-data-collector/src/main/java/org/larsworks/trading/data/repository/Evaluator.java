@@ -1,5 +1,6 @@
 package org.larsworks.trading.data.repository;
 
+import jdk.nashorn.internal.runtime.QuotedStringTokenizer;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
 
@@ -25,20 +26,36 @@ public class Evaluator {
     ) {
         List<SelectQueryParameters> result = new ArrayList<>();
         for (String symbol : symbols) {
-            //SelectQueryParameters parameters = createParametersFor(repository, symbol, start, end);
+            List<SelectQueryParameters> parameters = createParametersFor(repository, symbol, start, end);
+            result.addAll(parameters);
         }
-        return null;
+        return result;
     }
 
     private List<SelectQueryParameters> createParametersFor(Repository repository, String symbol, LocalDate start, LocalDate end) {
         Company company = getCompany(repository, symbol);
-        if(company != null) {
-            SelectQueryRanges range = createRanges (company, start, end);
-            return null;
-        } else {
-            
+        if(company == null) {
+            company = new Company();
+            company.setSymbol(symbol);
+            company.setQuotes(new ArrayList<>());
         }
-        return null;
+        List<SelectQueryParameters> result = new ArrayList<>();
+        List<Quote> quotes = company.getQuotes();
+        if (quotes.size() == 0) {
+            SelectQueryRange range = new SelectQueryRange(start, end);
+            result.add(new SelectQueryParameters(symbol, range));
+        } else {
+            result.addAll(createQueryParametersForCompany (company, start, end));
+        }
+        return result;
+    }
+
+    private List<SelectQueryParameters> createQueryParametersForCompany(Company company, LocalDate start, LocalDate end) {
+        SelectQueryRanges ranges = createRanges(company, start, end);
+        List<SelectQueryParameters> parameters = new ArrayList<>();
+        parameters.add(new SelectQueryParameters(company.getSymbol(), ranges.before));
+        parameters.add(new SelectQueryParameters(company.getSymbol(), ranges.after));
+        return parameters;
     }
 
     private SelectQueryRanges createRanges(Company company, LocalDate start, LocalDate end) {
@@ -78,7 +95,7 @@ public class Evaluator {
     private LocalDate getStartDate(Company company) {
         try {
             return company.getQuotes().get(0).getDate();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             return null;
         }
     }
