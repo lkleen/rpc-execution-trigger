@@ -1,22 +1,13 @@
 package org.larsworks.trading.data.collector.engine.action;
 
-import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.action.AbstractAction;
-import de.steinberg.engine.core.engine.setting.SettingsKey;
-import de.steinberg.engine.core.exception.ActionException;
 import lombok.extern.slf4j.Slf4j;
 import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
 import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
-import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryReader;
-import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryWriter;
 import org.larsworks.trading.data.collector.repository.Repository;
 
 import javax.inject.Inject;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -40,8 +31,10 @@ public class CollectDataAction extends AbstractAction {
 
     @Override
     public void execute() {
-        if (!initialized) {initialize();}
-        collectData ();
+        if (!initialized) {
+            initialize();
+        }
+        collectData();
 
     }
 
