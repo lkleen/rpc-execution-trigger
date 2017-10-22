@@ -1,12 +1,9 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
-import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
 import org.larsworks.trading.data.repository.Evaluator;
 import org.larsworks.trading.data.repository.Quote;
 import org.larsworks.trading.data.repository.Repository;
-import org.springframework.cache.support.NoOpCacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
