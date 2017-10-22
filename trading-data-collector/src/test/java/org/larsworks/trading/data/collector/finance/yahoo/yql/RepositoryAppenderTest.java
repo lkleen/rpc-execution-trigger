@@ -2,6 +2,7 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.Assert;
+import org.larsworks.trading.data.collector.TestUtils;
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Response;
@@ -22,17 +23,8 @@ public class RepositoryAppenderTest {
         ApplicationContext context = new AnnotationConfigApplicationContext(
                 TradingDataCollectorConfiguration.class
         );
-        Repository repository = context.getBean(Repository.class);
-        RepositoryAppender appender = context.getBean(RepositoryAppender.class);
-        Response response = getResponse(context);
-        appender.append(repository, response);
+        Repository repository = TestUtils.createRepositoryFromSingleResponse(context, "yql-query-response.json");
         Assert.assertEquals(1, repository.getCompanies().size());
         Assert.assertEquals(4, repository.getCompanies().get(0).getQuotes().size());
-    }
-
-    private Response getResponse(ApplicationContext context) throws Exception {
-        ObjectMapper mapper = context.getBean(ObjectMapper.class);
-        InputStream input = getClass().getClassLoader().getSystemResourceAsStream("yql-query-response.json");
-        return mapper.readValue(input, Response.class);
     }
 }

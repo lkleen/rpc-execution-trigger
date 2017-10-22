@@ -1,6 +1,7 @@
 package org.larsworks.trading.data.collector.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.steinberg.engine.core.parser.csv.CsvObjectMapper;
 import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
 import org.larsworks.trading.data.collector.engine.action.CollectDataAction;
@@ -11,6 +12,8 @@ import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilde
 import org.larsworks.trading.data.collector.finance.yahoo.yql.RequestExecutor;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
+import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryReader;
+import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryWriter;
 import org.larsworks.trading.data.collector.repository.Evaluator;
 import org.larsworks.trading.data.collector.repository.Repository;
 import org.springframework.context.annotation.Bean;
@@ -72,6 +75,7 @@ public class TradingDataCollectorConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         return objectMapper;
     }
 
@@ -93,5 +97,15 @@ public class TradingDataCollectorConfiguration {
     @Bean
     public Evaluator evaluator() {
         return new Evaluator();
+    }
+
+    @Bean
+    public JsonRepositoryWriter jsonRepositoryWriter() {
+        return new JsonRepositoryWriter();
+    }
+
+    @Bean
+    public JsonRepositoryReader jsonRepositoryReader() {
+        return new JsonRepositoryReader();
     }
 }

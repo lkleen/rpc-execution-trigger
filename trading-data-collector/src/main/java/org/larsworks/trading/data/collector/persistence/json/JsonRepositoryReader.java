@@ -1,14 +1,13 @@
 package org.larsworks.trading.data.collector.persistence.json;
 
-import de.steinberg.engine.core.parser.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.larsworks.trading.data.collector.exception.PersistenceException;
 import org.larsworks.trading.data.collector.persistence.RepositoryReader;
 import org.larsworks.trading.data.collector.repository.Repository;
 
 import javax.inject.Inject;
-import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Stream;
 
 /**
  * reads a repository from an InputStream in json format
@@ -20,15 +19,11 @@ public class JsonRepositoryReader implements RepositoryReader {
 
     @Override
     public Repository read(InputStream input) {
-        String str = fromInputStream (input);
-        return objectMapper.read(Repository.class, str);
+        try {
+            return objectMapper.readValue(input, Repository.class);
+        } catch (IOException e) {
+            throw new PersistenceException(e);
+        }
     }
 
-    private String fromInputStream(InputStream input) {
-        InputStreamReader isr = new InputStreamReader(input);
-        Stream<String> lines = new BufferedReader(isr).lines();
-        StringBuilder sb = new StringBuilder();
-        lines.forEach(line -> sb.append(line));
-        return sb.toString();
-    }
 }
