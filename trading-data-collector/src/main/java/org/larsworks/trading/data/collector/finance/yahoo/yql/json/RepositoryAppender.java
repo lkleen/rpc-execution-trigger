@@ -2,7 +2,7 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql.json;
 
 import org.larsworks.trading.data.repository.Company;
 import org.larsworks.trading.data.repository.Repository;
-import org.larsworks.trading.data.repository.Writer;
+import org.larsworks.trading.data.repository.Appender;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by LKLeen on 29.03.2017.
  */
-public class RepositoryWriter implements Writer<Response> {
+public class RepositoryAppender implements Appender<Response> {
 
     private enum Result {
         created,

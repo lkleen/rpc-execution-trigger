@@ -1,8 +1,8 @@
 package org.larsworks.trading.data.repository;
 
 /**
- * Created by LKLeen on 29.03.2017.
+ * appends data to the repository
  */
-public interface Writer<T> {
+public interface Appender<T> {
     void store(Repository repository, T data);
 }

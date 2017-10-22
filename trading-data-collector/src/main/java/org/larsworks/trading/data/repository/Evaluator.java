@@ -1,6 +1,5 @@
 package org.larsworks.trading.data.repository;
 
-import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
 
 import java.time.LocalDate;
@@ -8,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LKLeen on 29.03.2017.
+ * Evaluates if the repository contains the specified range for the given company symbols.
+ * It generates a list of query data for missing entries
  */
 public class Evaluator {
 

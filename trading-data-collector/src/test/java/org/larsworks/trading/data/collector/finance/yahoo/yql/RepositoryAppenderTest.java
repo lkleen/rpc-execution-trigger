@@ -3,7 +3,7 @@ package org.larsworks.trading.data.collector.finance.yahoo.yql;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.Assert;
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryWriter;
+import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Response;
 import org.larsworks.trading.data.repository.Repository;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import java.io.InputStream;
 /**
  * Created by LKLeen on 29.03.2017.
  */
-public class RepositoryWriterTest {
+public class RepositoryAppenderTest {
 
     @Test
     public void testWriteResponseToRepository() throws Exception {
@@ -23,7 +23,7 @@ public class RepositoryWriterTest {
                 TradingDataCollectorConfiguration.class
         );
         Repository repository = context.getBean(Repository.class);
-        RepositoryWriter writer = context.getBean(RepositoryWriter.class);
+        RepositoryAppender writer = context.getBean(RepositoryAppender.class);
         Response response = getResponse(context);
         writer.store(repository, response);
         Assert.assertEquals(1, repository.getCompanies().size());
