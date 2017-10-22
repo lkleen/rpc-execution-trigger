@@ -26,6 +26,9 @@ public class MonitorMock extends DefaultParametrized implements Monitor {
     }
 
     @Override
+    public void initialize() {}
+
+    @Override
     public void setInterval(long period, TimeUnit timeUnit) {
 
     }

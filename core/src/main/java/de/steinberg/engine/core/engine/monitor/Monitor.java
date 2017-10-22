@@ -25,6 +25,7 @@ public interface Monitor extends Runnable, Parametrized {
 
     boolean conditionFulfilled();
 
+    void initialize();
     void runAsync();
     void shutdown();
 

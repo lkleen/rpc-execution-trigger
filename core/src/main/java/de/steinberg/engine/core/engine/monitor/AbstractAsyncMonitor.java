@@ -31,6 +31,9 @@ public abstract class AbstractAsyncMonitor extends DefaultParametrized implement
     public List<Action> getActions() {return actions;}
 
     @Override
+    public void initialize () {}
+
+    @Override
     public void setInterval(long period, TimeUnit timeUnit) {
         this.period = period;
         this.timeUnit = timeUnit;

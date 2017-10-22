@@ -51,6 +51,7 @@ public class FileAddedMonitor extends AbstractAsyncMonitor {
         statusProperty = new SimpleObjectProperty<>(new Status(Status.Color.RED, "disabled"));
     }
 
+    @Override
     public boolean conditionFulfilled() {
         try {
             path = Paths.get(settings.get(PATH));

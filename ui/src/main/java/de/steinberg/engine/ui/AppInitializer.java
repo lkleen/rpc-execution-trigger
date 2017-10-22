@@ -21,10 +21,13 @@ public class AppInitializer {
     }
 
     public void setUp(Stage stage) throws Exception {
-        EngineUI engineUI = applicationContext.getBean(EngineUI.class);
         Engine engine     = applicationContext.getBean(Engine.class);
-        engineUI.initialize(engine, stage);
+        engine.initialize();
         engine.runAsync();
+
+        EngineUI engineUI = applicationContext.getBean(EngineUI.class);
+        engineUI.initialize(engine, stage);
+
         log.info("engine started");
     }
 

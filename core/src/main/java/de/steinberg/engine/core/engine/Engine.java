@@ -16,6 +16,7 @@ public interface Engine {
     void addMonitor(Monitor monitor);
     List<Monitor> getMonitors();
 
+    void initialize();
     void run();
     void runAsync();
     void shutdown();
