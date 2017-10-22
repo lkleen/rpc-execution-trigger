@@ -21,7 +21,7 @@ public class RepositoryAppender implements Appender<Response> {
     }
 
     @Override
-    public void store(Repository repository, Response response) {
+    public void append(Repository repository, Response response) {
         writeQuotes(repository, response);
     }
 

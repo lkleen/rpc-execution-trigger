@@ -23,9 +23,9 @@ public class RepositoryAppenderTest {
                 TradingDataCollectorConfiguration.class
         );
         Repository repository = context.getBean(Repository.class);
-        RepositoryAppender writer = context.getBean(RepositoryAppender.class);
+        RepositoryAppender appender = context.getBean(RepositoryAppender.class);
         Response response = getResponse(context);
-        writer.store(repository, response);
+        appender.append(repository, response);
         Assert.assertEquals(1, repository.getCompanies().size());
         Assert.assertEquals(4, repository.getCompanies().get(0).getQuotes().size());
     }
