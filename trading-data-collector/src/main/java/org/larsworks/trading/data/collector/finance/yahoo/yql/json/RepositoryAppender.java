@@ -1,8 +1,8 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql.json;
 
-import org.larsworks.trading.data.repository.Company;
-import org.larsworks.trading.data.repository.Repository;
-import org.larsworks.trading.data.repository.Appender;
+import org.larsworks.trading.data.collector.repository.Company;
+import org.larsworks.trading.data.collector.repository.Repository;
+import org.larsworks.trading.data.collector.repository.Appender;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class RepositoryAppender implements Appender<Response> {
     public void writeQuotes(Repository repository, Response response) {
         Map<String, Company> companies = new HashMap<>();
         for (Quote quote : response.query.results.quote) {
-            org.larsworks.trading.data.repository.Quote entry = createQuoteEntry(quote);
+            org.larsworks.trading.data.collector.repository.Quote entry = createQuoteEntry(quote);
             Result result = createOrAppend(companies, quote.symbol,entry);
             if (result == Result.created) {
                 repository.getCompanies().add(companies.get(quote.symbol));
@@ -36,7 +36,7 @@ public class RepositoryAppender implements Appender<Response> {
         }
     }
 
-    private Result createOrAppend(Map<String, Company> companies, String symbol, org.larsworks.trading.data.repository.Quote entry) {
+    private Result createOrAppend(Map<String, Company> companies, String symbol, org.larsworks.trading.data.collector.repository.Quote entry) {
         Company company = companies.get(symbol);
         Result result = null;
         if (company == null) {
@@ -46,7 +46,7 @@ public class RepositoryAppender implements Appender<Response> {
             result = Result.appended;
         }
         company.setSymbol(symbol);
-        List<org.larsworks.trading.data.repository.Quote> quotes = company.getQuotes();
+        List<org.larsworks.trading.data.collector.repository.Quote> quotes = company.getQuotes();
         quotes = quotes == null ? new ArrayList<>() : quotes;
         company.setQuotes(quotes);
         quotes.add(entry);
@@ -54,9 +54,9 @@ public class RepositoryAppender implements Appender<Response> {
         return result;
     }
 
-    private org.larsworks.trading.data.repository.Quote createQuoteEntry(Quote quote) {
-        org.larsworks.trading.data.repository.Quote entry =
-                new org.larsworks.trading.data.repository.Quote();
+    private org.larsworks.trading.data.collector.repository.Quote createQuoteEntry(Quote quote) {
+        org.larsworks.trading.data.collector.repository.Quote entry =
+                new org.larsworks.trading.data.collector.repository.Quote();
         entry.setClose(Double.valueOf(quote.close));
         entry.setDate(LocalDate.parse(quote.date));
         entry.setHigh(Double.valueOf(quote.high));

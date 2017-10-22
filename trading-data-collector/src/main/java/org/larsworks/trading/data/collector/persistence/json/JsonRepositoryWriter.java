@@ -1,9 +1,9 @@
-package org.larsworks.trading.data.persistence.json;
+package org.larsworks.trading.data.collector.persistence.json;
 
 import de.steinberg.engine.core.parser.ObjectMapper;
 import org.larsworks.trading.data.collector.exception.PersistenceException;
-import org.larsworks.trading.data.persistence.RepositoryWriter;
-import org.larsworks.trading.data.repository.Repository;
+import org.larsworks.trading.data.collector.persistence.RepositoryWriter;
+import org.larsworks.trading.data.collector.repository.Repository;
 
 import javax.inject.Inject;
 import java.io.IOException;

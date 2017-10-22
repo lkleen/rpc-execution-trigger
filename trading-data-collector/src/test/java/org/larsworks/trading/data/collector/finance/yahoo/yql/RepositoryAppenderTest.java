@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
 import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Response;
-import org.larsworks.trading.data.repository.Repository;
+import org.larsworks.trading.data.collector.repository.Repository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.Test;

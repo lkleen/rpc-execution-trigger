@@ -1,9 +1,9 @@
 package org.larsworks.trading.data.collector.finance.yahoo.yql;
 
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
-import org.larsworks.trading.data.repository.Evaluator;
-import org.larsworks.trading.data.repository.Quote;
-import org.larsworks.trading.data.repository.Repository;
+import org.larsworks.trading.data.collector.repository.Evaluator;
+import org.larsworks.trading.data.collector.repository.Quote;
+import org.larsworks.trading.data.collector.repository.Repository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -52,8 +52,8 @@ public class RepositoryEvaluatorTest {
         LocalDate companyEnd   = LocalDate.of(2004, 1, 1);
 
         String symbol = "ABCD";
-        org.larsworks.trading.data.repository.Company company = createCompanyWithQuotes(symbol, companyStart, companyEnd);
-        List<org.larsworks.trading.data.repository.Company> companies = new ArrayList<>();
+        org.larsworks.trading.data.collector.repository.Company company = createCompanyWithQuotes(symbol, companyStart, companyEnd);
+        List<org.larsworks.trading.data.collector.repository.Company> companies = new ArrayList<>();
         companies.add(company);
         repository.setCompanies(companies);
 
@@ -68,8 +68,8 @@ public class RepositoryEvaluatorTest {
         Assert.assertEquals(repoEnd, queryData.after.getEndDate());
     }
 
-    private org.larsworks.trading.data.repository.Company createCompanyWithQuotes(String symbol, LocalDate start, LocalDate end) {
-        org.larsworks.trading.data.repository.Company company = new org.larsworks.trading.data.repository.Company();
+    private org.larsworks.trading.data.collector.repository.Company createCompanyWithQuotes(String symbol, LocalDate start, LocalDate end) {
+        org.larsworks.trading.data.collector.repository.Company company = new org.larsworks.trading.data.collector.repository.Company();
         company.setSymbol(symbol);
         List<Quote> quotes = new ArrayList<>();
         company.setQuotes(quotes);

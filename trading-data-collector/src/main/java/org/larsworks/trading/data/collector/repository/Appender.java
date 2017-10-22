@@ -1,4 +1,4 @@
-package org.larsworks.trading.data.repository;
+package org.larsworks.trading.data.collector.repository;
 
 /**
  * appends data to the repository
