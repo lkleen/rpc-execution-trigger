@@ -1,4 +1,4 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql;
+package org.larsworks.trading.data.collector.provider.yahoo.yql;
 
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
@@ -14,9 +14,9 @@ import java.time.LocalDate;
  *        Date: 08.01.17
  *        Time: 18:32
  */
-public class SelectQueryBuilderTest {
+public class YahooSelectQueryBuilderTest {
 
-    SelectQueryBuilder builder = new SelectQueryBuilder();
+    YahooSelectQueryBuilder builder = new YahooSelectQueryBuilder();
     SelectQueryRange validRange = new SelectQueryRange(
         LocalDate.of(2014, 1, 1),
         LocalDate.of(2014, 6, 1)

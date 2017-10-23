@@ -7,11 +7,12 @@ import org.larsworks.trading.data.collector.engine.TradingDataCollectorEngine;
 import org.larsworks.trading.data.collector.engine.action.CollectDataAction;
 import org.larsworks.trading.data.collector.engine.monitor.TriggerCollectionMonitor;
 import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.CompanyQueryBuilder;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.RequestExecutor;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.SelectQueryBuilder;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.engine.query.generation.CompanyQueryBuilder;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.RequestExecutor;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.YahooRequestExecutor;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.YahooSelectQueryBuilder;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.json.RepositoryAppender;
 import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryReader;
 import org.larsworks.trading.data.collector.persistence.json.JsonRepositoryWriter;
 import org.larsworks.trading.data.collector.repository.Evaluator;
@@ -63,13 +64,13 @@ public class TradingDataCollectorConfiguration {
     }
 
     @Bean
-    public SelectQueryBuilder selectQueryBuilder() {
-        return new SelectQueryBuilder();
+    public YahooSelectQueryBuilder selectQueryBuilder() {
+        return new YahooSelectQueryBuilder();
     }
 
     @Bean
     public RequestExecutor requestExecutor() {
-        return new RequestExecutor();
+        return new YahooRequestExecutor();
     }
 
     @Bean

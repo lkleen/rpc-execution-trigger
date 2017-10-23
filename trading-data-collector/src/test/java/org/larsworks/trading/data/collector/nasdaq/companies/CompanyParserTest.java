@@ -1,8 +1,8 @@
 package org.larsworks.trading.data.collector.nasdaq.companies;
 
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.Company;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.CompanyParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;

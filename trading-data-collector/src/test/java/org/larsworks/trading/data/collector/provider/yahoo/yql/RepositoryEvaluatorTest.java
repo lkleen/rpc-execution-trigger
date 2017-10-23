@@ -1,4 +1,4 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql;
+package org.larsworks.trading.data.collector.provider.yahoo.yql;
 
 import org.larsworks.trading.data.collector.configuration.TradingDataCollectorConfiguration;
 import org.larsworks.trading.data.collector.repository.Evaluator;

@@ -1,5 +1,8 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql;
+package org.larsworks.trading.data.collector.provider.yahoo.yql;
 
+import org.larsworks.trading.data.collector.engine.query.generation.Query;
+import org.larsworks.trading.data.collector.engine.query.generation.QueryBuilder;
+import org.larsworks.trading.data.collector.engine.query.generation.SelectQuery;
 import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
 import org.larsworks.trading.data.collector.exception.QueryBuilderException;
 
@@ -13,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  *        Date: 08.01.17
  *        Time: 17:54
  */
-public class SelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
+public class YahooSelectQueryBuilder implements QueryBuilder<SelectQueryParameters> {
 
     static final String PREFIX = "select * from yahoo.finance.historicaldata where symbol =";
 

@@ -1,10 +1,8 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql;
+package org.larsworks.trading.data.collector.engine.query.generation;
 
-import org.larsworks.trading.data.collector.engine.query.generation.PeriodicalSelectQueryParametersGenerator;
-import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryParameters;
-import org.larsworks.trading.data.collector.engine.query.generation.SelectQueryRange;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.Company;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.YahooSelectQueryBuilder;
 
 import javax.inject.Inject;
 import java.time.Period;
@@ -23,7 +21,7 @@ public class CompanyQueryBuilder {
     CompanyParser companyParser;
 
     @Inject
-    SelectQueryBuilder queryBuilder;
+    YahooSelectQueryBuilder queryBuilder;
 
     /**
      * @param company - the company to read the symbol from

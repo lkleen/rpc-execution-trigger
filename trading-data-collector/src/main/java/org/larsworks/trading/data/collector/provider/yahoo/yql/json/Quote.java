@@ -1,4 +1,4 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql.json;
+package org.larsworks.trading.data.collector.provider.yahoo.yql.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

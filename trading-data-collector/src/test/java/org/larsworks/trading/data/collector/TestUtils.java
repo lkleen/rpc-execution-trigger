@@ -1,8 +1,8 @@
 package org.larsworks.trading.data.collector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.RepositoryAppender;
-import org.larsworks.trading.data.collector.finance.yahoo.yql.json.Response;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.json.RepositoryAppender;
+import org.larsworks.trading.data.collector.provider.yahoo.yql.json.Response;
 import org.larsworks.trading.data.collector.repository.Repository;
 import org.springframework.context.ApplicationContext;
 

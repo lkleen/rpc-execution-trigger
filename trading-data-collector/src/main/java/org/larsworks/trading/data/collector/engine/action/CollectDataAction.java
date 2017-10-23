@@ -2,14 +2,13 @@ package org.larsworks.trading.data.collector.engine.action;
 
 import de.steinberg.engine.core.engine.action.AbstractAction;
 import lombok.extern.slf4j.Slf4j;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.Company;
-import org.larsworks.trading.data.collector.finance.nasdaq.companies.csv.CompanyParser;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.Company;
+import org.larsworks.trading.data.collector.provider.nasdaq.companies.csv.CompanyParser;
 import org.larsworks.trading.data.collector.repository.Repository;
 
 import javax.inject.Inject;
 import java.io.InputStream;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * @author Lars Kleen
@@ -51,7 +50,8 @@ public class CollectDataAction extends AbstractAction {
 
     private void initializeCompanies() {
         InputStream input = getClass().getClassLoader().getSystemResourceAsStream("nasdaq-companylist.csv");
-        Set<Company> companies = new TreeSet<>(companyParser.read(Company.class, input));
+        List<Company> companies = companyParser.read(Company.class, input);
+        Collections.sort(companies);
         log.info("loaded " + companies.size() + " symbols");
     }
 

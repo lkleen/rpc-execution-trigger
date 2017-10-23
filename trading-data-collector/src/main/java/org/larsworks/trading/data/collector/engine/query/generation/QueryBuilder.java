@@ -1,4 +1,4 @@
-package org.larsworks.trading.data.collector.finance.yahoo.yql;
+package org.larsworks.trading.data.collector.engine.query.generation;
 
 /**
  * @author Lars Kleen
