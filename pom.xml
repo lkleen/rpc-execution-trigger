@@ -15,6 +15,7 @@
         <module>glitchtest-detector</module>
         <module>glitchtest-tracer</module>
         <module>trading-data-collector</module>
+        <module>homp-historgram-generator</module>
     </modules>
 
     <properties>
