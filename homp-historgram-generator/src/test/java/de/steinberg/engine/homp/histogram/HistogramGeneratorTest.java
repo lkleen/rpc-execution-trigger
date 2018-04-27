@@ -18,6 +18,7 @@ public class HistogramGeneratorTest {
         HistogramGenerator histogramGenerator = new HistogramGenerator();
         Histogram histogram = histogramGenerator.generateHistogram(document);
         Assert.assertNotNull(histogram);
+        //histogram.plot ();
     }
 
 }

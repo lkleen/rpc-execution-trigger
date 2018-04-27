@@ -22,6 +22,11 @@
             <artifactId>ui</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.panayotis</groupId>
+            <artifactId>javaplot</artifactId>
+            <version>0.5.0</version>
+        </dependency>
     </dependencies>
 
 </project>

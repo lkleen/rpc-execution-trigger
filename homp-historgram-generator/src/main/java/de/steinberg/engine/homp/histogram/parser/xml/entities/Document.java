@@ -6,27 +6,27 @@ import java.util.List;
 @XmlRootElement
 public class Document {
     public static class System {
-        @XmlElement int numberOfCpus;
-        @XmlElement float sampleRate;
-        @XmlElement float blocksize;
+        @XmlElement public int numberOfCpus;
+        @XmlElement public float sampleRate;
+        @XmlElement public float blocksize;
     }
 
     public static class Bin {
-        @XmlAttribute int index;
-        @XmlAttribute float value;
-        @XmlValue int elementValue;
+        @XmlAttribute public int index;
+        @XmlAttribute public float value;
+        @XmlValue public int elementValue;
     }
 
     public static class Histogram {
-        @XmlElement float minValue;
-        @XmlElement float avgValue;
-        @XmlElement float maxValue;
-        @XmlElement float medianValue;
-        @XmlElement(name = "bin") List<Bin> bins;
+        @XmlElement public float minValue;
+        @XmlElement public float avgValue;
+        @XmlElement public float maxValue;
+        @XmlElement public float medianValue;
+        @XmlElement(name = "bin") public List<Bin> bins;
     }
 
-    @XmlElement Histogram histogram;
+    @XmlElement public Histogram histogram;
 
-    @XmlElement System system;
+    @XmlElement public System system;
 
 }
