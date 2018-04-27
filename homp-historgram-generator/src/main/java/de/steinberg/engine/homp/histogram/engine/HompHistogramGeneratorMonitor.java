@@ -4,7 +4,15 @@ import de.steinberg.engine.core.annotations.TooltipText;
 import de.steinberg.engine.core.engine.control.Control;
 import de.steinberg.engine.core.engine.monitor.AbstractAsyncMonitor;
 import de.steinberg.engine.core.engine.setting.SettingsKey;
+import de.steinberg.engine.homp.histogram.generator.Histogram;
+import de.steinberg.engine.homp.histogram.generator.HistogramGenerator;
+import de.steinberg.engine.homp.histogram.parser.XMLParser;
+import de.steinberg.engine.homp.histogram.parser.xml.entities.Document;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.inject.Inject;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Slf4j
 public class HompHistogramGeneratorMonitor extends AbstractAsyncMonitor {
@@ -26,6 +34,12 @@ public class HompHistogramGeneratorMonitor extends AbstractAsyncMonitor {
     private final PathSetting PATH = new PathSetting();
     private final GenerateHistogram GENERATE_HISTOGRAM = new GenerateHistogram();
 
+    @Inject
+    private HistogramGenerator histogramGenerator;
+
+    @Inject
+    private XMLParser xmlParser;
+
     public HompHistogramGeneratorMonitor () {
         settings.put(PATH, null);
         controls.put("generate histogram", GENERATE_HISTOGRAM);
@@ -37,6 +51,11 @@ public class HompHistogramGeneratorMonitor extends AbstractAsyncMonitor {
     }
 
     private void generateHistogram () {
-        log.info("reading from " + settings.get(PATH));
+        String pathString = settings.get(PATH);
+        log.info("reading from " + pathString);
+        Path path = Paths.get(pathString);
+        Document document = xmlParser.parse(path);
+        Histogram histogram = histogramGenerator.generateHistogram(document);
+        histogram.plot();
     }
 }
