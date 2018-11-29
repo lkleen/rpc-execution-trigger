@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class HistogramGeneratorTest {
 
-    @Test
+    // @Test disabled, depends on the availability of gnuplot
     public void test () {
         InputStream is = ClassLoader.getSystemResourceAsStream("rt-load-histogram.xml");
         Document document = JAXB.unmarshal(is, Document.class);
