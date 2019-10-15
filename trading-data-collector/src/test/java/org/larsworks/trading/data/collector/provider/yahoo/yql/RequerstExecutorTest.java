@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class RequerstExecutorTest {
 
-    @Test
+    //@Test
     public void testExecuteRequest() {
         ApplicationContext context = new AnnotationConfigApplicationContext(
                 TradingDataCollectorConfiguration.class
